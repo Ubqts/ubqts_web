@@ -1,0 +1,75 @@
+'use client';
+import { useRouter } from "next/navigation";
+
+export default function useAds() {
+    const router = useRouter();
+
+    //POST
+    const postAds = async ({
+        picture,
+    }: {
+        picture: string;
+    }) => {
+        const res = await fetch("/api/ads", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                picture,
+            }),
+        });
+        if (!res.ok) {
+            const body = await res.json();
+            throw new Error(body.error);
+        }
+        router.refresh();
+    }
+
+    //GET
+    const getAds = async () => {
+        const res = await fetch("/api/ads", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+        if (!res.ok) {
+            const body = await res.json();
+            throw new Error(body.error);
+        }
+        router.refresh();
+        return await res.json();
+    }
+
+    //PUT
+    const putAds = async ({
+        id,
+        picture,
+    }: {
+        id: number;
+        picture: string;
+    }) => {
+        const res = await fetch('/api/ads', {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                id,
+                picture,
+            }),
+        });
+        if (!res.ok) {
+            const body = await res.json();
+            throw new Error(body.error);
+        }
+        router.refresh();
+    }
+
+    return {
+        postAds,
+        getAds,
+        putAds,
+    };
+}
