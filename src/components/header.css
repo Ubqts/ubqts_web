@@ -6,7 +6,6 @@
     z-index: 10;
     background-color: #f8f9fa;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border-bottom: 1px solid #e9ecef;
 }
 
 .headerContainer {
@@ -21,11 +20,42 @@
 
 .headerMenu {
     display: flex;
+    align-self: stretch;
+    align-items: center;
 }
 
 .headerMenu a {
     color: #495057;
     font-weight: bold;
     text-decoration: none;
-    margin: 0px 20px;
+    /* padding: 0px 20px; */
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+}
+
+.headerMenu a:hover {
+    background-color: #e5e5e5;
+    cursor: pointer;
+}
+
+.languageSelector {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 0px 20px;
+    margin: 0px -20px;
+    height: 100%;
+}
+
+.languageSelector:hover {
+    background-color: #e5e5e5;
+    cursor: pointer;
+}
+
+.languageSelector > img {
+    width: auto;
+    height: 20px;
 }

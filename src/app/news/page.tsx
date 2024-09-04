@@ -3,7 +3,7 @@ import NewsItem from "@/src/components/news_item";
 
 export default function News() {
     return (
-        <div className="container">
+        <div className="container prevent-select">
             <div className="banner">
                 <img src="https://picsum.photos/1700/450" alt="banner" />
             </div>
