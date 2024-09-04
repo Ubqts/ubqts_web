@@ -6,9 +6,15 @@ export default function useNews() {
 
     //POST
     const useNews = async ({
+        picture, 
+        title, 
         description,
+        date,
     }: {
+        picture: string;
+        title: string;
         description: string;
+        date: Date;
     }) => {
         const res = await fetch("/api/news", {
             method: "POST",
@@ -16,7 +22,10 @@ export default function useNews() {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
+                picture,
+                title,
                 description,
+                date,
             }),
         });
         if (!res.ok) {
@@ -45,10 +54,16 @@ export default function useNews() {
     //PUT
     const putNews = async ({
         id,
+        picture,
+        title, 
         description,
+        date,
     }: {
         id: number;
+        picture: string;
+        title: string;
         description: string;
+        date: Date;
     }) => {
         const res = await fetch('/api/news', {
             method: "PUT",
@@ -60,6 +75,8 @@ export default function useNews() {
                 description,
             }),
         });
+        const data = await res.json();
+        console.log(data);
         if (!res.ok) {
             const body = await res.json();
             throw new Error(body.error);
