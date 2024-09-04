@@ -4,12 +4,14 @@ import { NextResponse, type NextRequest } from 'next/server';
 
 export async function POST(req: NextRequest)  {
     const data = await req.json();
-    const { picture } = data;
+    const { name, picture, description } = data;
 
     try {
-        const ads = await prisma.ads.create({
+        const products = await prisma.products.create({
             data: {
+                name,
                 picture,
+                description,
             },
         });
         return NextResponse.json({ status: 200 });
@@ -25,8 +27,8 @@ export async function POST(req: NextRequest)  {
 //GET
 export async function GET() {
     try {
-        const ads = await prisma.ads.findMany();
-        return NextResponse.json({ ads }, { status: 200 });
+        const products = await prisma.products.findMany();
+        return NextResponse.json({ products }, { status: 200 });
     } catch (error) {
         console.log("error: ", error);
         return NextResponse.json(
@@ -39,7 +41,7 @@ export async function GET() {
 //PUT
 export async function PUT(req: NextRequest) {
     const data = await req.json();
-    const { newPicture } = data;
+    const { newName, newPicture, newDescription } = data;
     const id = data.id;
 
     try {
@@ -48,7 +50,9 @@ export async function PUT(req: NextRequest) {
                 id,
             },
             data: {
+                name: newName,
                 picture: newPicture,
+                description: newDescription,
             },
         });
         return NextResponse.json({ status: 200 });

@@ -10,7 +10,7 @@ export type Ad = {
 export type AdContext = {
     ad?: Ad | null;
     setAd?: (ad: Ad) => void;
-    sendAd?: (ad: Omit<Ad, 'id' | 'picture'>) => void;
+    sendAd?: (ad: Omit<Ad, 'id'>) => void;
 };
 
 export const AdContext = createContext<AdContext>({
@@ -45,7 +45,7 @@ export function AdProvider({ children }: Props) {
         fetchAd();
     }, []);
 
-    const sendAd = async (ad: Omit<Ad, 'id' | 'picture'>) => {
+    const sendAd = async (ad: Omit<Ad, 'id'>) => {
         try {
             const res = await fetch(`/api/ad`, {
                 method: 'POST',

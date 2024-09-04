@@ -4,12 +4,16 @@ import { NextResponse, type NextRequest } from 'next/server';
 
 export async function POST(req: NextRequest)  {
     const data = await req.json();
-    const { picture } = data;
+    const { picture, title, description } = data;
 
     try {
-        const ads = await prisma.ads.create({
+        const time = new Date();
+        const news = await prisma.news.create({
             data: {
                 picture,
+                title,
+                description,
+                date: time,
             },
         });
         return NextResponse.json({ status: 200 });
@@ -25,8 +29,12 @@ export async function POST(req: NextRequest)  {
 //GET
 export async function GET() {
     try {
-        const ads = await prisma.ads.findMany();
-        return NextResponse.json({ ads }, { status: 200 });
+        const news = await prisma.news.findMany({
+            orderBy: {
+                date: 'desc',
+            },
+        });
+        return NextResponse.json({ news }, { status: 200 });
     } catch (error) {
         console.log("error: ", error);
         return NextResponse.json(
@@ -39,7 +47,7 @@ export async function GET() {
 //PUT
 export async function PUT(req: NextRequest) {
     const data = await req.json();
-    const { newPicture } = data;
+    const { newPicture, newTitle, newDescription } = data;
     const id = data.id;
 
     try {
@@ -49,6 +57,8 @@ export async function PUT(req: NextRequest) {
             },
             data: {
                 picture: newPicture,
+                title: newTitle,
+                description: newDescription,
             },
         });
         return NextResponse.json({ status: 200 });

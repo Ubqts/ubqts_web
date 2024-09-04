@@ -4,13 +4,16 @@ import { useRouter } from 'next/router';
 
 export type News = {
     id: number;
+    picture: string;
+    title: string;
     description: string;
+    date: Date;
 };
 
 export type NewsContext = {
     news?: News | null;
     setNews?: (news: News) => void;
-    sendNews?: (news: Omit<News, 'id' | 'description'>) => void;
+    sendNews?: (news: Omit<News, 'id' | 'date'>) => void;
 };
 
 export const NewsContext = createContext<NewsContext>({
@@ -45,7 +48,7 @@ export function NewsProvider({ children }: Props) {
         fetchNews();
     }, []);
 
-    const sendNews = async (news: Omit<News, 'id' | 'description'>) => {
+    const sendNews = async (news: Omit<News, 'id' | 'date'>) => {
         try {
             const res = await fetch(`/api/news`, {
                 method: 'POST',
