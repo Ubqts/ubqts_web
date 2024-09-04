@@ -1,0 +1,23 @@
+h1 {
+    padding: 50px 0px;
+	text-align: center;
+	background-color: #efefef;
+    color: #333;
+    margin-bottom: 50px;
+}
+
+.container {
+    text-align: center;
+}
+
+.blankBanner {
+    height: 60px;
+    width: 100%;
+}
+
+.newsList .split {
+    width: calc(100% - 250px);
+    height: 0.5px;
+    background-color: lightgray;
+    margin: 0 auto;
+}
