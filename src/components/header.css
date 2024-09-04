@@ -1,0 +1,31 @@
+.header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid #e9ecef;
+}
+
+.headerContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 60px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+    height: 80px;
+}
+
+.headerMenu {
+    display: flex;
+}
+
+.headerMenu a {
+    color: #495057;
+    font-weight: bold;
+    text-decoration: none;
+    margin: 0px 20px;
+}

@@ -1,0 +1,128 @@
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 50px;
+}
+
+.prevent-select {
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}
+
+.container {
+    text-align: center;
+}
+
+.carouselContainer {
+    display: flex;
+    /* justify-content: center; */
+    /* width: 100%; */
+    /* height: 100%; */
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    scroll-behavior: smooth;
+}
+
+.carouselUI {
+	width: 100%;
+	height: 600px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: -600px;
+}
+
+.btn {
+	width: 50px;
+	height: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #cfcfcf90;
+	font-weight: bold;
+    border: 2px solid #333;
+	border-radius: 50%;
+	margin: 0 30px;
+}
+
+.prev {
+	margin-right: auto;
+}
+
+.next {
+	margin-left: auto;
+}
+
+.indices {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	align-self: flex-end;
+	margin-bottom: 50px;
+}
+
+.index-item {
+    width: 10px;
+    height: 10px;
+    border: 1.5px solid #333;
+    border-radius: 50%;
+    background-color: #fff;
+}
+
+.index-item.current {
+    width: 12px;
+    height: 12px;
+    background-color: #333;
+}
+
+.blankBanner {
+    height: 60px;
+    width: 100%;
+}
+
+.content {
+    text-align: center;
+    padding: 60px 10%;
+}
+
+.origin {
+    background-color: #f5f5f5;
+}
+
+.imgWithText {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    margin: 20px auto;
+}
+
+.imgWithText img {
+    width: 50%;
+    height: 50%;
+}
+
+.productTable {
+    /* display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    row-gap: 80px; */
+    display: grid;
+    /* grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); */
+    grid-template-columns: repeat(auto-fill, 300px);
+    grid-gap: 80px 0;
+    justify-content: space-between;
+    margin: 20px 0px;
+}
+
+.product {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
