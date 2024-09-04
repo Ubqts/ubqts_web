@@ -1,0 +1,28 @@
+import "./page.css";
+
+export default function NewsPage() {
+    return (
+        <div className="container prevent-select">
+            <div className="banner">
+                <img src="https://picsum.photos/1700/450" alt="banner" />
+            </div>
+            <h1>標題</h1>
+            <div className="blankBanner" />
+            <div className="imgWithText">
+                <img src="https://picsum.photos/380/220" alt="img" />
+                <p>
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                    Voluptatibus ab praesentium minus nam. Illum dolorem
+                    tempora nam, temporibus at ipsam iste quos consectetur
+                    eum ea non reiciendis placeat quidem accusantium, sequi
+                    eligendi, perferendis quod ab maiores omnis tempore
+                    explicabo natus ducimus aperiam? Nobis officia dolorum
+                    suscipit saepe nam asperiores ad praesentium, magnam quasi.
+                    Sed dignissimos omnis, culpa voluptatem vero at pariatur
+                </p>
+            </div>
+            <div className="blankBanner" />
+            <div className="blankBanner" />
+        </div>
+    );
+}
