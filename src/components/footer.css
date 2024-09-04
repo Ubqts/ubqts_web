@@ -1,0 +1,32 @@
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    bottom: 0;
+    width: 100%;
+}
+
+.footerContent {
+    height: 180px;
+    width: 85%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footerContent > div {
+    margin: 0 auto;
+}
+
+.logo > img {
+    margin: 10px auto;
+}
+
+div.split {
+    height: 50%;
+    width: 0.5px;
+    background-color: gray;
+    margin: 0px;
+}
