@@ -5,6 +5,12 @@ h1 {
     margin-bottom: 50px;
 }
 
+.prevent-select {
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}
+
 .container {
     text-align: center;
 }
@@ -101,6 +107,12 @@ h1 {
 }
 
 .productTable {
+    /* display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    row-gap: 80px; */
     display: grid;
     /* grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); */
     grid-template-columns: repeat(auto-fill, 300px);
