@@ -1,0 +1,30 @@
+h1 {
+    padding: 50px 0px;
+	text-align: center;
+    color: #333;
+    font-size: 2.2rem;
+}
+
+.container {
+    text-align: center;
+}
+
+.imgWithText {
+    display: flex;
+    align-items: flex-start;
+    gap: 200px;
+    margin: 0 auto;
+    padding: 0px 15% 0px 20%;
+    min-height: 400px;
+}
+
+.imgWithText p {
+    font-weight: bold;
+    text-align: left;
+    line-height: 2.3rem;
+}
+
+.blankBanner {
+    height: 60px;
+    width: 100%;
+}
