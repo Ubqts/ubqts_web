@@ -2,7 +2,7 @@ import "./page.css";
 
 export default function DownloadFiles() {
     return (
-        <div className="container">
+        <div className="container prevent-select">
             <div className="banner">
                 <img src="https://picsum.photos/1700/450" alt="banner" />
             </div>
