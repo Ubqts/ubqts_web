@@ -4,9 +4,9 @@ export default function Footer() {
     return (
         <footer>
             <div className="footerContent">
-                <div className="logo">
-                    <img src="https://picsum.photos/200/100?random=1" alt="logo" />
-                    <div>Lorem, ipsum.</div>
+                <div className="footerCompany">
+                    <div className="zh">洲通能源科技有限公司</div>
+                    <div className="en">UBQTS Power Technology Co.,LTD</div>
                 </div>
 
                 <div className="split" />
