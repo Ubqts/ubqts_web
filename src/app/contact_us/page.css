@@ -1,0 +1,46 @@
+h1 {
+    padding: 50px 0px;
+	text-align: center;
+	background-color: #efefef;
+    color: #333;
+    margin-bottom: 50px;
+}
+
+.blankBanner {
+    height: 60px;
+    width: 100%;
+}
+
+.businessCardTable {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    row-gap: 50px;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.businessCard {
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px 3px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.2s ease-in-out;
+    width: 450px;
+    height: 250px;
+    padding: 0px 70px;
+}
+
+.businessCard:hover {
+    cursor: pointer;
+    transform: skew(2deg, -2deg);
+    transition: all 0.2s ease-in-out;
+    width: 456px;
+    height: 256px;
+    padding: 0px 73px;
+    box-shadow: 7px 7px 10px 5px rgba(0, 0, 0, 0.3);
+}
