@@ -5,14 +5,14 @@ export default function useNews() {
     const router = useRouter();
 
     //POST
-    const useNews = async ({
-        picture, 
+    const postNews = async ({
         title, 
+        picture, 
         description,
         date,
     }: {
-        picture: string;
         title: string;
+        picture: string;
         description: string;
         date: Date;
     }) => {
@@ -85,7 +85,7 @@ export default function useNews() {
     }
 
     return {
-        useNews,
+        postNews,
         getNews,
         putNews,
     };

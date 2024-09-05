@@ -22,6 +22,87 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
+## Getting Started on Backend -- Postgresql
+run the following bash command in WSL
+```bash
+# to install postgresql
+sudo apt update
+sudo apt install postgresql postgresql-contrib
+
+# to check the version of postgresql
+psql --version
+
+# to initialize postgresql database
+sudo service postgresql initdb
+
+# to start postgresql
+sudo service postgresql start
+
+
+# or run the following command if you have already installed postgresql
+sudo -u postgres pg_ctlcluster 12 main start    # you can change 12 into the version of your postgre
+```
+
+if you are using Docker, run the following command
+```bash
+# to start postgresql
+docker run --name my-postgres -e POSTGRES_PASSWORD=mysecretpassword -p 5432:5432 -d postgres
+```
+
+### PostgreSQL -- Create User and Database
+```bash
+# 1. log in as postgre super user
+sudo -i -u postgres
+
+# 2. enter PostgreSQL interact mode
+psql
+```
+thus you have entered the postgre as super user
+```sql
+-- create user 
+CREATE USER your_username WITH PASSWORD 'your_password';
+-- change user password
+ALTER USER your_username WITH PASSWORD 'newpassword';
+
+-- create database
+CREATE DATABASE mydatabase;
+-- grant database privileges to user
+GRANT ALL PRIVILEGES ON DATABASE mydatabase TO my_username;
+
+-- create table or import data
+CREATE TABLE ads (
+    id SERIAL PRIMARY KEY,
+    picture TEXT
+);
+
+-- other commands
+\du -- list all users
+\l  -- list all database
+\c  -- move to database
+\dp -- check privilege
+```
+thus you have finished creating database and table
+
+remember to change your `.env` file into your environment variable.
+```dotenv
+DATABASE_URL="postgresql://username:password@localhost:5432/database"
+```
+run prisma
+```bash
+npx prisma generate
+npx prisma db pull
+```
+remember to add model into `schema.prisma` after running `npx prisma generate`
+
+thus you have finished the PostgreSQL setup
+
+## Getting Started on Backend -- Prisma
+use the command
+```bash
+npx prisma studio
+```
+to open GUI for prisma container
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

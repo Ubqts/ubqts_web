@@ -8,28 +8,27 @@ export type Ad = {
 };
 
 export type AdContext = {
-    ad?: Ad | null;
-    setAd?: (ad: Ad) => void;
-    sendAd?: (ad: Omit<Ad, 'id'>) => void;
+    ads: Ad | null;
+    setAds: (ad: Ad) => void;
+    sendAds: (ad: Omit<Ad, 'id'>) => Promise<void>;
 };
 
 export const AdContext = createContext<AdContext>({
-    ad: null,
-    setAd: () => {},
-    sendAd: async () => {},
+    ads: null,
+    setAds: () => {},
+    sendAds: async () => {},
 });
 
 type Props = {
     children: React.ReactNode;
 };
 export function AdProvider({ children }: Props) {
-    // const router = useRouter();
-    const [ad, setAd] = useState<Ad | null>(null);
+    const [ads, setAds] = useState<Ad | null>(null);
 
     useEffect(() => {
-        const fetchAd = async () => {
+        const fetchAds = async () => {
             try {
-                const res = await fetch(`/api/ad`, {
+                const res = await fetch('/api/ads', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -37,15 +36,15 @@ export function AdProvider({ children }: Props) {
                 });
                 const data = await res.json();
                 console.log(data);
-                setAd(data);
+                setAds(data);
             } catch (error) {
                 console.error(error);
             }
         };
-        fetchAd();
+        fetchAds();
     }, []);
 
-    const sendAd = async (ad: Omit<Ad, 'id'>) => {
+    const sendAds = async (ad: Omit<Ad, 'id'>) => {
         try {
             const res = await fetch(`/api/ad`, {
                 method: 'POST',
@@ -62,7 +61,7 @@ export function AdProvider({ children }: Props) {
     };
 
     return (
-        <AdContext.Provider value={{ ad, setAd, sendAd }}>
+        <AdContext.Provider value={{ ads, setAds, sendAds }}>
             {children}
         </AdContext.Provider>
     );

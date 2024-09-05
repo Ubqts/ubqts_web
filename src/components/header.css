@@ -9,6 +9,16 @@
     border-bottom: 1px solid #e9ecef;
 }
 
+.apiTests {
+    width: 500px;
+    height: full;
+    border: #495057 1px solid;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+}
+
 .headerContainer {
     display: flex;
     justify-content: space-between;
