@@ -2,7 +2,7 @@ import "./sidebar.css";
 
 const Sidebar = () => {
     return (
-        <div className="sidebar">
+        <div className="sidebar prevent-select">
             <div>Menu</div>
         </div>
     );
