@@ -3,6 +3,7 @@ import "./header.css";
 import useAds from "../hooks/useAds";
 import useNews from "../hooks/useNews";
 import useProducts from "../hooks/useProducts";
+import Link from "next/link";
 
 export default function Header() {
     const adTest = { picture: "ads_picture" };
@@ -59,14 +60,18 @@ export default function Header() {
         <div className="header prevent-select" style={{ scrollbarGutter: "auto" }}>
             <div className="headerContainer">
                 <div className="headerLogo">
-                    <img src="https://picsum.photos/120/60?random=1" alt="logo" />
+                    <img className="logo" src="/img/logo.png" alt="logo" />
+                    <div className="logoText">
+                        <div className="compName zh">洲通能源科技有限公司</div>
+                        <div className="compName en">UBQTS Power Technology Co.,Ltd</div>
+                    </div>
                 </div>
 
-                {/* <div className="apiTests">
+                <div className="apiTests">
                     <button onClick={() => AdsApiTest()}>廣告api測試</button>
                     <button onClick={() => NewsApiTest()}>新聞api測試</button>
                     <button onClick={() => ProductsApiTest()}>產品api測試</button>
-                </div> */}
+                </div>
 
                 <div className="headerMenu">
                     <a href="/#">首頁</a>
@@ -77,9 +82,19 @@ export default function Header() {
                     <a href="download_files">下載專區</a>
                 </div>
 
-                <div className="languageSelector">
-                    <img src="img/langIcon.png" alt="lang" />
-                    <img src="img/dropDownIcon.png" alt="dropdown" />
+                <div className="languageDropDown">
+                    <div className="languageBtn">
+                        <img src="img/langIcon.png" alt="lang" />
+                        <img src="img/dropDownIcon.png" alt="dropdown" />
+                    </div>
+                    <div className="languageList">
+                        {/* <Link href="/zh-tw"><a>繁體中文</a></Link>
+                        <Link href="/zh-cn"><a>简体中文</a></Link>
+                        <Link href="/en"><a>English</a></Link> */}
+                        <a href="/zh-tw">繁體中文</a>
+                        <a href="/zh-cn">简体中文</a>
+                        <a href="/en">English</a>
+                    </div>
                 </div>
             </div>
         </div>
