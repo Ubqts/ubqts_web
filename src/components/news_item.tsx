@@ -2,7 +2,7 @@ import "./news_item.css";
 
 export default function NewsItem() {
     return (
-        <div className="newsItem">
+        <div className="newsItem prevent-select">
             <img src="https://picsum.photos/300/200?random=1" alt="1" />
             <div className="newsInfo">
                 <div className="title">標題</div>
