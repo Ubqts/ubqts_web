@@ -75,6 +75,10 @@ CREATE TABLE ads (
     picture TEXT
 );
 
+-- add/delete/change attribute of table
+ALTER TABLE ads
+ADD CLOUMN date DATE
+
 -- other commands
 \du -- list all users
 \l  -- list all database
@@ -99,9 +103,12 @@ thus you have finished the PostgreSQL setup
 ## Getting Started on Backend -- Prisma
 use the command
 ```bash
+# to sync database with schema
+npx prisma migrate dev
+# to open GUI for prisma container
 npx prisma studio
 ```
-to open GUI for prisma container
+
 
 ## Learn More
 

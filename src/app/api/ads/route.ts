@@ -25,6 +25,9 @@ export async function POST(req: NextRequest)  {
 //GET
 export async function GET() {
     try {
+        await prisma.$connect();
+        console.log("Connected to the database.");
+
         const ads = await prisma.ads.findMany();
         return NextResponse.json({ ads }, { status: 200 });
     } catch (error) {
@@ -33,6 +36,9 @@ export async function GET() {
             { error: "Something went wrong." }, 
             { status: 500 }
         );
+    } finally {
+        await prisma.$disconnect();
+        console.log("Disconnected from the database.");
     }
 }
 
@@ -43,7 +49,7 @@ export async function PUT(req: NextRequest) {
     const id = data.id;
 
     try {
-        const news = await prisma.news.update({
+        const ads = await prisma.ads.update({
             where: {
                 id,
             },
