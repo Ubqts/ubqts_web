@@ -28,17 +28,17 @@ const Sidebar = () => {
                 <div className="clsBtn">
                     <img src="./img/close.png" alt="close" />
                 </div>
-                <div className="sidebarLink">首頁</div>
+                <a className="sidebarLink" href="/#">首頁</a>
                 <div className="linkSplit" />
-                <div className="sidebarLink">產品解決方案</div>
+                <a className="sidebarLink" href="product_solutions">產品解決方案</a>
                 <div className="linkSplit" />
-                <div className="sidebarLink">合作夥伴</div>
+                <a className="sidebarLink" href="partners">合作夥伴</a>
                 <div className="linkSplit" />
-                <div className="sidebarLink">聯絡我們</div>
+                <a className="sidebarLink" href="contact_us">聯絡我們</a>
                 <div className="linkSplit" />
-                <div className="sidebarLink">公司最新消息</div>
+                <a className="sidebarLink" href="news">公司最新消息</a>
                 <div className="linkSplit" />
-                <div className="sidebarLink">下載專區</div>
+                <a className="sidebarLink" href="download_files">下載專區</a>
             </div>
         </div>
     );

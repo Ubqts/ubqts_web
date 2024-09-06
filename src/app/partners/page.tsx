@@ -9,55 +9,59 @@ export default function Partners() {
             <h1>合作夥伴</h1>
             <div className="partnerType">
                 <h2>國際品牌大廠</h2>
-                <div className="line"></div>
+                <div className="line" />
                 <div className="partner">
-                    <img src="https://picsum.photos/150/100?random=1" alt="Partner 1" />
-                    <img src="https://picsum.photos/150/100?random=2" alt="Partner 2" />
-                    <img src="https://picsum.photos/150/100?random=3" alt="Partner 3" />
-                    <img src="https://picsum.photos/150/100?random=4" alt="Partner 4" />
-                    <img src="https://picsum.photos/150/100?random=5" alt="Partner 5" />
+                    <div className="partnerCard"><img src="./img/partner_logos/sefLogo.png" alt="SEF" /></div>
+                    <div className="partnerCard"><img src="./img/partner_logos/cmcLogo.png" alt="CMC" /></div>
+                    <div className="partnerCard"><img src="./img/partner_logos/nemkoLogo.png" alt="Nemko" /></div>
+                    <div className="partnerCard"><img src="./img/partner_logos/googleLogo.png" alt="Google" /></div>
+                    <div className="partnerCard"><img src="./img/partner_logos/gogoroLogo.png" alt="gogoro" /></div>
+                    <div className="partnerCard"><img src="./img/partner_logos/garminLogo.png" alt="garmin" /></div>
+                    <div className="partnerCard"><img src="./img/partner_logos/btlLogo.png" alt="BTL" /></div>
                 </div>
             </div>
             <div className="partnerType">
                 <h2>研究及認證機構</h2>
-                <div className="line"></div>
+                <div className="line" />
                 <div className="partner">
-                    <img src="https://picsum.photos/150/100?random=6" alt="Partner 6" />
-                    <img src="https://picsum.photos/150/100?random=7" alt="Partner 7" />
-                    <img src="https://picsum.photos/150/100?random=8" alt="Partner 8" />
-                    <img src="https://picsum.photos/150/100?random=9" alt="Partner 9" />
+                    <div className="partnerCard"><img src="./img/partner_logos/tuvLogo.png" alt="TUV" /></div>
+                    <div className="partnerCard"><img src="./img/partner_logos/tdLogo.png" alt="TD" /></div>
+                    <div className="partnerCard"><img src="./img/partner_logos/sgsLogo.png" alt="SGS" /></div>
+                    <div className="partnerCard"><img src="./img/partner_logos/kyyLogo.png" alt="KYY" /></div>
                 </div>
             </div>
             <div className="partnerType">
                 <h2>高等學術單位</h2>
-                <div className="line"></div>
+                <div className="line" />
                 <div className="partner">
-                    <img src="https://picsum.photos/150/100?random=10" alt="Partner 10" />
-                    <img src="https://picsum.photos/150/100?random=11" alt="Partner 11" />
-                    <img src="https://picsum.photos/150/100?random=12" alt="Partner 12" />
-                    <img src="https://picsum.photos/150/100?random=13" alt="Partner 13" />
-                    <img src="https://picsum.photos/150/100?random=14" alt="Partner 14" />
-                    <img src="https://picsum.photos/150/100?random=15" alt="Partner 15" />
+                    <div className="partnerCard"><img src="./img/partner_logos/nthuLogo.png" alt="NTHU" /></div>
+                    <div className="partnerCard"><img src="./img/partner_logos/nckuLogo.png" alt="NCKU" /></div>
+                    <div className="partnerCard"><img src="./img/partner_logos/fjcuLogo.png" alt="FJCU" /></div>
                 </div>
             </div>
             <div className="partnerType">
                 <h2>系統及組裝廠</h2>
-                <div className="line"></div>
+                <div className="line" />
                 <div className="partner">
-                    <img src="https://picsum.photos/150/100?random=16" alt="Partner 16" />
-                    <img src="https://picsum.photos/150/100?random=17" alt="Partner 17" />
-                    <img src="https://picsum.photos/150/100?random=18" alt="Partner 18" />
-                    <img src="https://picsum.photos/150/100?random=19" alt="Partner 19" />
-                    <img src="https://picsum.photos/150/100?random=20" alt="Partner 20" />
+                    <div className="partnerCard"><img src="./img/partner_logos/deltaLogo.png" alt="DELTA" /></div>
+                    <div className="partnerCard"><img src="./img/partner_logos/compalLogo.png" alt="COMPAL" /></div>
+                    <div className="partnerCard"><img src="./img/partner_logos/qisdaLogo.png" alt="Qisda" /></div>
+                    <div className="partnerCard"><img src="./img/partner_logos/liteonLogo.png" alt="LITEON" /></div>
+                    <div className="partnerCard"><img src="./img/partner_logos/gigabyteLogo.png" alt="GIGABYTE" /></div>
                 </div>
             </div>
             <div className="partnerType">
                 <h2>電池材料及模組廠</h2>
-                <div className="line"></div>
+                <div className="line" />
                 <div className="partner">
-                    <img src="https://picsum.photos/150/100?random=21" alt="Partner 21" />
-                    <img src="https://picsum.photos/150/100?random=22" alt="Partner 22" />
-                    <img src="https://picsum.photos/150/100?random=23" alt="Partner 23" />
+                    <div className="partnerCard"><img src="./img/partner_logos/eternalLogo.png" alt="Eternal" /></div>
+                    <div className="partnerCard"><img src="./img/partner_logos/darfonLogo.png" alt="DARFON" /></div>
+                    <div className="partnerCard"><img src="./img/partner_logos/hwtLogo.png" alt="HWT" /></div>
+                    <div className="partnerCard"><img src="./img/partner_logos/techwayLogo.png" alt="techway" /></div>
+                    <div className="partnerCard"><img src="./img/partner_logos/wteLogo.png" alt="WTE" /></div>
+                    <div className="partnerCard"><img src="./img/partner_logos/nanyaLogo.png" alt="NANYA" /></div>
+                    <div className="partnerCard"><img src="./img/partner_logos/glwLogo.png" alt="GLW" /></div>
+                    <div className="partnerCard"><img src="./img/partner_logos/merryLogo.png" alt="MERRY" /></div>
                 </div>
             </div>
             <div className="blankBanner" />
