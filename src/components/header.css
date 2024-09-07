@@ -24,13 +24,13 @@
     min-width: 67px;
 }
 
-.zh {
+.logoText .zh {
     font-weight: bold;
     color: #495057;
     font-size: normal;
 }
 
-.en {
+.logoText .en {
     font-weight: bold;
     color: #495057;
     font-size: small;
