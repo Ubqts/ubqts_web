@@ -62,11 +62,11 @@ export default function Header() {
                     <img src="https://picsum.photos/120/60?random=1" alt="logo" />
                 </div>
 
-                {/* <div className="apiTests">
+                <div className="apiTests">
                     <button onClick={() => AdsApiTest()}>廣告api測試</button>
                     <button onClick={() => NewsApiTest()}>新聞api測試</button>
                     <button onClick={() => ProductsApiTest()}>產品api測試</button>
-                </div> */}
+                </div>
 
                 <div className="headerMenu">
                     <a href="/#">首頁</a>
