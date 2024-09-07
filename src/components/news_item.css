@@ -25,9 +25,9 @@
 .newsInfo {
     margin-right: auto;
     text-align: left;
-    flex-shrink: 1;
+    flex-shrink: 2;
     align-self: stretch;
-    max-width: 55%;
+    /* max-width: 55%; */
 }
 
 .newsTitle {
@@ -74,6 +74,6 @@
         margin: 0;
         align-self: center;
         width: calc(300px - 15vw);
-        max-width: 100%;
+        /* max-width: 100%; */
     }
 }
