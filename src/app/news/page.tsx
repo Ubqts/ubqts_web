@@ -10,7 +10,6 @@ export default function News() {
 
             <div className="content">
                 <h1>最新消息</h1>
-                <div className="blankBanner" />
                 <div className="newsList">
                     <NewsItem />
                     <div className="split" />
@@ -27,10 +26,6 @@ export default function News() {
             </div>
 
             <div className="blankBanner" />
-
-            <div className="index">
-            </div>
-
             <div className="blankBanner" />
         </div>
     );
