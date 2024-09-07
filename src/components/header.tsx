@@ -67,13 +67,15 @@ export default function Header() {
 
     return (
         <div className="header prevent-select">
-            <div className="headerLogo">
-                <img className="logo" src="/img/logo.png" alt="logo" />
-                <div className="logoText">
-                    <div className="zh">洲通能源科技有限公司</div>
-                    <div className="en">UBQTS Power Technology Co.,Ltd</div>
+            <a href="/#">
+                <div className="headerLogo">
+                    <img className="logo" src="/img/logo.png" alt="logo" />
+                    <div className="logoText">
+                        <div className="zh">洲通能源科技有限公司</div>
+                        <div className="en">UBQTS Power Technology Co.,Ltd</div>
+                    </div>
                 </div>
-            </div>
+            </a>
 
             <div className="headerMenu">
                 <a href="/#">首頁</a>
@@ -96,7 +98,7 @@ export default function Header() {
                         <a href="/en">English</a>
                     </div>
                 </div>
-                <img className="sidebarIcon" src="./img/menu.png" alt="menu" onClick={handleSidebarDisplay} />
+                <img className="sidebarIcon" src="./img/menuIcon.png" alt="menu" onClick={handleSidebarDisplay} />
             </div>
 
             <div className="apiTests">
