@@ -14,7 +14,7 @@ export default function useProducts() {
         picture: string;
         description: string;
     }) => {
-        const res = await fetch("/api/Products", {
+        const res = await fetch("/api/products", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -79,9 +79,28 @@ export default function useProducts() {
         router.refresh();
     }
 
+    //DELETE
+    const deleteProducts = async (id: number) => {
+        const res = await fetch('/api/products', {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                id,
+            }),
+        });
+        if (!res.ok) {
+            const body = await res.json();
+            throw new Error(body.error);
+        }
+        router.refresh();
+    }
+
     return {
         postProducts,
         getProducts,
         putProducts,
+        deleteProducts,
     };
 }

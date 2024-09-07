@@ -4,6 +4,7 @@ import useAds from "../hooks/useAds";
 import useNews from "../hooks/useNews";
 import useProducts from "../hooks/useProducts";
 import Link from "next/link";
+import { useContext } from "react";
 
 export default function Header() {
     const adTest = { picture: "ads_picture" };
@@ -19,14 +20,13 @@ export default function Header() {
         description: "product_description",
     };
 
-    const { postAds } = useAds();
-    const { postNews } = useNews();
-    const { postProducts } = useProducts();
+    const { deleteAds } = useAds();
+    const { deleteNews } = useNews();
+    const { deleteProducts } = useProducts();
 
     const AdsApiTest = async () => {
         try {
-            console.log(adTest);
-            await postAds(adTest);
+            await deleteAds(1);
             alert("廣告api測試成功");
         } catch (error) {
             console.error(error);
@@ -36,8 +36,7 @@ export default function Header() {
 
     const NewsApiTest = async () => {
         try {
-            console.log(newsTest);
-            await postNews(newsTest);
+            await deleteNews(1);
             alert("新聞api測試成功");
         } catch (error) {
             console.error(error);
@@ -47,8 +46,7 @@ export default function Header() {
 
     const ProductsApiTest = async () => {
         try {
-            console.log(productTest);
-            await postProducts(productTest);
+            await deleteProducts(1);
             alert("產品api測試成功");
         } catch (error) {
             console.error(error);
