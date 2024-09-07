@@ -66,3 +66,24 @@ export async function PUT(req: NextRequest) {
         );
     }
 }
+
+//DELETE
+export async function DELETE(req: NextRequest) {
+    const data = await req.json();
+    const id = data.id;
+
+    try {
+        const ads = await prisma.ads.delete({
+            where: {
+                id,
+            },
+        });
+        return NextResponse.json({ status: 200 });
+    } catch (error) {
+        console.log("error: ", error);
+        return NextResponse.json(
+            { error: "Something went wrong." }, 
+            { status: 500 }
+        );
+    }
+}
