@@ -69,9 +69,28 @@ export default function useAds() {
         router.refresh();
     }
 
+    //DELETE
+    const deleteAds = async (id: number) => {
+        const res = await fetch('/api/ads', {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                id,
+            }),
+        });
+        if (!res.ok) {
+            const body = await res.json();
+            throw new Error(body.error);
+        }
+        router.refresh();
+    }
+
     return {
         postAds,
         getAds,
         putAds,
+        deleteAds,
     };
 }

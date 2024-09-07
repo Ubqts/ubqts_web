@@ -15,6 +15,7 @@ model ads {
 model news {
   id          Int     @id @default(autoincrement())
   title       String
+  picture     String
   description String
   date        DateTime
 }

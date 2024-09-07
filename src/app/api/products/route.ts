@@ -1,3 +1,4 @@
+import exp from 'constants';
 import prisma from '../../../lib/prisma';
 import { useRouter } from 'next/navigation';
 import { NextResponse, type NextRequest } from 'next/server';
@@ -45,7 +46,7 @@ export async function PUT(req: NextRequest) {
     const id = data.id;
 
     try {
-        const news = await prisma.news.update({
+        const products = await prisma.products.update({
             where: {
                 id,
             },
@@ -53,6 +54,27 @@ export async function PUT(req: NextRequest) {
                 name: newName,
                 picture: newPicture,
                 description: newDescription,
+            },
+        });
+        return NextResponse.json({ status: 200 });
+    } catch (error) {
+        console.log("error: ", error);
+        return NextResponse.json(
+            { error: "Something went wrong." }, 
+            { status: 500 }
+        );
+    }
+}
+
+//DELETE
+export async function DELETE(req: NextRequest) {
+    const data = await req.json();
+    const id = data.id;
+
+    try {
+        const products = await prisma.products.delete({
+            where: {
+                id,
             },
         });
         return NextResponse.json({ status: 200 });

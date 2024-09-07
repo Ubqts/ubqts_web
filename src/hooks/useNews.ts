@@ -84,9 +84,28 @@ export default function useNews() {
         router.refresh();
     }
 
+    //DELETE
+    const deleteNews = async (id: number) => {
+        const res = await fetch('/api/news', {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                id,
+            }),
+        });
+        if (!res.ok) {
+            const body = await res.json();
+            throw new Error(body.error);
+        }
+        router.refresh();
+    }
+
     return {
         postNews,
         getNews,
         putNews,
+        deleteNews,
     };
 }
