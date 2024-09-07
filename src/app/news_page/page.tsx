@@ -6,8 +6,8 @@ export default function NewsPage() {
             <div className="banner">
                 <img src="https://picsum.photos/1700/450" alt="banner" />
             </div>
-            <h1>標題</h1>
             <div className="blankBanner" />
+            <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, laboriosam!</h1>
             <div className="imgWithText">
                 <img src="https://picsum.photos/380/220" alt="img" />
                 <p>
@@ -21,6 +21,8 @@ export default function NewsPage() {
                     Sed dignissimos omnis, culpa voluptatem vero at pariatur
                 </p>
             </div>
+            <div className="blankBanner" />
+            <a className="prevPage" href="/news">回上一頁</a>
             <div className="blankBanner" />
             <div className="blankBanner" />
         </div>
