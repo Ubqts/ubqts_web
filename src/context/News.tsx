@@ -8,6 +8,7 @@ export type News = {
     title: string;
     description: string;
     date: Date;
+    language: string;
 };
 
 export type NewsContext = {

@@ -7,12 +7,13 @@ export type Product = {
     name: string;
     picture: string;
     description: string;
+    language: string;
 };
 
 export type ProductContext = {
     products?: Product[];
     setProducts?: (product: Product[]) => void;
-    sendProduct?: (product: Omit<Product, 'id' | 'name' | 'picture' | 'description'>) => void;
+    sendProduct?: (product: Omit<Product, 'id'>) => void;
 };
 
 export const ProductContext = createContext<ProductContext>({
@@ -47,9 +48,9 @@ export function ProductProvider({ children }: Props) {
         fetchProduct();
     }, []);
 
-    const sendProduct = async (product: Omit<Product, 'id' | 'name' | 'picture' | 'description'>) => {
+    const sendProduct = async (product: Omit<Product, 'id'>) => {
         try {
-            const res = await fetch(`/api/products`, {
+            const res = await fetch('/api/products', {
                 method: 'POST',
                 body: JSON.stringify(product),
                 headers: {
