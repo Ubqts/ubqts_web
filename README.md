@@ -68,6 +68,8 @@ ALTER USER your_username WITH PASSWORD 'newpassword';
 CREATE DATABASE mydatabase;
 -- grant database privileges to user
 GRANT ALL PRIVILEGES ON DATABASE mydatabase TO my_username;
+-- delete database
+DROP DATABASE mydatabase;
 
 -- create table or import data
 CREATE TABLE ads (
@@ -82,8 +84,10 @@ ADD CLOUMN date DATE
 -- other commands
 \du -- list all users
 \l  -- list all database
-\c  -- move to database
 \dp -- check privilege
+\dt -- list tables in database (run in specific database)
+\c database  -- move to database
+\d table_name -- list columns in specific table
 ```
 thus you have finished creating database and table
 

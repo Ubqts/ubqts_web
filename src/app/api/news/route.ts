@@ -4,7 +4,7 @@ import { NextResponse, type NextRequest } from 'next/server';
 
 export async function POST(req: NextRequest)  {
     const data = await req.json();
-    const { picture, title, description } = data;
+    const { picture, title, description, language } = data;
 
     try {
         const time = new Date();
@@ -14,6 +14,7 @@ export async function POST(req: NextRequest)  {
                 title,
                 description,
                 date: time,
+                language,
             },
         });
         return NextResponse.json({ status: 200 });

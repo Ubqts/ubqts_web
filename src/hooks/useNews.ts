@@ -10,11 +10,13 @@ export default function useNews() {
         picture, 
         description,
         date,
+        language,
     }: {
         title: string;
         picture: string;
         description: string;
         date: Date;
+        language: string;
     }) => {
         const res = await fetch("/api/news", {
             method: "POST",
@@ -26,6 +28,7 @@ export default function useNews() {
                 title,
                 description,
                 date,
+                language,
             }),
         });
         if (!res.ok) {

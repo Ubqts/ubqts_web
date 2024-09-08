@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 export type Ad = {
     id: number;
     picture: string;
+    language: string;
 };
 
 export type AdContext = {
