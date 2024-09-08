@@ -7,8 +7,10 @@ export default function useAds() {
     //POST
     const postAds = async ({
         picture,
+        language,
     }: {
         picture: string;
+        language: string;
     }) => {
         const res = await fetch("/api/ads", {
             method: "POST",
@@ -17,6 +19,7 @@ export default function useAds() {
             },
             body: JSON.stringify({
                 picture,
+                language,
             }),
         });
         if (!res.ok) {

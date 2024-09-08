@@ -9,10 +9,12 @@ export default function useProducts() {
         name, 
         picture,
         description,
+        language,
     }: {
         name: string;
         picture: string;
         description: string;
+        language: string;
     }) => {
         const res = await fetch("/api/products", {
             method: "POST",
@@ -23,6 +25,7 @@ export default function useProducts() {
                 name, 
                 picture,
                 description,
+                language,
             }),
         });
         if (!res.ok) {

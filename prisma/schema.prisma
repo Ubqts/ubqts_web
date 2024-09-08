@@ -8,8 +8,9 @@ datasource db {
 }
 
 model ads {
-  id      Int     @id @default(autoincrement())
-  picture String?
+  id       Int     @id @default(autoincrement())
+  picture  String
+  language String
 }
 
 model news {
@@ -18,6 +19,7 @@ model news {
   picture     String
   description String
   date        DateTime
+  language    String
 }
 
 model products {
@@ -25,4 +27,5 @@ model products {
   name        String
   picture     String
   description String
+  language    String
 }

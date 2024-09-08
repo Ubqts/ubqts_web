@@ -7,26 +7,31 @@ import Link from "next/link";
 import { useContext } from "react";
 
 export default function Header() {
-    const adTest = { picture: "ads_picture" };
+    const adTest = {
+        picture: "ads_picture",
+        language: "zh-tw",
+    };
     const newsTest = {
         title: "news_title",
         picture: "news_picture",
         description: "news_description",
         date: new Date(),
+        language: "en",
     };
     const productTest = {
         picture: "product_picture",
         name: "product_title",
         description: "product_description",
+        language: "zh-cn",
     };
 
-    const { deleteAds } = useAds();
-    const { deleteNews } = useNews();
-    const { deleteProducts } = useProducts();
+    const { postAds } = useAds();
+    const { postNews } = useNews();
+    const { postProducts } = useProducts();
 
     const AdsApiTest = async () => {
         try {
-            await deleteAds(1);
+            await postAds(adTest);
             alert("廣告api測試成功");
         } catch (error) {
             console.error(error);
@@ -36,7 +41,7 @@ export default function Header() {
 
     const NewsApiTest = async () => {
         try {
-            await deleteNews(1);
+            await postNews(newsTest);
             alert("新聞api測試成功");
         } catch (error) {
             console.error(error);
@@ -46,7 +51,7 @@ export default function Header() {
 
     const ProductsApiTest = async () => {
         try {
-            await deleteProducts(1);
+            await postProducts(productTest);
             alert("產品api測試成功");
         } catch (error) {
             console.error(error);

@@ -5,7 +5,7 @@ import { NextResponse, type NextRequest } from 'next/server';
 
 export async function POST(req: NextRequest)  {
     const data = await req.json();
-    const { name, picture, description } = data;
+    const { name, picture, description, language } = data;
 
     try {
         const products = await prisma.products.create({
@@ -13,6 +13,7 @@ export async function POST(req: NextRequest)  {
                 name,
                 picture,
                 description,
+                language,
             },
         });
         return NextResponse.json({ status: 200 });
