@@ -1,17 +1,17 @@
-import Image from "next/image";
 import "./page.css";
+import Head from "next/head";
+import BootstrapCarousel from "../components/bootstrap_carousel";
 
 export default function Home() {
     return (
         <div className="container prevent-select">
-            <div className="carousel">
+            {/* <div className="carousel">
                 <div className="carouselContainer">
                     <img src="https://picsum.photos/1700/600?random=1" alt="1" />
                     <img src="https://picsum.photos/1700/600?random=2" alt="2" />
                     <img src="https://picsum.photos/1700/600?random=3" alt="3" />
                 </div>
             </div>
-            {/* WARNING: the position of the carouselUI will break when the size of the window different. */}
             <div className="carouselUI">
                 <div className="btn prev">&lt;</div>
                 <div className="indices">
@@ -20,7 +20,8 @@ export default function Home() {
                     <div className="index-item"></div>
                 </div>
                 <div className="btn next">&gt;</div>
-            </div>
+            </div> */}
+            <BootstrapCarousel />
 
             <div className="blankBanner" />
 
@@ -83,6 +84,9 @@ export default function Home() {
                     </div>
                 </div>
             </div>
+
+            <div className="blankBanner" />
+            <div className="blankBanner" />
         </div>
     );
 }

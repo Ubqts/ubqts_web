@@ -1,0 +1,24 @@
+{
+    "items":
+    {
+        "bootstrap":
+        [
+            {
+                "id": 1,
+                "imageUrl": "https://picsum.photos/1700/600?random=1"
+            },
+            {
+                "id": 2,
+                "imageUrl": "https://picsum.photos/1700/600?random=2"
+            },
+            {
+                "id": 3,
+                "imageUrl": "https://picsum.photos/1700/600?random=3"
+            },
+            {
+                "id": 4,
+                "imageUrl": "https://picsum.photos/1700/600?random=4"
+            }
+        ]
+    }
+}
