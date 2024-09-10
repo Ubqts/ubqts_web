@@ -12,13 +12,13 @@ export type News = {
 };
 
 export type NewsContext = {
-    news?: News | null;
-    setNews?: (news: News) => void;
-    sendNews?: (news: Omit<News, 'id' | 'date'>) => void;
+    news: News[];
+    setNews?: (news: News[]) => void;
+    sendNews?: (news: Omit<News, 'id' | 'date'>) => Promise<void>;
 };
 
 export const NewsContext = createContext<NewsContext>({
-    news: null,
+    news: [],
     setNews: () => {},
     sendNews: async () => {},
 });
@@ -27,20 +27,19 @@ type Props = {
     children: React.ReactNode;
 };
 export function NewsProvider({ children }: Props) {
-    // const router = useRouter();
-    const [news, setNews] = useState<News | null>(null);
+    const [news, setNews] = useState<News[]>([]);
 
     useEffect(() => {
         const fetchNews = async () => {
             try {
-                const res = await fetch(`/api/news`, {
+                const res = await fetch('/api/news', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                 });
                 const data = await res.json();
-                console.log(data);
+                // console.log(data);
                 setNews(data);
             } catch (error) {
                 console.error(error);
@@ -51,7 +50,7 @@ export function NewsProvider({ children }: Props) {
 
     const sendNews = async (news: Omit<News, 'id' | 'date'>) => {
         try {
-            const res = await fetch(`/api/news`, {
+            const res = await fetch('/api/news', {
                 method: 'POST',
                 body: JSON.stringify(news),
                 headers: {
@@ -59,7 +58,7 @@ export function NewsProvider({ children }: Props) {
                 },
             });
             const data = await res.json();
-            console.log(data);
+            // console.log(data);
         } catch (error) {
             console.error(error);
         }
