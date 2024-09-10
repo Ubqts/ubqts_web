@@ -36,7 +36,7 @@ export function AdProvider({ children }: Props) {
                     },
                 });
                 const data = await res.json();
-                console.log(data);
+                // console.log(data);
                 setAds(data);
             } catch (error) {
                 console.error(error);
@@ -47,7 +47,7 @@ export function AdProvider({ children }: Props) {
 
     const sendAds = async (ad: Omit<Ad, 'id'>) => {
         try {
-            const res = await fetch(`/api/ad`, {
+            const res = await fetch('/api/ad', {
                 method: 'POST',
                 body: JSON.stringify(ad),
                 headers: {
@@ -55,7 +55,7 @@ export function AdProvider({ children }: Props) {
                 },
             });
             const data = await res.json();
-            console.log(data);
+            // console.log(data);
         } catch (error) {
             console.error(error);
         }
