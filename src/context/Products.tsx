@@ -32,14 +32,14 @@ export function ProductProvider({ children }: Props) {
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const res = await fetch(`/api/products`, {
+                const res = await fetch('/api/products', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                 });
                 const data = await res.json();
-                console.log(data);
+                // console.log(data);
                 setProducts(data);
             } catch (error) {
                 console.error(error);
@@ -58,7 +58,7 @@ export function ProductProvider({ children }: Props) {
                 },
             });
             const data = await res.json();
-            console.log(data);
+            // console.log(data);
         } catch (error) {
             console.error(error);
         }
