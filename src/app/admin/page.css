@@ -1,0 +1,50 @@
+.loginBox {
+    max-width: 300px;
+    width: 70%;
+    height: 400px;
+    background: #f1fcfe;
+    color: #000000;
+    border: 2px solid #b9f0fd;
+    border-radius: 10px;
+    top: 50%;
+    left: 50%;
+    /* position: absolute;
+    transform: translate(-50%, -50%); */
+    margin: 100px auto;
+    box-sizing: border-box;
+    padding: 70px 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.userName,
+.userPwd {
+    border: 1.8px #b9f0fd solid;
+    border-radius: 8px;
+    padding: 0 12px;
+    width: 80%;
+    font-size: 0.9rem;
+    height: 2rem;
+    box-sizing:border-box;
+    margin: 15px auto;
+}
+
+
+.loginBtn {
+    margin: 30px auto 15px auto;
+    width: 80%;
+    height: 2rem;
+    border: 1.8px #b9f0fd solid;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 2rem;
+    background: #dbf3f9;
+    cursor: pointer;
+    color: #000000;
+}
+
+.loginBtn:active {
+    /* background-color: #a2cad3; */
+    background-color: #b0dce9;
+    line-height: calc(2rem + 2.5px);
+}

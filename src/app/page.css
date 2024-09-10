@@ -15,70 +15,6 @@ div.container.prevent-select {
     text-align: center;
 }
 
-.carouselContainer {
-    display: flex;
-    /* justify-content: center; */
-    /* width: 100%; */
-    /* height: 100%; */
-    width: 100%;
-    height: auto;
-    overflow: hidden;
-    scroll-behavior: smooth;
-}
-
-.carouselUI {
-	width: 100%;
-	height: 600px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin-top: -600px;
-}
-
-.btn {
-	width: 50px;
-	height: 50px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background-color: #cfcfcf90;
-	font-weight: bold;
-    border: 2px solid #333;
-	border-radius: 50%;
-	margin: 0 30px;
-}
-
-.prev {
-	margin-right: auto;
-}
-
-.next {
-	margin-left: auto;
-}
-
-.indices {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: 10px;
-	align-self: flex-end;
-	margin-bottom: 50px;
-}
-
-.index-item {
-    width: 10px;
-    height: 10px;
-    border: 1.5px solid #333;
-    border-radius: 50%;
-    background-color: #fff;
-}
-
-.index-item.current {
-    width: 12px;
-    height: 12px;
-    background-color: #333;
-}
-
 .blankBanner {
     height: 60px;
     width: 100%;
@@ -104,6 +40,14 @@ div.container.prevent-select {
 .imgWithText img {
     width: 50%;
     height: 50%;
+}
+
+.imgWithText p {
+    text-align: left;
+}
+
+.listItems {
+    padding-left: 40px;
 }
 
 .productTable {
