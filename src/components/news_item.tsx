@@ -30,21 +30,21 @@ export default function NewsItem({id, title, picture, description, date}: NewsPr
             picture: EditPicture,
             title: EditTitle,
             description: EditDescription,
-            date,
+            // date,
         });
-        setIsEditing(false);
+        setIsEditing(!isEditing);
     }
 
     const handleDelete = () => {
         deleteNews(
             id,
         );
-        setIsEditing(false);
+        setIsEditing(!isEditing);
     }
 
     return (
         <>
-        <div onClick={() => setIsEditing(true)}>
+        <div onClick={() => setIsEditing(!isEditing)}>
             <div className="newsItem prevent-select">
                 <div className="newsImg">
                     <img src={picture} alt="1" />
@@ -62,7 +62,7 @@ export default function NewsItem({id, title, picture, description, date}: NewsPr
             <div className="apiButtons">
                 {isEditing && <button className="saveButton" onClick={() => handleDelete()}>刪除</button>}
                 {isEditing && <button className="saveButton" onClick={() => handleSave()}>儲存</button>}
-                {isEditing && <button className="cancelButton" onClick={() => setIsEditing(false)}>取消</button>}
+                {isEditing && <button className="cancelButton" onClick={() => setIsEditing(!isEditing)}>取消</button>}
             </div>
         </div>
         </>

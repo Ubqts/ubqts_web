@@ -8,18 +8,18 @@ import { useContext } from "react";
 
 export default function Header() {
     const adTest = {
-        picture: "ads_picture",
+        picture: "https://picsum.photos/300/200?random=1",
         language: "zh-tw",
     };
     const newsTest = {
         title: "news_title",
-        picture: "news_picture",
+        picture: "https://picsum.photos/300/200?random=1",
         description: "news_description",
         date: new Date(),
         language: "en",
     };
     const productTest = {
-        picture: "product_picture",
+        picture: "https://picsum.photos/300/200?random=1",
         name: "product_title",
         description: "product_description",
         language: "zh-cn",
