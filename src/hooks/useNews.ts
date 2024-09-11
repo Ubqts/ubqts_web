@@ -60,13 +60,13 @@ export default function useNews() {
         picture,
         title, 
         description,
-        date,
+        // date,
     }: {
         id: number;
         picture: string;
         title: string;
         description: string;
-        date: Date;
+        // date: Date;
     }) => {
         const res = await fetch('/api/news', {
             method: "PUT",
@@ -74,7 +74,9 @@ export default function useNews() {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                id,
+                id, 
+                title,
+                picture,
                 description,
             }),
         });
