@@ -48,7 +48,7 @@ export async function GET() {
 //PUT
 export async function PUT(req: NextRequest) {
     const data = await req.json();
-    const { newPicture, newTitle, newDescription } = data;
+    const { picture, title, description } = data;
     const id = data.id;
 
     try {
@@ -57,9 +57,9 @@ export async function PUT(req: NextRequest) {
                 id,
             },
             data: {
-                picture: newPicture,
-                title: newTitle,
-                description: newDescription,
+                picture: picture,
+                title: title,
+                description: description,
             },
         });
         return NextResponse.json({ status: 200 });
