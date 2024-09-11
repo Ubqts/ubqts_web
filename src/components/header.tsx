@@ -70,7 +70,7 @@ export default function Header() {
 
     return (
         <div className="header prevent-select">
-            <a href="/#">
+            <a className="logoHomeLink" href="/#">
                 <div className="headerLogo">
                     <img className="logo" src="/img/logo.png" alt="logo" />
                     <div className="logoText">
