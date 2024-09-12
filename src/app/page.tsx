@@ -8,6 +8,30 @@ export default function Home() {
             <BootstrapCarousel />
 
             <div className="blankBanner" />
+            <div className="editCarousel">
+                <div className="entity">
+                    <img className="carouselImg" src="https://picsum.photos/400/200?random=1" alt="1" />
+                    <img className="deleteBtn" src="./img/closeIcon.png" alt="delete" />
+                </div>
+                <div className="entity">
+                    <img className="carouselImg" src="https://picsum.photos/400/200?random=2" alt="2" />
+                    <img className="deleteBtn" src="./img/closeIcon.png" alt="delete" />
+                </div>
+                <div className="entity">
+                    <img className="carouselImg" src="https://picsum.photos/400/200?random=3" alt="3" />
+                    <img className="deleteBtn" src="./img/closeIcon.png" alt="delete" />
+                </div>
+                <div className="entity">
+                    <img className="carouselImg" src="https://picsum.photos/400/200?random=4" alt="4" />
+                    <img className="deleteBtn" src="./img/closeIcon.png" alt="delete" />
+                </div>
+                <div className="entity">
+                    <img className="carouselImg" src="https://picsum.photos/400/200?random=5" alt="5" />
+                    <img className="deleteBtn" src="./img/closeIcon.png" alt="delete" />
+                </div>
+            </div>
+
+            <div className="blankBanner" />
 
             <div className="content origin">
                 <h1>公司簡介</h1>
@@ -27,7 +51,7 @@ export default function Home() {
                         </p>
                     </div>
                 </div>
-            </div >
+            </div>
 
             <div className="blankBanner" />
 
