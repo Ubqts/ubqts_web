@@ -32,7 +32,6 @@ h1 {
     transition: all 0.2s ease-in-out;
     width: 450px;
     min-height: 250px;
-    /* padding: 0px 70px; */
     padding: 0px calc(30px + 3%);
     font-size: calc(12px + 0.2vw);
 }
@@ -40,9 +39,6 @@ h1 {
 .businessCard:hover {
     transform: skew(2deg, -2deg);
     transition: all 0.2s ease-in-out;
-    width: 456px;
-    min-height: 256px;
-    /* padding: 0px 73px; */
-    padding: 0px calc(33px + 3%);
+    scale: 1.03;
     box-shadow: 7px 7px 10px 5px rgba(0, 0, 0, 0.3);
 }
