@@ -1,6 +1,5 @@
 'use client'
-import { createContext, useContext, useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import { createContext, useEffect, useState } from 'react';
 
 export type Ad = {
     id: number;
