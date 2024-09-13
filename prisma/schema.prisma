@@ -7,7 +7,25 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model student {
-  id   Int     @id @default(autoincrement())
-  name String?
+model ads {
+  id       Int     @id @default(autoincrement())
+  picture  String
+  language String
+}
+
+model news {
+  id          Int     @id @default(autoincrement())
+  title       String
+  picture     String
+  description String
+  date        DateTime
+  language    String
+}
+
+model products {
+  id          Int     @id @default(autoincrement())
+  name        String
+  picture     String
+  description String
+  language    String
 }
