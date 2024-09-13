@@ -4,12 +4,15 @@ import { AdContext } from "@/src/context/Ads";
 import { ProductContext } from "@/src/context/Products";
 import useAds from "../hooks/useAds";
 import useProducts from "../hooks/useProducts";
-
-import { useEffect, useContext, useState } from "react";
-import Head from "next/head";
 import BootstrapCarousel from "../components/bootstrap_carousel";
+import CarouselItem from "../components/carousel_item";
+import ProductItem from "../components/product_item";
+
+import React, { useEffect, useContext, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+    const router = useRouter();
     const { getAds } = useAds();
     const { getProducts } = useProducts();
     const { ads } = useContext(AdContext);
@@ -41,26 +44,11 @@ export default function Home() {
 
             <div className="blankBanner" />
             <div className="editCarousel">
-                <div className="entity">
-                    <img className="carouselImg" src="https://picsum.photos/400/200?random=1" alt="1" />
-                    <img className="deleteBtn" src="./img/closeIcon.png" alt="delete" />
-                </div>
-                <div className="entity">
-                    <img className="carouselImg" src="https://picsum.photos/400/200?random=2" alt="2" />
-                    <img className="deleteBtn" src="./img/closeIcon.png" alt="delete" />
-                </div>
-                <div className="entity">
-                    <img className="carouselImg" src="https://picsum.photos/400/200?random=3" alt="3" />
-                    <img className="deleteBtn" src="./img/closeIcon.png" alt="delete" />
-                </div>
-                <div className="entity">
-                    <img className="carouselImg" src="https://picsum.photos/400/200?random=4" alt="4" />
-                    <img className="deleteBtn" src="./img/closeIcon.png" alt="delete" />
-                </div>
-                <div className="entity">
-                    <img className="carouselImg" src="https://picsum.photos/400/200?random=5" alt="5" />
-                    <img className="deleteBtn" src="./img/closeIcon.png" alt="delete" />
-                </div>
+                {adsList.map((ads) => (
+                    <React.Fragment key={ads.id}>
+                        <CarouselItem id={ads.id} picture={ads.picture} />
+                    </React.Fragment>
+                ))}
             </div>
 
             <div className="blankBanner" />
@@ -90,45 +78,14 @@ export default function Home() {
             <div className="content">
                 <h1>產品介紹</h1>
                 <div className="productTable">
-                    <div className="product">
-                        <img src="https://picsum.photos/300/400?random=5" alt="1" />
-                        <p>Lorem, ipsum dolor.</p>
-                    </div>
-                    <div className="product">
-                        <img src="https://picsum.photos/300/400?random=6" alt="2" />
-                        <p>Lorem, ipsum dolor.</p>
-                    </div>
-                    <div className="product">
-                        <img src="https://picsum.photos/300/400?random=7" alt="3" />
-                        <p>Lorem, ipsum dolor.</p>
-                    </div>
-                    <div className="product">
-                        <img src="https://picsum.photos/300/400?random=8" alt="4" />
-                        <p>Lorem, ipsum dolor.</p>
-                    </div>
-                    <div className="product">
-                        <img src="https://picsum.photos/300/400?random=9" alt="5" />
-                        <p>Lorem, ipsum dolor.</p>
-                    </div>
-                    <div className="product">
-                        <img src="https://picsum.photos/300/400?random=10" alt="6" />
-                        <p>Lorem, ipsum dolor.</p>
-                    </div>
-                    <div className="product">
-                        <img src="https://picsum.photos/300/400?random=11" alt="7" />
-                        <p>Lorem, ipsum dolor.</p>
-                    </div>
-                    <div className="product">
-                        <img src="https://picsum.photos/300/400?random=12" alt="8" />
-                        <p>Lorem, ipsum dolor.</p>
-                    </div>
-                    <div className="product">
-                        <img src="https://picsum.photos/300/400?random=13" alt="9" />
-                        <p>Lorem, ipsum dolor.</p>
-                    </div>
+                    {productsList.map((product) => (
+                        <React.Fragment key={product.id}>
+                            <ProductItem picture={product.picture} name={product.name} />
+                        </React.Fragment>
+                    ))}
                     <a href="/new_product">
                         <div className="addProduct">
-                            <img src="./img/addIcon.png" alt="addProduct" />
+                            <img src="./img/addIcon.png" alt="addProduct" onClick={() => {router.push("/new_product")}}/>
                         </div>
                     </a>
                 </div>
