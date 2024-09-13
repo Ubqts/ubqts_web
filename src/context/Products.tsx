@@ -11,7 +11,7 @@ export type Product = {
 };
 
 export type ProductContext = {
-    products?: Product[];
+    products: Product[];
     setProducts?: (product: Product[]) => void;
     sendProduct?: (product: Omit<Product, 'id'>) => void;
 };
