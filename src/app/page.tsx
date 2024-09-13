@@ -1,8 +1,40 @@
+'use client';
 import "./page.css";
+import { AdContext } from "@/src/context/Ads";
+import { ProductContext } from "@/src/context/Products";
+import useAds from "../hooks/useAds";
+import useProducts from "../hooks/useProducts";
+
+import { useEffect, useContext, useState } from "react";
 import Head from "next/head";
 import BootstrapCarousel from "../components/bootstrap_carousel";
 
 export default function Home() {
+    const { getAds } = useAds();
+    const { getProducts } = useProducts();
+    const { ads } = useContext(AdContext);
+    const { products } = useContext(ProductContext);
+    const [ adsList, setAdsList ] = useState<AdContext[]>([]);
+    const [ productsList, setProductsList ] = useState<ProductContext[]>([]);
+
+    useEffect(() => {
+        const fetchAdsList = async () => {
+            const adsListInit = await getAds();
+            const adsListJSON: AdContext[] = adsListInit["ads"];
+            setAdsList(adsListJSON);
+        }
+        const fetchProductsList = async () => {
+            const productsListInit = await getProducts();
+            const productsListJSON: ProductContext[] = productsListInit["products"];
+            setProductsList(productsListJSON);
+        }
+        fetchAdsList();
+        fetchProductsList();
+    }, []);
+
+    // console.log("adList: ", adsList);
+    // console.log("productList: ", productsList);
+
     return (
         <div className="container prevent-select">
             <BootstrapCarousel />
