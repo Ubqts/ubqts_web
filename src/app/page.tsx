@@ -94,6 +94,11 @@ export default function Home() {
                         <img src="https://picsum.photos/300/400?random=13" alt="9" />
                         <p>Lorem, ipsum dolor.</p>
                     </div>
+                    <a href="/new_product">
+                        <div className="addProduct">
+                            <img src="./img/addIcon.png" alt="addProduct" />
+                        </div>
+                    </a>
                 </div>
             </div>
 

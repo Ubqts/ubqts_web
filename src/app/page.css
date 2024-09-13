@@ -151,6 +151,25 @@ div.container.prevent-select {
     color: white;
 }
 
+.addProduct {
+    padding: 30px;
+    border: 1.5px solid #007bff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 100%; */
+    height: 433.1px;
+}
+
+.addProduct:hover {
+    background-color: #f0f0f0;
+}
+
+.addProduct > img {
+    width: 30px;
+    height: 30px;
+}
+
 @media screen and (max-width: 1200px) {
     .editCarousel {
         width: 85%;
