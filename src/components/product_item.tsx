@@ -1,10 +1,18 @@
 import "./product_item.css";
+import { useRouter } from 'next/navigation';
 
-export default function ProductItem() {
+type ProductProps = {
+    picture: string;
+    name: string;
+};
+
+export default function ProductItem({ picture, name }: ProductProps) {
+    const router = useRouter();
+
     return (
-        <div className="product">
-            <img src="https://picsum.photos/300/400?random=5" alt="1" />
-            <p>Lorem, ipsum dolor.</p>
+        <div className="product" onClick={() => {router.push(`/product_page`)}}>
+            <img src={picture} alt="1" />
+            <p>{name}</p>
         </div>
     )
 }

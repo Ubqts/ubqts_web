@@ -1,22 +1,54 @@
+'use client';
 import "./page.css";
-import Head from "next/head";
+import { AdContext } from "@/src/context/Ads";
+import { ProductContext } from "@/src/context/Products";
+import useAds from "../hooks/useAds";
+import useProducts from "../hooks/useProducts";
 import BootstrapCarousel from "../components/bootstrap_carousel";
 import CarouselItem from "../components/carousel_item";
 import ProductItem from "../components/product_item";
 
+import React, { useEffect, useContext, useState } from "react";
+import { useRouter } from "next/navigation";
+
 export default function Home() {
+    const router = useRouter();
+    const { getAds } = useAds();
+    const { getProducts } = useProducts();
+    const { ads } = useContext(AdContext);
+    const { products } = useContext(ProductContext);
+    const [ adsList, setAdsList ] = useState<AdContext[]>([]);
+    const [ productsList, setProductsList ] = useState<ProductContext[]>([]);
+
+    useEffect(() => {
+        const fetchAdsList = async () => {
+            const adsListInit = await getAds();
+            const adsListJSON: AdContext[] = adsListInit["ads"];
+            setAdsList(adsListJSON);
+        }
+        const fetchProductsList = async () => {
+            const productsListInit = await getProducts();
+            const productsListJSON: ProductContext[] = productsListInit["products"];
+            setProductsList(productsListJSON);
+        }
+        fetchAdsList();
+        fetchProductsList();
+    }, []);
+
+    // console.log("adList: ", adsList);
+    // console.log("productList: ", productsList);
+
     return (
         <div className="container prevent-select">
             <BootstrapCarousel />
 
             <div className="blankBanner" />
             <div className="editCarousel">
-                <CarouselItem />
-                <CarouselItem />
-                <CarouselItem />
-                <CarouselItem />
-                <CarouselItem />
-                <CarouselItem />
+                {adsList.map((ads) => (
+                    <React.Fragment key={ads.id}>
+                        <CarouselItem id={ads.id} picture={ads.picture} />
+                    </React.Fragment>
+                ))}
             </div>
 
             <div className="blankBanner" />
@@ -46,18 +78,14 @@ export default function Home() {
             <div className="content">
                 <h1>產品介紹</h1>
                 <div className="productTable">
-                    <ProductItem />
-                    <ProductItem />
-                    <ProductItem />
-                    <ProductItem />
-                    <ProductItem />
-                    <ProductItem />
-                    <ProductItem />
-                    <ProductItem />
-                    <ProductItem />
+                    {productsList.map((product) => (
+                        <React.Fragment key={product.id}>
+                            <ProductItem picture={product.picture} name={product.name} />
+                        </React.Fragment>
+                    ))}
                     <a href="/new_product">
                         <div className="addProduct">
-                            <img src="./img/addIcon.png" alt="addProduct" />
+                            <img src="./img/addIcon.png" alt="addProduct" onClick={() => {router.push("/new_product")}}/>
                         </div>
                     </a>
                 </div>

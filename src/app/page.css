@@ -29,7 +29,7 @@ div.container.prevent-select {
     width: 75%;
     margin: 0px auto;
     border: 2px solid #007bff;
-    border-bottom: none;
+    /* border-bottom: none; */
 }
 
 .editCarousel::-webkit-scrollbar {

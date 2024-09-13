@@ -1,6 +1,5 @@
 'use client'
-import { createContext, useContext, useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import { createContext, useEffect, useState } from 'react';
 
 export type Ad = {
     id: number;
@@ -9,13 +8,13 @@ export type Ad = {
 };
 
 export type AdContext = {
-    ads: Ad | null;
-    setAds: (ad: Ad) => void;
-    sendAds: (ad: Omit<Ad, 'id'>) => Promise<void>;
+    ads: Ad[];
+    setAds?: (ad: Ad[]) => void;
+    sendAds?: (ad: Omit<Ad, 'id'>) => Promise<void>;
 };
 
 export const AdContext = createContext<AdContext>({
-    ads: null,
+    ads: [],
     setAds: () => {},
     sendAds: async () => {},
 });
@@ -24,7 +23,7 @@ type Props = {
     children: React.ReactNode;
 };
 export function AdProvider({ children }: Props) {
-    const [ads, setAds] = useState<Ad | null>(null);
+    const [ads, setAds] = useState<Ad[]>([]);
 
     useEffect(() => {
         const fetchAds = async () => {
