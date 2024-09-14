@@ -4,12 +4,15 @@ import { AdContext } from "@/src/context/Ads";
 import { ProductContext } from "@/src/context/Products";
 import useAds from "../hooks/useAds";
 import useProducts from "../hooks/useProducts";
-import BootstrapCarousel from "../components/bootstrap_carousel";
+// import BootstrapCarousel from "../components/bootstrap_carousel";
 import CarouselItem from "../components/carousel_item";
 import ProductItem from "../components/product_item";
 
 import React, { useEffect, useContext, useState } from "react";
 import { useRouter } from "next/navigation";
+
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Carousel } from "react-bootstrap";
 
 export default function Home() {
     const router = useRouter();
@@ -19,6 +22,7 @@ export default function Home() {
     const { products } = useContext(ProductContext);
     const [adsList, setAdsList] = useState<AdContext[]>([]);
     const [productsList, setProductsList] = useState<ProductContext[]>([]);
+    const [index, setIndex] = useState(0);
 
     useEffect(() => {
         const fetchAdsList = async () => {
@@ -34,13 +38,26 @@ export default function Home() {
         fetchAdsList();
         fetchProductsList();
     }, []);
+        
+    const handleSelect = (selectedIndex, e) => {
+        setIndex(selectedIndex);
+    };
 
     // console.log("adList: ", adsList);
     // console.log("productList: ", productsList);
 
     return (
         <div className="container prevent-select">
-            <BootstrapCarousel />
+            {/* <BootstrapCarousel/> */}
+
+            <Carousel activeIndex={index} onSelect={handleSelect}>
+                {adsList.map((item) => (
+                    <Carousel.Item key={item.id} interval={4000}>
+                        <img src={item.picture} alt="slides" />
+                        <Carousel.Caption />
+                    </Carousel.Item>
+                ))}
+            </Carousel>
 
             <div className="blankBanner" />
             <div className="editCarousel">
