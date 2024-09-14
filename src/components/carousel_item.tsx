@@ -6,7 +6,7 @@ type CarouselProps = {
     picture: string;
 };
 
-export default function CarouselItem({ id, picture}: CarouselProps) {
+export default function CarouselItem({ id, picture }: CarouselProps) {
     const { deleteAds } = useAds();
 
     const handleDelete = () => {
@@ -17,7 +17,7 @@ export default function CarouselItem({ id, picture}: CarouselProps) {
     return (
         <div className="entity">
             <img className="carouselImg" src={picture} alt="1" />
-            <img className="deleteBtn" src="./img/closeIcon.png" alt="delete" onClick={() => handleDelete()}/>
+            <img className="deleteBtn" src="./img/closeIcon.png" alt="delete" onClick={() => handleDelete()} />
         </div>
     )
 }

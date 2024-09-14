@@ -17,7 +17,7 @@ type NewsList = {
 export default function News() {
     const { news } = useContext(NewsContext);
     const { getNews } = useNews();
-    const [ newsList, setNewsList ] = useState<NewsList[]>([]);
+    const [newsList, setNewsList] = useState<NewsList[]>([]);
 
     useEffect(() => {
         const fetchNewsList = async () => {
