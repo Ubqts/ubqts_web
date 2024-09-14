@@ -23,7 +23,6 @@ div.container.prevent-select {
 .editCarousel {
     display: flex;
     align-items: center;
-    gap: 20px;
     overflow: auto;
     white-space: nowrap;
     width: 75%;
@@ -44,6 +43,26 @@ div.container.prevent-select {
 .editCarousel::-webkit-scrollbar-thumb {
     background: gray;
     border-radius: 10px;
+}
+
+.addCarousel {
+    width: 20%;
+    height: 151.63px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    margin: 25px;
+}
+
+.addCarousel:hover {
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+.addCarousel > img {
+    width: 30px;
+    height: 30px;
 }
 
 .content {
