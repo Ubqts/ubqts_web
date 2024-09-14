@@ -17,8 +17,8 @@ export default function Home() {
     const { getProducts } = useProducts();
     const { ads } = useContext(AdContext);
     const { products } = useContext(ProductContext);
-    const [ adsList, setAdsList ] = useState<AdContext[]>([]);
-    const [ productsList, setProductsList ] = useState<ProductContext[]>([]);
+    const [adsList, setAdsList] = useState<AdContext[]>([]);
+    const [productsList, setProductsList] = useState<ProductContext[]>([]);
 
     useEffect(() => {
         const fetchAdsList = async () => {
@@ -49,6 +49,9 @@ export default function Home() {
                         <CarouselItem id={ads.id} picture={ads.picture} />
                     </React.Fragment>
                 ))}
+                <div className="addCarousel">
+                    <img src="./img/addIcon.png" alt="addCarousel" />
+                </div>
             </div>
 
             <div className="blankBanner" />
@@ -85,7 +88,7 @@ export default function Home() {
                     ))}
                     <a href="/new_product">
                         <div className="addProduct">
-                            <img src="./img/addIcon.png" alt="addProduct" onClick={() => {router.push("/new_product")}}/>
+                            <img src="./img/addIcon.png" alt="addProduct" onClick={() => { router.push("/new_product") }} />
                         </div>
                     </a>
                 </div>
