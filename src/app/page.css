@@ -47,7 +47,7 @@ div.container.prevent-select {
 
 .addCarousel {
     min-width: 20%;
-    padding: 5% 0px;
+    padding: 4% 0px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -151,5 +151,9 @@ div.container.prevent-select {
 
     .entity {
         width: 80%;
+    }
+
+    .addCarousel {
+        padding: 3% 0px;
     }
 }
