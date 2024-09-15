@@ -71,6 +71,7 @@ export default function NewsItem({ id, title, picture, description, date, isAddi
             }
             setIsEditing(false);
             setIsEditing(false);
+            location.reload();
         }
     }
 
@@ -81,29 +82,34 @@ export default function NewsItem({ id, title, picture, description, date, isAddi
         setIsEditing(false);
     }
 
+    const handleCancel = () => {
+        setIsEditing(false);
+        if (setIsAdding) {
+            setIsAdding(false);
+        }
+    }
+
     return (
-        <>
-            <div onClick={() => setIsEditing(true)}>
-                <div className="newsItem prevent-select">
-                    <div className="newsImg">
-                        <img src={picture} alt="1" />
-                        {isEditing && <button className="editNewsImgButton" onClick={() => handleChangeImg()}>編輯</button>}
-                    </div>
-                    <div className="newsInfo">
-                        {!isEditing && <p className="newsTitle">{title}</p>}
-                        {!isEditing && <p className="newsContent">{description}</p>}
-                        {isEditing && <input className="newsTitle" defaultValue={title} onChange={(e) => setEditTitle(e.target.value)} />}
-                        {isEditing && <textarea className="newsContent" defaultValue={description} onChange={(e) => setEditDescription(e.target.value)} />}
-                    </div>
-                    {/* <p className="date">{date.getFullYear()}-{date.getMonth()}-{date.getDate()}</p> */}
-                    <p className="date">{date?.toString()}</p>
-                </div >
-            </div>
+        <div>
+            <div className="newsItem prevent-select" onClick={() => setIsEditing(true)}>
+                <div className="newsImg">
+                    {!isEditing && <img src={picture} alt="1" />}
+                    {isEditing && <img src={picture} className="editNewsImgButton" onClick={() => handleChangeImg()} />}
+                </div>
+                <div className="newsInfo">
+                    {!isEditing && <p className="newsTitle">{title}</p>}
+                    {!isEditing && <p className="newsContent">{description}</p>}
+                    {isEditing && <input className="newsTitle" defaultValue={title} onChange={(e) => setEditTitle(e.target.value)} />}
+                    {isEditing && <textarea className="newsContent" defaultValue={description} onChange={(e) => setEditDescription(e.target.value)} />}
+                </div>
+                {/* <p className="date">{date.getFullYear()}-{date.getMonth()}-{date.getDate()}</p> */}
+                <p className="date">{date?.toString()}</p>
+            </div >
             <div className="apiButtons">
-                    {(!isAdding && isEditing) && <button className="deleteButton" onClick={() => handleDelete()}>刪除</button>}
-                    {isEditing && <button className="saveButton" onClick={() => handleSave()}>儲存</button>}
-                    {isEditing && <button className="cancelButton" onClick={() => {setIsEditing(false); setIsAdding(false)}}>取消</button>}
+                {(!isAdding && isEditing) && <button className="deleteButton" onClick={() => handleDelete()}>刪除</button>}
+                {isEditing && <button className="saveButton" onClick={() => handleSave()}>儲存</button>}
+                {isEditing && <button className="cancelButton" onClick={() => handleCancel()}>取消</button>}
             </div>
-        </>
+        </div>
     );
 }
