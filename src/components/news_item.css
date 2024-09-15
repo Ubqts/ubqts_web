@@ -35,17 +35,35 @@
     font-weight: bold;
     color: #333;
     margin-bottom: 10px;
+    display: block;
+    border-radius: 5px;
+    padding: 5px;
+    max-width: 100%;
 }
 
 .newsContent {
     font-size: calc(10px + 0.4vw);
     color: #666;
+    display: block;
+    border-radius: 5px;
+    padding: 5px;
+    width: 100%;
 }
 
 .date {
     flex-shrink: 0;
     font-size: calc(9px + 0.4vw);
     color: #666;
+}
+
+.deleteButton, .saveButton, .cancelButton {
+    padding: 2px 15px;
+    border: 1px solid #000;
+    background-color: #e7e7e7;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin: 0 10px 30px 10px;
 }
 
 @media screen and (max-width: 1000px) {

@@ -12,6 +12,7 @@ export default function CarouselItem({ id, picture }: CarouselProps) {
     const handleDelete = () => {
         deleteAds(id);
         alert("刪除成功");
+        location.reload();
     }
 
     return (
