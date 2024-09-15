@@ -9,9 +9,10 @@ export type NewsProps = {
     description: string;
     date?: Date;
     isAdding: boolean;
+    setIsAdding?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function NewsItem({ id, title, picture, description, date, isAdding }: NewsProps) {
+export default function NewsItem({ id, title, picture, description, date, isAdding, setIsAdding }: NewsProps) {
     const [EditTitle, setEditTitle] = useState(title);
     const [EditPicture, setEditPicture] = useState(picture);
     const [EditDescription, setEditDescription] = useState(description);
@@ -98,9 +99,9 @@ export default function NewsItem({ id, title, picture, description, date, isAddi
                 </div >
             </div>
             <div className="apiButtons">
-                    {(!isAdding && isEditing) && <button className="saveButton" onClick={() => handleDelete()}>刪除</button>}
+                    {(!isAdding && isEditing) && <button className="deleteButton" onClick={() => handleDelete()}>刪除</button>}
                     {isEditing && <button className="saveButton" onClick={() => handleSave()}>儲存</button>}
-                    {isEditing && <button className="cancelButton" onClick={() => setIsEditing(false)}>取消</button>}
+                    {isEditing && <button className="cancelButton" onClick={() => {setIsEditing(false); setIsAdding(false)}}>取消</button>}
             </div>
         </>
     );

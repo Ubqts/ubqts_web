@@ -48,7 +48,7 @@ export default function News() {
                     ))}
                     {isAdding && 
                         <>
-                            <NewsItem title="new title" picture="https://picsum.photos/300/200?random=1" description="new description" isAdding={isAdding}/>
+                            <NewsItem title="new title" picture="https://picsum.photos/300/200?random=1" description="new description" isAdding={isAdding} setIsAdding={setIsAdding}/>
                             <div className="split" />
                         </>
                     }
