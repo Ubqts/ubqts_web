@@ -80,6 +80,8 @@ export default function NewsItem({ id, title, picture, description, date, isAddi
             id,
         );
         setIsEditing(false);
+        alert("刪除成功");
+        location.reload();
     }
 
     const handleCancel = () => {
