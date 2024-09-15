@@ -17,8 +17,8 @@ type NewsList = {
 export default function News() {
     const { news } = useContext(NewsContext);
     const { getNews, postNews } = useNews();
-    const [ newsList, setNewsList ] = useState<NewsList[]>([]);
-    const [ isAdding, setIsAdding ] = useState<boolean>(false);
+    const [newsList, setNewsList] = useState<NewsList[]>([]);
+    const [isAdding, setIsAdding] = useState<boolean>(false);
 
     useEffect(() => {
         const fetchNewsList = async () => {
@@ -42,19 +42,20 @@ export default function News() {
                 <div className="newsList">
                     {newsList.map((news) => (
                         <React.Fragment key={news.id}>
-                            <NewsItem id={news.id} title={news.title} picture={news.picture} description={news.description} date={news.date} isAdding={false}/>
+                            <NewsItem id={news.id} title={news.title} picture={news.picture} description={news.description} date={news.date} isAdding={false} />
                             <div className="split" />
                         </React.Fragment>
                     ))}
-                    {isAdding && 
+                    {isAdding &&
                         <>
-                            <NewsItem title="new title" picture="https://picsum.photos/300/200?random=1" description="new description" isAdding={isAdding}/>
+                            <NewsItem title="new title" picture="https://picsum.photos/300/200?random=1" description="new description" isAdding={isAdding} />
                             <div className="split" />
                         </>
                     }
                     <div className="addNews" onClick={() => setIsAdding(true)}>
                         <img src="./img/addIcon.png" alt="addNews" />
                     </div>
+                    <div className="split" />
                 </div>
             </div>
 

@@ -46,8 +46,8 @@ div.container.prevent-select {
 }
 
 .addCarousel {
-    width: 20%;
-    height: 151.63px;
+    min-width: 20%;
+    padding: 5% 0px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -93,10 +93,6 @@ div.container.prevent-select {
     text-align: left;
     flex-grow: 2;
     flex-shrink: 1;
-}
-
-.listItems {
-    padding-left: 40px;
 }
 
 .productTable {
