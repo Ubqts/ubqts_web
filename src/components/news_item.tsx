@@ -69,7 +69,7 @@ export default function NewsItem({ id, title, picture, description, date, isAddi
                     console.log("error: ", error);
                 }
             }
-            setIsEditing(false);    
+            setIsEditing(false);
         }
     }
 
