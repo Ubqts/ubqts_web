@@ -7,6 +7,7 @@ export default function ProductPage() {
                 <img src="https://picsum.photos/1700/450" alt="banner" />
             </div>
             <div className="blankBanner" />
+            {/* 客戶端頁面 */}
             <div className="wrapper">
                 <div className="productPanel">
                     <p>產品介紹</p>
@@ -31,6 +32,22 @@ export default function ProductPage() {
             </div>
             <div className="blankBanner" />
             <a className="prevPage" href="/#">回上一頁</a>
+            {/* 客戶端頁面 */}
+
+            {/* 管理員頁面 */}
+            <div className="devContent">
+                <input className="title" placeholder="這裡可以放原本的名稱嗎" />
+                <input className="img" placeholder="原本的圖片網址" />
+                <textarea className="description" placeholder="原本的描述" />
+            </div>
+            <div className="blankBanner" />
+            <div className="btnContainer prevent-select">
+                <a className="save" href="/#">儲存</a>
+                <a className="cancel" href="/#">取消</a>
+                <a className="delete" href="/#">刪除</a>
+            </div>
+            {/* 管理員頁面 */}
+
             <div className="blankBanner" />
             <div className="blankBanner" />
         </div>
