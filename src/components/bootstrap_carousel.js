@@ -8,7 +8,7 @@ import { Carousel } from "react-bootstrap";
 export default function BootstrapCarousel() {
     const { bootstrap } = items;
     const [index, setIndex] = useState(0);
-    
+
     const handleSelect = (selectedIndex, e) => {
         setIndex(selectedIndex);
     };

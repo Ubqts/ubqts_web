@@ -20,9 +20,9 @@ export default function Home() {
     const { getProducts } = useProducts();
     const { ads } = useContext(AdContext);
     const { products } = useContext(ProductContext);
-    const [ adsList, setAdsList ] = useState<AdContext[]>([]);
-    const [ productsList, setProductsList ] = useState<ProductContext[]>([]);
-    const [ index, setIndex ] = useState(0);
+    const [adsList, setAdsList] = useState<AdContext[]>([]);
+    const [productsList, setProductsList] = useState<ProductContext[]>([]);
+    const [index, setIndex] = useState(0);
 
     useEffect(() => {
         const fetchAdsList = async () => {
@@ -38,7 +38,7 @@ export default function Home() {
         fetchAdsList();
         fetchProductsList();
     }, []);
-        
+
     const handleSelect = (selectedIndex, e) => {
         setIndex(selectedIndex);
     };
@@ -49,7 +49,7 @@ export default function Home() {
             try {
                 postAds({ picture: newImg, language: 'zh-tw' });
                 alert("新增廣告成功！");
-            } catch(error) {
+            } catch (error) {
                 alert("新增廣告失敗！");
                 console.log("error: ", error);
             }
@@ -96,7 +96,7 @@ export default function Home() {
                         <p>洲通能源開發產品皆為自有品牌、合作研發、生產製造與整合行銷，未來持續提供客戶對設備需求及更完善技術服務。</p>
                         <p>並提供完成行銷通路及良好售後服務滿足客戶因近期第三地生產困境</p>
                         <p>洲通自動化測試設備:</p>
-                        <p className="listItems">
+                        <p>
                             (1)BAT系列自動測試系統→可充放電電池組開發、效能活化、性能分類、電池組加工、電池組基板、、等。<br />
                             (2)DAS系列模組化自動化監控系統 →適合依客戶需求整合成自動化測試設備或自動化監控系統。<br />
                             (3)ATS多用途卡式設備。<br />

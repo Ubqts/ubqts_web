@@ -28,20 +28,6 @@ textarea {
     font-weight: bold;
 }
 
-.content > img {
-    display: block;
-    width: auto;
-    height: auto;
-    max-height: 300px;
-    margin: 2% 0px 5% 0px;
-}
-
-.content > p {
-    text-align: left;
-    margin-bottom: 20px;
-    font-size: calc(11px + 0.3vw);
-}
-
 .btnContainer {
     width: 60%;
     display: flex;
@@ -70,10 +56,6 @@ textarea {
         width: 70%;
     }
 
-    .content > img {
-        max-height: 200px;
-    }
-
     .btnContainer {
         width: 70%;
     }
@@ -82,11 +64,6 @@ textarea {
 @media screen and (max-width: 768px) {
     .content {
         width: 75%;
-    }
-
-    .content > img {
-        max-height: 150px;
-        margin: 5% 0px;
     }
 
     .btnContainer {
