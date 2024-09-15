@@ -30,7 +30,7 @@ export default function NewProduct() {
                 language: "zh-tw"
             });
             alert("產品新增成功！");
-            router.push("/");
+            // router.push("/");
         } catch (error) {
             alert("產品新增失敗！");
             console.log(error);
@@ -46,11 +46,12 @@ export default function NewProduct() {
             <div className="content">
                 <input className="title" placeholder="產品名稱" onChange={(e) => setProductName(e.target.value)} />
                 <input className="img" placeholder="產品圖片網址" onChange={(e) => setPicture(e.target.value)} />
-                <textarea className="description" placeholder="產品描述" onChange={(e) => setproductDescription(e.target.value)} /></div>
+                <textarea className="description" placeholder="產品描述" onChange={(e) => setproductDescription(e.target.value)} />
+            </div>
             <div className="blankBanner" />
             <div className="btnContainer prevent-select">
-                <div className="add" onClick={() => handleSave()}>新增</div>
-                <div className="cancel" onClick={() => router.push("/")}>取消</div>
+                <a className="add" href="/#" onClick={() => handleSave()}>新增</a>
+                <a className="cancel" href="/#">取消</a>
             </div>
             <div className="blankBanner" />
             <div className="blankBanner" />

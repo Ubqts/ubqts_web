@@ -53,7 +53,7 @@ export default function News() {
                             <div className="split" />
                         </React.Fragment>
                     ))}
-                    {isAdding && 
+                    {isAdding &&
                         <>
                             <NewsItem
                                 title="new title"
@@ -68,6 +68,7 @@ export default function News() {
                     <div className="addNews" onClick={() => setIsAdding(true)}>
                         <img src="./img/addIcon.png" alt="addNews" />
                     </div>
+                    <div className="split" />
                 </div>
             </div>
 
