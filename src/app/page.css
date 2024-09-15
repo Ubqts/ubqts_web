@@ -126,10 +126,6 @@ div.container.prevent-select {
     .editCarousel {
         width: 85%;
     }
-
-    .entity {
-        width: 40%;
-    }
 }
 
 @media screen and (max-width: 1000px) {
@@ -149,11 +145,11 @@ div.container.prevent-select {
         width: 90%;
     }
 
-    .entity {
-        width: 80%;
-    }
-
     .addCarousel {
         padding: 3% 0px;
+    }
+
+    .productTable {
+        grid-template-columns: repeat(auto-fill, 250px);
     }
 }

@@ -67,7 +67,7 @@ export default function Home() {
             <Carousel activeIndex={index} onSelect={handleSelect}>
                 {adsList.map((item) => (
                     <Carousel.Item key={item.id} interval={4000}>
-                        <img src={item.picture} alt="slides" width={"100%"} style={{ objectFit: "cover", maxHeight: "90vh" }} />
+                        <img src={item.picture} alt="slides" width={"100%"} style={{ objectFit: "cover", height: "50vw", maxHeight: "90vh" }} />
                         {/* <Carousel.Caption /> */}
                     </Carousel.Item>
                 ))}
