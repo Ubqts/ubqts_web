@@ -16,13 +16,13 @@ import { Carousel } from "react-bootstrap";
 
 export default function Home() {
     const router = useRouter();
-    const { getAds } = useAds();
+    const { getAds, postAds } = useAds();
     const { getProducts } = useProducts();
     const { ads } = useContext(AdContext);
     const { products } = useContext(ProductContext);
-    const [adsList, setAdsList] = useState<AdContext[]>([]);
-    const [productsList, setProductsList] = useState<ProductContext[]>([]);
-    const [index, setIndex] = useState(0);
+    const [ adsList, setAdsList ] = useState<AdContext[]>([]);
+    const [ productsList, setProductsList ] = useState<ProductContext[]>([]);
+    const [ index, setIndex ] = useState(0);
 
     useEffect(() => {
         const fetchAdsList = async () => {
@@ -42,6 +42,19 @@ export default function Home() {
     const handleSelect = (selectedIndex, e) => {
         setIndex(selectedIndex);
     };
+
+    const handleAddAds = () => {
+        const newImg = prompt("請輸入新圖片網址");
+        if (newImg) {
+            try {
+                postAds({ picture: newImg, language: 'zh-tw' });
+                alert("新增廣告成功！");
+            } catch(error) {
+                alert("新增廣告失敗！");
+                console.log("error: ", error);
+            }
+        }
+    }
 
     // console.log("adList: ", adsList);
     // console.log("productList: ", productsList);
@@ -66,7 +79,7 @@ export default function Home() {
                         <CarouselItem id={ads.id} picture={ads.picture} />
                     </React.Fragment>
                 ))}
-                <div className="addCarousel">
+                <div className="addCarousel" onClick={() => handleAddAds()}>
                     <img src="./img/addIcon.png" alt="addCarousel" />
                 </div>
             </div>
