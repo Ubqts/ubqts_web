@@ -49,6 +49,7 @@ export default function Home() {
             try {
                 postAds({ picture: newImg, language: 'zh-tw' });
                 alert("新增廣告成功！");
+                location.reload();
             } catch (error) {
                 alert("新增廣告失敗！");
                 console.log("error: ", error);
@@ -61,13 +62,13 @@ export default function Home() {
 
     return (
         <div className="container prevent-select">
-            {/* <BootstrapCarousel/> */}
+            {/* <BootstrapCarousel /> */}
 
             <Carousel activeIndex={index} onSelect={handleSelect}>
                 {adsList.map((item) => (
                     <Carousel.Item key={item.id} interval={4000}>
-                        <img src={item.picture} alt="slides" />
-                        <Carousel.Caption />
+                        <img src={item.picture} alt="slides" width={"100%"} style={{ objectFit: "cover", height: "50vw", maxHeight: "90vh" }} />
+                        {/* <Carousel.Caption /> */}
                     </Carousel.Item>
                 ))}
             </Carousel>

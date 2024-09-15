@@ -154,6 +154,11 @@ textarea {
     margin: 0px auto;
 }
 
+.btnContainer > a {
+    text-decoration: none;
+    color: #000;
+}
+
 .save, .cancel, .delete {
     padding: 2px 15px;
     border: 1px solid #000;

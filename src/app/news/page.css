@@ -36,7 +36,6 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* height: 100%; */
     height: 100px;
     cursor: pointer;
 }
@@ -54,6 +53,11 @@ h1 {
     .newsList .split {
         width: calc(100% - 100px);
     }
+
+    .content .addNews {
+        margin: 30px 30px;
+        padding: 20px 40px;
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -65,5 +69,17 @@ h1 {
 
     .newsList .split {
         display: none;
+    }
+
+    .content .addNews {
+        width: calc(300px - 8vw);
+        margin: 30px 20px;
+        padding: 20px 20px;
+        height: auto;
+        border: gray solid 1px;
+    }
+
+    .content .addNews:hover {
+        background-color: white;
     }
 }

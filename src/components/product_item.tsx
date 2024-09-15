@@ -11,7 +11,10 @@ export default function ProductItem({ picture, name }: ProductProps) {
 
     return (
         <div className="productItem" onClick={() => { router.push(`/product_page`) }}>
-            <img src={picture} alt="1" />
+            {/* <img src={picture} alt="1" /> */}
+            <div className="productImgHolder">
+                <img src={picture} alt="1" />
+            </div>
             <p>{name}</p>
         </div>
     )
