@@ -32,11 +32,11 @@ export default function NewsItem({ id, title, picture, description, date, isAddi
     }
 
     const handleSave = () => {
-        if(!EditTitle) {
+        if (!EditTitle) {
             alert("新聞標題不得為空！");
-        } else if(!EditDescription) {
+        } else if (!EditDescription) {
             alert("新聞內容不得為空！");
-        } else if(!EditPicture) {
+        } else if (!EditPicture) {
             alert("圖片網址不得為空！");
         } else {
             if (!isAdding) {
@@ -48,8 +48,8 @@ export default function NewsItem({ id, title, picture, description, date, isAddi
                         description: EditDescription,
                         // date,
                     });
-                    alert("編輯新聞成功！");    
-                } catch(error) {
+                    alert("編輯新聞成功！");
+                } catch (error) {
                     alert("發生錯誤！");
                     console.log("error: ", error);
                 }
@@ -58,17 +58,17 @@ export default function NewsItem({ id, title, picture, description, date, isAddi
                     postNews({
                         title: EditTitle,
                         picture: EditPicture,
-                        description: EditDescription, 
-                        date: new Date(), 
+                        description: EditDescription,
+                        date: new Date(),
                         language: "zh-tw",
                     });
                     alert("新增新聞成功！");
-                } catch(error) {
+                } catch (error) {
                     alert("發生錯誤！");
                     console.log("error: ", error);
                 }
             }
-            setIsEditing(false);    
+            setIsEditing(false);
         }
     }
 
@@ -98,9 +98,9 @@ export default function NewsItem({ id, title, picture, description, date, isAddi
                 </div >
             </div>
             <div className="apiButtons">
-                    {(!isAdding && isEditing) && <button className="saveButton" onClick={() => handleDelete()}>刪除</button>}
-                    {isEditing && <button className="saveButton" onClick={() => handleSave()}>儲存</button>}
-                    {isEditing && <button className="cancelButton" onClick={() => setIsEditing(false)}>取消</button>}
+                {(!isAdding && isEditing) && <button className="saveButton" onClick={() => handleDelete()}>刪除</button>}
+                {isEditing && <button className="saveButton" onClick={() => handleSave()}>儲存</button>}
+                {isEditing && <button className="cancelButton" onClick={() => setIsEditing(false)}>取消</button>}
             </div>
         </>
     );
