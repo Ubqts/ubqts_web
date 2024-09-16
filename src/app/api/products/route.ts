@@ -1,7 +1,7 @@
 import exp from 'constants';
 import prisma from '../../../lib/prisma';
 import { useRouter } from 'next/navigation';
-import { NextResponse, type NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest)  {
     const data = await req.json();

@@ -1,0 +1,175 @@
+.container {
+    max-width: 100%;
+    padding: 0px;
+}
+
+.blankBanner {
+    height: 60px;
+    width: 100%;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 0px 10%;
+}
+
+.productPanel {
+    width: 20%;
+}
+
+.productPanel p:first-child {
+    background-color: #007bff;
+    color: white;
+    font-size: calc(13px + 0.3vw);
+    padding: 3% 5%;
+    margin-bottom: 15px;
+    /* text-align: center; */
+}
+
+.product {
+    font-size: calc(11px + 0.3vw);
+    padding: 8%;
+    border-bottom: 1px solid silver;
+    margin: 0px;
+}
+
+.productPanel p:last-child {
+    border-bottom: none;
+}
+
+.product:hover {
+    cursor: pointer;
+    background-color: #f0f7fe;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.prevPage {
+    display: block;
+    width: 180px;
+    text-align: center;
+    padding: 15px 20px;
+    border: 2px solid #333;
+    margin: 0px 15% 0px auto;
+    text-decoration: none;
+    color: #333;
+}
+
+@media screen and (max-width: 1024px) {
+    .wrapper {
+        padding: 0px;
+    }
+
+    .productPanel {
+        width: 20%;
+    }
+
+    .content {
+        width: 65%;
+        padding-left: 50px;
+    }
+
+    .content > img {
+        max-height: 200px;
+    }
+
+    .prevPage {
+        margin: 0px auto;
+        padding: 10px 20px;
+        width: 150px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .productPanel {
+        display: none;
+    }
+
+    .content {
+        width: 75%;
+        padding-left: 0px;
+    }
+
+    .content > img {
+        max-height: 150px;
+        margin: 5% 0px;
+    }
+
+    .prevPage {
+        width: 200px;
+    }
+}
+
+/* 管理員端 */
+input, textarea {
+    display: block;
+    border: 2px solid #777;
+    border-radius: 10px;
+    padding: 5px 10px;
+    margin: 25px 0px;
+    max-width: 100%;
+}
+
+textarea {
+    width: 100%;
+    height: 50vh;
+    resize: vertical;
+}
+
+.devContent {
+    width: 60%;
+    margin: 0px auto;
+}
+
+.btnContainer {
+    width: 60%;
+    display: flex;
+    justify-content: flex-start;
+    gap: 5%;
+    margin: 0px auto;
+}
+
+.btnContainer > a {
+    text-decoration: none;
+    color: #000;
+}
+
+.save, .cancel, .delete {
+    padding: 2px 15px;
+    border: 1px solid #000;
+    background-color: #e7e7e7;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.save:active, .cancel:active, .delete:active {
+    background-color: #d7d7d7;
+    padding-top: 3px;
+    padding-bottom: 1px;
+}
+
+@media screen and (max-width: 1024px) {
+    .devContent {
+        width: 70%;
+    }
+
+    .btnContainer {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .devContent {
+        width: 75%;
+    }
+
+    .btnContainer {
+        width: 75%;
+        gap: 10%;
+    }
+}
