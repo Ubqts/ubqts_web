@@ -114,7 +114,7 @@ export default function Home() {
                 <div className="productTable">
                     {productsList.map((product) => (
                         <React.Fragment key={product.id}>
-                            <ProductItem picture={product.picture} name={product.name} />
+                            <ProductItem id={product.id} picture={product.picture} name={product.name} />
                         </React.Fragment>
                     ))}
                     <a href="/new_product">
