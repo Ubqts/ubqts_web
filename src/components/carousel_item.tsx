@@ -10,9 +10,14 @@ export default function CarouselItem({ id, picture }: CarouselProps) {
     const { deleteAds } = useAds();
 
     const handleDelete = () => {
-        deleteAds(id);
-        alert("刪除成功");
-        location.reload();
+        try {
+            deleteAds(id);
+            alert("廣告刪除成功");
+            location.reload();    
+        } catch (error) {
+            alert("廣告刪除失敗");
+            console.log("error: ", error);
+        }
     }
 
     return (
