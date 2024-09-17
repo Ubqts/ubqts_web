@@ -1,6 +1,7 @@
 footer {
     background-color: #333;
-    color: white;
+    /* color: white; */
+    color: #7dc73c;
     text-align: center;
     padding-top: 50px;
     padding-bottom: 50px;
@@ -60,9 +61,9 @@ div.split-3 {
 }
 
 .hashTags {
-    color: #999999;
+    /* color: #999999; */
+    color: #497a1e;
     font-size: small;
-    /* margin-right: 200px; */
 }
 
 @media screen and (max-width: 1135px) {

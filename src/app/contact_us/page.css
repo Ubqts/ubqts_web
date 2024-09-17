@@ -34,6 +34,8 @@ h1 {
     min-height: 250px;
     padding: 0px calc(30px + 3%);
     font-size: calc(12px + 0.2vw);
+    background: linear-gradient(to bottom right, transparent 85%, #6FBA2C 15%) top left;
+    background-size: 110%;
 }
 
 .businessCard:hover {
@@ -41,4 +43,5 @@ h1 {
     transition: all 0.2s ease-in-out;
     scale: 1.03;
     box-shadow: 7px 7px 10px 5px rgba(0, 0, 0, 0.3);
+    background-position: right;
 }
