@@ -13,9 +13,8 @@ export default function Footer() {
             <div className="split-2" />
 
             <div className="contact">
-                <p>地址: 台北市大安區復興南路一段390號</p>
-                <p>電話: 02-1234-5678</p>
-                <p>傳真: 02-1234-5678</p>
+                <p>地址: 新北市中和區建一路179號9F</p>
+                <p>電話: 02-2228-7016</p>
             </div>
 
             <div className="split-3" />
