@@ -25,18 +25,18 @@
 
 .logo {
     height: 60px;
-    min-width: 67px;
+    min-width: 103px;
 }
 
 .logoText .zh {
     font-weight: bold;
-    color: #495057;
+    color: #6FBA2C;
     font-size: normal;
 }
 
 .logoText .en {
     font-weight: bold;
-    color: #495057;
+    color: #6FBA2C;
     font-size: small;
 }
 
@@ -64,8 +64,8 @@
 .headerMenu a:hover {
     background-color: #e5e5e5;
     cursor: pointer;
-    border-bottom: 2px solid #007bff;
-    padding-top: 4px;
+    border-bottom: 3px solid #6FBA2C;
+    padding-top: 5px;
     transition: padding-top 0.2s ease-in-out,
                 border-bottom 0.2s ease-in-out,
                 background-color 0.5s ease-in-out;
@@ -94,16 +94,6 @@
     transition: padding-top 0.2s ease-in-out,
                 border-bottom 0.2s ease-in-out,
                 background-color 0.2s ease-in-out;
-}
-
-.languageBtn:hover {
-    background-color: #e5e5e5;
-    cursor: pointer;
-    border-bottom: 2px solid #007bff;
-    padding-top: 3px;
-    transition: padding-top 0.2s ease-in-out,
-                border-bottom 0.2s ease-in-out,
-                background-color 0.5s ease-in-out;
 }
 
 .languageBtn > img {
@@ -152,8 +142,11 @@
 
 .languageDropDown:hover .languageBtn {
     background-color: #e5e5e5;
-    border-bottom: 2px solid #007bff;
-    padding-top: 3px;
+    border-bottom: 3px solid #6FBA2C;
+    padding-top: 5px;
+    transition: padding-top 0.2s ease-in-out,
+                border-bottom 0.2s ease-in-out,
+                background-color 0.2s ease-in-out;
 }
 
 .sidebarIcon {

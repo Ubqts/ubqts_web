@@ -1,7 +1,7 @@
 .productItem {
     display: flex;
     flex-direction: column;
-    border: 1.5px #007bff solid;
+    border: 1.5px #6FBA2C solid;
 }
 
 .productItem:hover {
@@ -32,7 +32,7 @@
     padding: 15px;
     transition: 0.5s;
     text-align: center;
-    background: linear-gradient(to left, transparent 50%, #007bff 50%) right;
+    background: linear-gradient(to left, transparent 50%, #6FBA2C 50%) right;
     background-size: 200% 100%;
 }
 

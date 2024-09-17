@@ -20,7 +20,7 @@ tbody {
 }
 
 tr:nth-child(even) {
-	background-color: #eff7fd;
+	background-color: #f3fdef;
 }
 
 tr:nth-child(odd):hover {
@@ -28,7 +28,7 @@ tr:nth-child(odd):hover {
 }
 
 tr:nth-child(even):hover {
-	background-color: #d4e8f9;
+	background-color: #e0f9d4;
 }
 
 th {
@@ -38,7 +38,7 @@ th {
 
 td {
 	padding: 20px;
-	border-bottom: 0.5px solid rgb(208, 221, 249);
+	border-bottom: 0.5px solid rgb(175, 230, 164);
 	text-align: center;
 }
 
@@ -54,7 +54,7 @@ td {
 .category > tr,
 .category > tr:hover {
 	font-size: calc(12px + 0.5vw);
-	background-color: #4e7cb5;
+	background-color: #4eb555;
 	color: white;
 }
 
@@ -62,7 +62,7 @@ td {
 .title > tr,
 .title > tr:hover {
 	font-size: calc(8px + 0.5vw);
-	background-color: #30547c;
+	background-color: #307c3d;
 	color: white;
 	padding: 10px;
 }
