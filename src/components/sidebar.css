@@ -61,7 +61,7 @@
     height: 60px;
     width: 80%;
     text-decoration: none;
-    padding: 10px;
+    padding: 50px 10px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -74,7 +74,7 @@
 .linkSplit {
     width: 50%;
     /* height: 1px; */
-    border: 1px solid silver;
+    border: 1px solid #4c801f;
 }
 
 .sidebarLink:hover {
@@ -106,5 +106,6 @@
 
     .sidebarLink {
         font-size: calc(13px + 0.6vw);
+        padding: 40px 10px;
     }
 }
