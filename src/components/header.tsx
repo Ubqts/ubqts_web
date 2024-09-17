@@ -82,7 +82,7 @@ export default function Header() {
 
             <div className="headerMenu">
                 <a href="/#">首頁</a>
-                <a href="product_solutions">產品解決方案</a>
+                {/* <a href="product_solutions">產品解決方案</a> */}
                 <a href="partners">合作夥伴</a>
                 <a href="contact_us">聯絡我們</a>
                 <a href="news">公司最新消息</a>
