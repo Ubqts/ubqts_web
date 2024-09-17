@@ -11,6 +11,62 @@ h1 {
     width: 100%;
 }
 
+.fastContact {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    /* gap: 20%; */
+    row-gap: 50px;
+    width: 80%;
+    margin: 0px auto 50px auto;
+}
+
+.contactSales,
+.contactService {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.contactSales > h2,
+.contactService > h2,
+.contactOthers > h2 {
+    text-align: center;
+}
+
+.contactOthers > h2 {
+    margin-bottom: 30px;
+}
+
+.contactBtn {
+    background-color: #6FBA2C;
+    color: white;
+    padding: 10px 20px;
+    /* border-radius: 5px; */
+    text-align: center;
+    display: block;
+    margin: 10px;
+    width: 150px;
+    text-decoration: none;
+    font-size: 1.2em;
+    transition: all 0.2s ease-in-out;
+}
+
+.contactBtn:hover {
+    background-color: #5e9c28;
+    transition: all 0.2s ease-in-out;
+    transition: padding 0s;
+}
+
+.contactBtn:active {
+    padding-top: 12px;
+    padding-bottom: 8px;
+    transition: none;
+}
+
 .businessCardTable {
     display: flex;
     flex-wrap: wrap;
