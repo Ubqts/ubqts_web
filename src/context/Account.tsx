@@ -80,7 +80,7 @@ export function AccountProvider({ children }: Props) {
                 setUser(temp);
             }
         }
-    }, []);
+    }, [router, userList]);
 
     return (
         <AccountContext.Provider value={{ user, setUser }}>

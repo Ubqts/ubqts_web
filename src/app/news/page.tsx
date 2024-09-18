@@ -1,10 +1,11 @@
 'use client';
 import { NewsContext } from "@/src/context/News";
 import useNews from "@/src/hooks/useNews";
-import React, { useState, useEffect, useContext } from "react";
-
 import "./page.css";
 import NewsItem from "@/src/components/news_item";
+
+import React, { useState, useEffect, useContext } from "react";
+import Image from "next/image";
 
 type NewsList = {
     id: number;
@@ -27,14 +28,14 @@ export default function News() {
             setNewsList(newsListJSON);
         }
         fetchNewsList();
-    }, []);
+    }, [getNews]);
 
     // console.log(newsList);
 
     return (
         <div className="container prevent-select">
             <div className="banner">
-                <img src="https://picsum.photos/1700/450" alt="banner" />
+                <Image src="https://picsum.photos/1700/450" alt="banner" />
             </div>
 
             <div className="content">
@@ -66,7 +67,7 @@ export default function News() {
                         </>
                     }
                     <div className="addNews" onClick={() => setIsAdding(true)}>
-                        <img src="./img/addIcon.png" alt="addNews" />
+                        <Image src="./img/addIcon.png" alt="addNews" />
                     </div>
                     <div className="split" />
                 </div>

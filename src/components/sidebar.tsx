@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import Image from "next/image";
 import "./sidebar.css";
 
 const Sidebar = () => {
@@ -26,7 +27,7 @@ const Sidebar = () => {
             <div className="pageBlur" />
             <div className="sidebarMenu">
                 <div className="clsBtn">
-                    <img src="./img/closeIcon.png" alt="close" />
+                    <Image src="./img/closeIcon.png" alt="close" />
                 </div>
                 <a className="sidebarLink" href="/#">首頁</a>
                 <div className="linkSplit" />
