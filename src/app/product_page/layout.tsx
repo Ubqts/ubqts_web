@@ -6,22 +6,28 @@ import useProducts from "@/src/hooks/useProducts";
 import React, { useContext, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-type LayoutProps = {
-    children: React.ReactNode;
-    isEditing: boolean;
-    saveProduct: boolean;
-    setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
-    setSaveProduct: React.Dispatch<React.SetStateAction<boolean>>;
-}
+// type LayoutProps = {
+//     children: React.ReactNode;
+//     isEditing: boolean;
+//     saveProduct: boolean;
+//     setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
+//     setSaveProduct: React.Dispatch<React.SetStateAction<boolean>>;
+// }
 
-export default function RootLayout({ children, isEditing, saveProduct, setIsEditing, setSaveProduct }: LayoutProps) {
+
+// export default function RootLayout({ children , isEditing, saveProduct, setIsEditing, setSaveProduct }: LayoutProps) {
+export default function RootLayout({
+    children,
+}: Readonly<{
+    children: React.ReactNode;
+}>) {
     const router = useRouter();
     const { products } = useContext(ProductContext);
     const { getProducts, deleteProducts } = useProducts();
     const [ productList, setProductList ] = useState<ProductContext[]>([]);
     const [ homePage, setHomePage ] = useState<boolean>(true);
-    // const [ isEditing, setIsEditing ] = useState<boolean>(false);
-    // const [ saveProduct, setSaveProduct ] = useState<boolean>(false);
+    const [ isEditing, setIsEditing ] = useState<boolean>(false);
+    const [ saveProduct, setSaveProduct ] = useState<boolean>(false);
 
     useEffect(() => {
         const fetchProductList = async () => {
