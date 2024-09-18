@@ -1,8 +1,8 @@
 import prisma from '@/src/lib/prisma';
+import { NextRequest } from 'next/server';
 
-export async function GET(req, { params }: { params: { id: string } }) {
+export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
     const id = params.id;
-    console.log("id: ", id);
     try {
         const product = await prisma.products.findUnique({
             where: {
