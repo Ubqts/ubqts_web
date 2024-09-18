@@ -1,14 +1,12 @@
 import './page.css';
 
-import Image from 'next/image';
-
 export default function ProductPage() {
     return (
         <>
             {/* 感覺可以放個所有產品的概述之類的 */}
             <div className="content">
                 <h1 className="title">lorem ipsum dolor sit</h1>
-                <Image src="https://picsum.photos/400/200?random=1" alt="productImg" />
+                <img src="https://picsum.photos/400/200?random=1" alt="productImg" />
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam nam labore sint voluptatum. Iste, minus! Eum officiis, excepturi dolorum dolor id ut animi magnam soluta molestias cum modi! In hic consequatur architecto laboriosam magnam ea dolor? Cumque architecto, soluta quasi dolorum pariatur nobis similique neque voluptatibus, necessitatibus tempore repudiandae voluptatum.</p>
                 <p>Tempore neque animi culpa rerum voluptates sequi quas obcaecati quasi repudiandae, est omnis temporibus eum, repellat nam nihil modi esse a optio hic odio sed. Ut a illo ducimus doloremque dicta facilis atque, quos possimus error praesentium eos architecto nihil sed perspiciatis ipsa, nobis omnis dolores. Quam atque voluptatem doloremque.</p>
                 <p>Officia, iusto. Odio ipsum veniam ut aliquid delectus tempora, asperiores vitae architecto fugit nesciunt atque dignissimos dolores consequuntur voluptas minima facilis sit ducimus et rerum eum! Amet eius dolorem perferendis dignissimos natus enim sit quos illo molestiae quam mollitia, optio aperiam ex at, incidunt nisi fugit numquam officiis quaerat hic.</p>

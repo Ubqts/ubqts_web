@@ -2,7 +2,6 @@ import "./news_item.css";
 import useNews from "@/src/hooks/useNews";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 
 export type NewsProps = {
     id?: number;
@@ -42,7 +41,7 @@ export default function NewsItem({ id, title, picture, description, date, isAddi
         } else if (!EditPicture) {
             alert("圖片網址不得為空！");
         } else {
-            if (!isAdding) {
+            if (!isAdding && id) {
                 try {
                     putNews({
                         id,
@@ -78,12 +77,19 @@ export default function NewsItem({ id, title, picture, description, date, isAddi
     }
 
     const handleDelete = () => {
-        deleteNews(
-            id,
-        );
-        setIsEditing(false);
-        alert("刪除成功");
-        location.reload();
+        if (id) {
+            try {
+                deleteNews(
+                    id,
+                );
+                setIsEditing(false);
+                alert("刪除成功");
+                location.reload();
+            } catch (error) {
+                alert("發生錯誤！");
+                console.log("error: ", error);
+            }
+        }
     }
 
     const handleCancel = () => {
@@ -97,8 +103,8 @@ export default function NewsItem({ id, title, picture, description, date, isAddi
         <div>
             <div className="newsItem prevent-select" onClick={() => setIsEditing(true)}>
                 <div className="newsImg">
-                    {!isEditing && <Image src={picture} alt="1" />}
-                    {isEditing && <Image src={picture} alt="1" className="editNewsImgButton" onClick={() => handleChangeImg()} />}
+                    {!isEditing && <img src={picture} alt="1" />}
+                    {isEditing && <img src={picture} alt="1" className="editNewsImgButton" onClick={() => handleChangeImg()} />}
                 </div>
                 <div className="newsInfo">
                     {!isEditing && <p className="newsTitle">{title}</p>}

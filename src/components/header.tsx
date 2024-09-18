@@ -1,8 +1,6 @@
 'use client';
 import "./header.css";
 
-import Image from "next/image";
-
 export default function Header() {
 
     const handleSidebarDisplay = () => {
@@ -18,7 +16,7 @@ export default function Header() {
         <div className="header prevent-select">
             <a className="logoHomeLink" href="/#">
                 <div className="headerLogo">
-                    <Image className="logo" src="/Image/logo.png" alt="logo" />
+                    <img className="logo" src="/img/logo.png" alt="logo" width={103} height={60}/>
                     <div className="logoText">
                         <div className="zh">洲通能源科技有限公司</div>
                         <div className="en">UBQTS Power Technology Co.,Ltd</div>
@@ -38,8 +36,8 @@ export default function Header() {
             <div className="headerRight">
                 <div className="languageDropDown">
                     <div className="languageBtn">
-                        <Image src="Image/langIcon.png" alt="lang" />
-                        <Image src="Image/dropDownIcon.png" alt="dropdown" />
+                        <img src="img/langIcon.png" alt="lang" />
+                        <img src="img/dropDownIcon.png" alt="dropdown" />
                     </div>
                     <div className="languageList">
                         <a href="/zh-tw">繁體中文</a>
@@ -47,7 +45,7 @@ export default function Header() {
                         <a href="/en">English</a>
                     </div>
                 </div>
-                <Image className="sidebarIcon" src="./Image/menuIcon.png" alt="menu" onClick={handleSidebarDisplay} />
+                <img className="sidebarIcon" src="./img/menuIcon.png" alt="menu" onClick={handleSidebarDisplay} />
             </div>
         </div>
     );

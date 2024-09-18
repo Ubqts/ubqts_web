@@ -1,17 +1,30 @@
 'use client';
 import "./layout.css";
-import { ProductContext } from "@/src/context/Products";
+import { ProductContext, Product } from "@/src/context/Products";
 import useProducts from "@/src/hooks/useProducts";
 
 import React, { useContext, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 
-export default function RootLayout({ children }: { children: React.ReactNode; }) {
+// type LayoutProps = {
+//     children: React.ReactNode;
+//     isEditing: boolean;
+//     saveProduct: boolean;
+//     setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
+//     setSaveProduct: React.Dispatch<React.SetStateAction<boolean>>;
+// }
+
+
+// export default function RootLayout({ children , isEditing, saveProduct, setIsEditing, setSaveProduct }: LayoutProps) {
+export default function RootLayout({
+    children,
+}: Readonly<{
+    children: React.ReactNode;
+}>) {
     const router = useRouter();
     const { products } = useContext(ProductContext);
     const { getProducts, deleteProducts } = useProducts();
-    const [ productList, setProductList ] = useState<ProductContext[]>([]);
+    const [ productList, setProductList ] = useState<Product[]>([]);
     const [ homePage, setHomePage ] = useState<boolean>(true);
     const [ isEditing, setIsEditing ] = useState<boolean>(false);
     const [ saveProduct, setSaveProduct ] = useState<boolean>(false);
@@ -19,7 +32,7 @@ export default function RootLayout({ children }: { children: React.ReactNode; })
     useEffect(() => {
         const fetchProductList = async () => {
             const productListInit = await getProducts();
-            const productListJSON: ProductContext[] = productListInit["products"];
+            const productListJSON: Product[] = productListInit["products"];
             setProductList(productListJSON);
         }
         const checkHomePage = () => {
@@ -33,12 +46,12 @@ export default function RootLayout({ children }: { children: React.ReactNode; })
         fetchProductList();
     }, [getProducts]);
 
-    const childrenWithProps = React.Children.map(children, (child) => {
-        if (React.isValidElement(child)) {
-            return React.cloneElement(child, { isEditing, saveProduct } as React.Attributes);
-        }
-        return child;
-    });
+    // const childrenWithProps = React.Children.map(children, (child) => {
+    //     if (React.isValidElement(child)) {
+    //         return React.cloneElement(child, { isEditing, saveProduct } as React.Attributes);
+    //     }
+    //     return child;
+    // });
 
     const deleteProduct = async (id: number) => {
         try {
@@ -57,7 +70,7 @@ export default function RootLayout({ children }: { children: React.ReactNode; })
     return (
         <div className="container">
             <div className="banner">
-                <Image src="https://picsum.photos/1700/450" alt="banner" />
+                <img src="https://picsum.photos/1700/450" alt="banner" />
             </div>
             <div className="blankBanner" />
             <div className="wrapper">
@@ -78,7 +91,8 @@ export default function RootLayout({ children }: { children: React.ReactNode; })
                         </p>
                     ))}
                 </div>
-                {childrenWithProps}
+                {/* {childrenWithProps} */}
+                {children}
             </div>
             <div className="blankBanner" />
             {homePage && <a className="prevPage" href="/new_product">新增產品</a>}

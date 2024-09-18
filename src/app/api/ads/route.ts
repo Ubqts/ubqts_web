@@ -1,5 +1,4 @@
 import prisma from '../../../lib/prisma';
-import { useRouter } from 'next/navigation';
 import { NextResponse, type NextRequest } from 'next/server';
 
 export async function POST(req: NextRequest)  {
