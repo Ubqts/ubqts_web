@@ -10,16 +10,18 @@ type LayoutProps = {
     children: React.ReactNode;
     isEditing: boolean;
     saveProduct: boolean;
+    setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
+    setSaveProduct: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function RootLayout({ children }: LayoutProps) {
+export default function RootLayout({ children, isEditing, saveProduct, setIsEditing, setSaveProduct }: LayoutProps) {
     const router = useRouter();
     const { products } = useContext(ProductContext);
     const { getProducts, deleteProducts } = useProducts();
     const [ productList, setProductList ] = useState<ProductContext[]>([]);
     const [ homePage, setHomePage ] = useState<boolean>(true);
-    const [ isEditing, setIsEditing ] = useState<boolean>(false);
-    const [ saveProduct, setSaveProduct ] = useState<boolean>(false);
+    // const [ isEditing, setIsEditing ] = useState<boolean>(false);
+    // const [ saveProduct, setSaveProduct ] = useState<boolean>(false);
 
     useEffect(() => {
         const fetchProductList = async () => {
