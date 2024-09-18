@@ -5,9 +5,14 @@ import useProducts from "@/src/hooks/useProducts";
 
 import React, { useContext, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 
-export default function RootLayout({ children }: { children: React.ReactNode; }) {
+type LayoutProps = {
+    children: React.ReactNode;
+    isEditing: boolean;
+    saveProduct: boolean;
+}
+
+export default function RootLayout({ children }: LayoutProps) {
     const router = useRouter();
     const { products } = useContext(ProductContext);
     const { getProducts, deleteProducts } = useProducts();
@@ -33,12 +38,12 @@ export default function RootLayout({ children }: { children: React.ReactNode; })
         fetchProductList();
     }, [getProducts]);
 
-    const childrenWithProps = React.Children.map(children, (child) => {
-        if (React.isValidElement(child)) {
-            return React.cloneElement(child, { isEditing, saveProduct } as React.Attributes);
-        }
-        return child;
-    });
+    // const childrenWithProps = React.Children.map(children, (child) => {
+    //     if (React.isValidElement(child)) {
+    //         return React.cloneElement(child, { isEditing, saveProduct } as React.Attributes);
+    //     }
+    //     return child;
+    // });
 
     const deleteProduct = async (id: number) => {
         try {
@@ -57,7 +62,7 @@ export default function RootLayout({ children }: { children: React.ReactNode; })
     return (
         <div className="container">
             <div className="banner">
-                <Image src="https://picsum.photos/1700/450" alt="banner" />
+                <img src="https://picsum.photos/1700/450" alt="banner" />
             </div>
             <div className="blankBanner" />
             <div className="wrapper">
@@ -78,7 +83,8 @@ export default function RootLayout({ children }: { children: React.ReactNode; })
                         </p>
                     ))}
                 </div>
-                {childrenWithProps}
+                {/* {childrenWithProps} */}
+                {children}
             </div>
             <div className="blankBanner" />
             {homePage && <a className="prevPage" href="/new_product">新增產品</a>}
