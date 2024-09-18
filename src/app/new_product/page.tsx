@@ -1,6 +1,7 @@
 'use client';
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import Image from "next/image";
 
 import "./page.css";
 import useProducts from "@/src/hooks/useProducts";
@@ -40,7 +41,7 @@ export default function NewProduct() {
     return (
         <div className="container">
             <div className="banner">
-                <img src="https://picsum.photos/1700/450" alt="banner" />
+                <Image src="https://picsum.photos/1700/450" alt="banner" />
             </div>
             <div className="blankBanner" />
             <div className="content">
