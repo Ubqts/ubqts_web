@@ -21,9 +21,9 @@ export default function Home() {
     const { getProducts } = useProducts();
     const { ads } = useContext(AdContext);
     const { products } = useContext(ProductContext);
-    const [adsList, setAdsList] = useState<AdContext[]>([]);
-    const [productsList, setProductsList] = useState<ProductContext[]>([]);
-    const [index, setIndex] = useState(0);
+    const [ adsList, setAdsList ] = useState<AdContext[]>([]);
+    const [ productsList, setProductsList ] = useState<ProductContext[]>([]);
+    const [ index, setIndex ] = useState(0);
 
     useEffect(() => {
         const fetchAdsList = async () => {
@@ -40,7 +40,7 @@ export default function Home() {
         fetchProductsList();
     }, [getAds, getProducts]);
 
-    const handleSelect = (selectedIndex, e) => {
+    const handleSelect = (selectedIndex: React.SetStateAction<number>, e: any) => {
         setIndex(selectedIndex);
     };
 
