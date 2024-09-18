@@ -5,6 +5,7 @@ import { ProductContext, Product } from "@/src/context/Products";
 import useProducts from "@/src/hooks/useProducts";
 
 import { useContext, useState, useEffect } from "react";
+import Image from "next/image";
 
 type PageProps = {
     isEditing: boolean;
@@ -65,7 +66,7 @@ const Page = ({ isEditing, saveProduct }: PageProps) => {
         }
         fetchProduct();
         handleSaveProduct();
-    }, []);
+    }, [editDescription, editName, editPicture, putProducts, saveProduct]);
 
     const handleEditPicture = () => {
         const newImg = prompt("請輸入新圖片網址");
@@ -82,10 +83,10 @@ const Page = ({ isEditing, saveProduct }: PageProps) => {
             <div className="wrapper">
                 <div className="content">
                     {!isEditing && <h1 className="title">{product?.name}</h1>}
-                    {!isEditing && <img src={product?.picture} alt="productImg" />}
+                    {!isEditing && <Image src={product?.picture} alt="productImg" />}
                     {!isEditing && <p>{product?.description}</p>}
                     {isEditing && <input className="title" defaultValue={product?.name} onChange={(e) => setEditName(e.target.value)}/>}
-                    {isEditing && <img src={product?.picture} alt="productImg" onClick={() => handleEditPicture()}/>}
+                    {isEditing && <Image src={product?.picture} alt="productImg" onClick={() => handleEditPicture()}/>}
                     {isEditing && <textarea defaultValue={product?.description} onChange={(e) => setEditDescription(e.target.value)}/>}
                 </div>
             </div>

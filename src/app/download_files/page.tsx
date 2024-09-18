@@ -1,11 +1,13 @@
 import "./page.css";
 import DownloadItem from "@/src/components/download_item";
 
+import Image from "next/image";
+
 export default function DownloadFiles() {
     return (
         <div className="container prevent-select">
             <div className="banner">
-                <img src="https://picsum.photos/1700/450" alt="banner" />
+                <Image src="https://picsum.photos/1700/450" alt="banner" />
             </div>
             <h1>下載專區</h1>
             <div className="largeSize">
@@ -29,31 +31,31 @@ export default function DownloadFiles() {
                             </td>
                             <td>.pdf</td>
                             <td>1.5MB</td>
-                            <td><a><img className="downloadIcon" src="./img/downloadIcon.png" alt="download" /></a></td>
+                            <td><a><Image className="downloadIcon" src="./img/downloadIcon.png" alt="download" /></a></td>
                         </tr>
                         <tr>
                             <td className="fileName">lorem ipsum</td>
                             <td>.pdf</td>
                             <td>1.5MB</td>
-                            <td><a><img className="downloadIcon" src="./img/downloadIcon.png" alt="download" /></a></td>
+                            <td><a><Image className="downloadIcon" src="./img/downloadIcon.png" alt="download" /></a></td>
                         </tr>
                         <tr>
                             <td className="fileName">lorem ipsum</td>
                             <td>.pdf</td>
                             <td>1.5MB</td>
-                            <td><a><img className="downloadIcon" src="./img/downloadIcon.png" alt="download" /></a></td>
+                            <td><a><Image className="downloadIcon" src="./img/downloadIcon.png" alt="download" /></a></td>
                         </tr>
                         <tr>
                             <td className="fileName">lorem ipsum</td>
                             <td>.pdf</td>
                             <td>1.5MB</td>
-                            <td><a><img className="downloadIcon" src="./img/downloadIcon.png" alt="download" /></a></td>
+                            <td><a><Image className="downloadIcon" src="./img/downloadIcon.png" alt="download" /></a></td>
                         </tr>
                         <tr>
                             <td className="fileName">lorem ipsum</td>
                             <td>.pdf</td>
                             <td>1.5MB</td>
-                            <td><a><img className="downloadIcon" src="./img/downloadIcon.png" alt="download" /></a></td>
+                            <td><a><Image className="downloadIcon" src="./img/downloadIcon.png" alt="download" /></a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -76,19 +78,19 @@ export default function DownloadFiles() {
                             <td className="fileName">lorem ipsum</td>
                             <td>.pdf</td>
                             <td>1.5MB</td>
-                            <td><a><img className="downloadIcon" src="./img/downloadIcon.png" alt="download" /></a></td>
+                            <td><a><Image className="downloadIcon" src="./img/downloadIcon.png" alt="download" /></a></td>
                         </tr>
                         <tr>
                             <td className="fileName">lorem ipsum</td>
                             <td>.pdf</td>
                             <td>1.5MB</td>
-                            <td><a><img className="downloadIcon" src="./img/downloadIcon.png" alt="download" /></a></td>
+                            <td><a><Image className="downloadIcon" src="./img/downloadIcon.png" alt="download" /></a></td>
                         </tr>
                         <tr>
                             <td className="fileName">lorem ipsum</td>
                             <td>.pdf</td>
                             <td>1.5MB</td>
-                            <td><a><img className="downloadIcon" src="./img/downloadIcon.png" alt="download" /></a></td>
+                            <td><a><Image className="downloadIcon" src="./img/downloadIcon.png" alt="download" /></a></td>
                         </tr>
                     </tbody>
                 </table>

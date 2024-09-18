@@ -1,15 +1,17 @@
 import "./page.css";
 
+import Image from "next/image";
+
 export default function NewsPage() {
     return (
         <div className="container prevent-select">
             <div className="banner">
-                <img src="https://picsum.photos/1700/450" alt="banner" />
+                <Image src="https://picsum.photos/1700/450" alt="banner" />
             </div>
             <div className="blankBanner" />
             <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, laboriosam!</h1>
             <div className="imgWithText">
-                <img src="https://picsum.photos/380/220" alt="img" />
+                <Image src="https://picsum.photos/380/220" alt="img" />
                 <p>
                     Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                     Voluptatibus ab praesentium minus nam. Illum dolorem

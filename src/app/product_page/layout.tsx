@@ -5,6 +5,7 @@ import useProducts from "@/src/hooks/useProducts";
 
 import React, { useContext, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function RootLayout({ children }: { children: React.ReactNode; }) {
     const router = useRouter();
@@ -30,7 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode; })
         }
         checkHomePage();
         fetchProductList();
-    }, []);
+    }, [getProducts]);
 
     const childrenWithProps = React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
@@ -56,7 +57,7 @@ export default function RootLayout({ children }: { children: React.ReactNode; })
     return (
         <div className="container">
             <div className="banner">
-                <img src="https://picsum.photos/1700/450" alt="banner" />
+                <Image src="https://picsum.photos/1700/450" alt="banner" />
             </div>
             <div className="blankBanner" />
             <div className="wrapper">
