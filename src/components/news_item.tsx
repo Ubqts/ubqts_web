@@ -41,7 +41,7 @@ export default function NewsItem({ id, title, picture, description, date, isAddi
         } else if (!EditPicture) {
             alert("圖片網址不得為空！");
         } else {
-            if (!isAdding) {
+            if (!isAdding && id) {
                 try {
                     putNews({
                         id,
@@ -77,12 +77,19 @@ export default function NewsItem({ id, title, picture, description, date, isAddi
     }
 
     const handleDelete = () => {
-        deleteNews(
-            id,
-        );
-        setIsEditing(false);
-        alert("刪除成功");
-        location.reload();
+        if (id) {
+            try {
+                deleteNews(
+                    id,
+                );
+                setIsEditing(false);
+                alert("刪除成功");
+                location.reload();
+            } catch (error) {
+                alert("發生錯誤！");
+                console.log("error: ", error);
+            }
+        }
     }
 
     const handleCancel = () => {
