@@ -6,12 +6,14 @@ import useProducts from "@/src/hooks/useProducts";
 
 import { useContext, useState, useEffect } from "react";
 
-type PageProps = {
-    isEditing: boolean;
-    saveProduct: boolean;
-}
+// type PageProps = {
+//     isEditing: boolean;
+//     saveProduct: boolean;
+// }
 
-const Page = ({ isEditing, saveProduct }: PageProps) => {
+const Page = ({/*{ isEditing, saveProduct }: PageProps*/}) => {
+    const [ isEditing, setIsEditing ] = useState<boolean>(false);
+    const [ saveProduct, setSaveProduct ] = useState<boolean>(false);
     const [ product, setProduct ] = useState<Product>();
     const [ editName, setEditName ] = useState<string>("");
     const [ editPicture, setEditPicture ] = useState<string>("");
