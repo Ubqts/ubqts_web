@@ -1,63 +1,7 @@
 'use client';
 import "./header.css";
-import useAds from "../hooks/useAds";
-import useNews from "../hooks/useNews";
-import useProducts from "../hooks/useProducts";
-import Link from "next/link";
-import { useContext } from "react";
 
 export default function Header() {
-    const adTest = {
-        picture: "https://picsum.photos/300/200?random=1",
-        language: "zh-tw",
-    };
-    const newsTest = {
-        title: "news_title",
-        picture: "https://picsum.photos/300/200?random=1",
-        description: "news_description",
-        date: new Date(),
-        language: "en",
-    };
-    const productTest = {
-        picture: "https://picsum.photos/300/200?random=1",
-        name: "product_title",
-        description: "product_description",
-        language: "zh-cn",
-    };
-
-    const { postAds } = useAds();
-    const { postNews } = useNews();
-    const { postProducts } = useProducts();
-
-    const AdsApiTest = async () => {
-        try {
-            await postAds(adTest);
-            alert("廣告api測試成功");
-        } catch (error) {
-            console.error(error);
-            alert("廣告api測試失敗");
-        }
-    };
-
-    const NewsApiTest = async () => {
-        try {
-            await postNews(newsTest);
-            alert("新聞api測試成功");
-        } catch (error) {
-            console.error(error);
-            alert("新聞api測試失敗");
-        }
-    };
-
-    const ProductsApiTest = async () => {
-        try {
-            await postProducts(productTest);
-            alert("產品api測試成功");
-        } catch (error) {
-            console.error(error);
-            alert("產品api測試失敗");
-        }
-    };
 
     const handleSidebarDisplay = () => {
         const sidebar = document.querySelector(".sidebar")!;
@@ -102,12 +46,6 @@ export default function Header() {
                     </div>
                 </div>
                 <img className="sidebarIcon" src="./img/menuIcon.png" alt="menu" onClick={handleSidebarDisplay} />
-            </div>
-
-            <div className="apiTests">
-                <button onClick={() => AdsApiTest()}>廣告api測試</button>
-                <button onClick={() => NewsApiTest()}>新聞api測試</button>
-                <button onClick={() => ProductsApiTest()}>產品api測試</button>
             </div>
         </div>
     );
