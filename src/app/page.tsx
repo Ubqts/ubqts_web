@@ -1,7 +1,7 @@
 'use client';
 import "./page.css";
-import { AdContext } from "@/src/context/Ads";
-import { ProductContext } from "@/src/context/Products";
+import { AdContext, Ad } from "@/src/context/Ads";
+import { ProductContext, Product } from "@/src/context/Products";
 import useAds from "../hooks/useAds";
 import useProducts from "../hooks/useProducts";
 // import BootstrapCarousel from "../components/bootstrap_carousel";
@@ -10,7 +10,6 @@ import ProductItem from "../components/product_item";
 
 import React, { useEffect, useContext, useState } from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Carousel } from "react-bootstrap";
@@ -22,26 +21,26 @@ export default function Home() {
     const { getProducts } = useProducts();
     const { ads } = useContext(AdContext);
     const { products } = useContext(ProductContext);
-    const [adsList, setAdsList] = useState<AdContext[]>([]);
-    const [productsList, setProductsList] = useState<ProductContext[]>([]);
-    const [index, setIndex] = useState(0);
+    const [ adsList, setAdsList ] = useState<Ad[]>([]);
+    const [ productsList, setProductsList ] = useState<Product[]>([]);
+    const [ index, setIndex ] = useState(0);
 
     useEffect(() => {
         const fetchAdsList = async () => {
             const adsListInit = await getAds();
-            const adsListJSON: AdContext[] = adsListInit["ads"];
+            const adsListJSON: Ad[] = adsListInit["ads"];
             setAdsList(adsListJSON);
         }
         const fetchProductsList = async () => {
             const productsListInit = await getProducts();
-            const productsListJSON: ProductContext[] = productsListInit["products"];
+            const productsListJSON: Product[] = productsListInit["products"];
             setProductsList(productsListJSON);
         }
         fetchAdsList();
         fetchProductsList();
     }, [getAds, getProducts]);
 
-    const handleSelect = (selectedIndex, e) => {
+    const handleSelect = (selectedIndex: React.SetStateAction<number>, e: any) => {
         setIndex(selectedIndex);
     };
 
@@ -69,7 +68,7 @@ export default function Home() {
             <Carousel activeIndex={index} onSelect={handleSelect}>
                 {adsList.map((item) => (
                     <Carousel.Item key={item.id} interval={4000}>
-                        <Image src={item.picture} alt="slides" width={"100%"} style={{ objectFit: "cover", height: "50vw", maxHeight: "90vh" }} />
+                        <img src={item.picture} alt="slides" width={"100%"} style={{ objectFit: "cover", height: "50vw", maxHeight: "90vh" }} />
                         {/* <Carousel.Caption /> */}
                     </Carousel.Item>
                 ))}
@@ -83,7 +82,7 @@ export default function Home() {
                     </React.Fragment>
                 ))}
                 <div className="addCarousel" onClick={() => handleAddAds()}>
-                    <Image src="./Image/addIcon.png" alt="addCarousel" />
+                    <img src="./img/addIcon.png" alt="addCarousel" />
                 </div>
             </div>
 
@@ -92,7 +91,7 @@ export default function Home() {
             <div className="content origin">
                 <h1>公司簡介</h1>
                 <div className="imgWithText">
-                    <Image src="https://picsum.photos/400?random=4" alt="companyIntro" />
+                    <img src="https://picsum.photos/400?random=4" alt="companyIntro" />
                     <div>
                         <p>洲通能源承測試設備業界知名廠商-佳優科技技術及團隊，於2023年正式成立，2024年正式合併、由洲通能源將設備業務擴展至東南亞及歐美，於這期間產品效能及技術服務深得國內外客戶肯定及支持。</p>
                         <p>近年聽取品牌客戶、系統廠、高等教育學校及研究機構對其需求建議，開發符合客戶期待高效、高精確度及成本效益之自動化測試設備及監控系統，客戶滿意是我們自始至終目標。</p>
@@ -121,7 +120,7 @@ export default function Home() {
                     ))}
                     <a href="/new_product">
                         <div className="addProduct">
-                            <Image src="./Image/addIcon.png" alt="addProduct" onClick={() => { router.push("/new_product") }} />
+                            <img src="./img/addIcon.png" alt="addProduct" onClick={() => { router.push("/new_product") }} />
                         </div>
                     </a>
                 </div>

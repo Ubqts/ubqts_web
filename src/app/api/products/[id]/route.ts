@@ -1,8 +1,8 @@
 import prisma from '@/src/lib/prisma';
+import { NextRequest, NextResponse } from 'next/server';
 
-export async function GET(req, { params }: { params: { id: string } }) {
+export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
     const id = params.id;
-    console.log("id: ", id);
     try {
         const product = await prisma.products.findUnique({
             where: {
@@ -20,6 +20,9 @@ export async function GET(req, { params }: { params: { id: string } }) {
         });
     } catch (error) {
         console.log("error: ", error);
-        return new Response(error, { status: 500 });
-        }
+        return NextResponse.json(
+            { error: "Something Went Wrong." }, 
+            { status: 500 }
+        );
+    }
 }
