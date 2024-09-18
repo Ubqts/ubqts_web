@@ -1,10 +1,12 @@
 import "./page.css";
 
+import Image from "next/image";
+
 export default function ContactUs() {
     return (
         <div className="container">
             <div className="banner">
-                <img src="https://picsum.photos/1700/450" alt="banner" />
+                <Image src="https://picsum.photos/1700/450" alt="banner" />
             </div>
             <h1>聯絡我們</h1>
             <div className="blankBanner" />

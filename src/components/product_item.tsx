@@ -1,5 +1,6 @@
 import "./product_item.css";
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 type ProductProps = {
     id: number;
@@ -14,7 +15,7 @@ export default function ProductItem({ id, picture, name }: ProductProps) {
         <div className="productItem" onClick={() => { router.push(`/product_page/id=${id}`) }}>
             {/* <img src={picture} alt="1" /> */}
             <div className="productImgHolder">
-                <img src={picture} alt="1" />
+                <Image src={picture} alt="1" />
             </div>
             <p>{name}</p>
         </div>
