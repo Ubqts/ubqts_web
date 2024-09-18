@@ -4,23 +4,12 @@ import "./page.css";
 import { ProductContext, Product } from "@/src/context/Products";
 import useProducts from "@/src/hooks/useProducts";
 
-import { GetServerSideProps } from "next";
 import { useContext, useState, useEffect } from "react";
-import Image from "next/image";
 
 type PageProps = {
     isEditing: boolean;
     saveProduct: boolean;
 }
-
-export const getServerSideProps: GetServerSideProps = async () => {
-    return {
-        props: {
-            isEditing: false,
-            saveProduct: false,
-        }, 
-    };
-};
 
 const Page = ({ isEditing, saveProduct }: PageProps) => {
     const [ product, setProduct ] = useState<Product>();
@@ -93,10 +82,10 @@ const Page = ({ isEditing, saveProduct }: PageProps) => {
             <div className="wrapper">
                 <div className="content">
                     {!isEditing && <h1 className="title">{product?.name}</h1>}
-                    {!isEditing && <Image src={product?.picture} alt="productImg" />}
+                    {!isEditing && <img src={product?.picture} alt="productImg" />}
                     {!isEditing && <p>{product?.description}</p>}
                     {isEditing && <input className="title" defaultValue={product?.name} onChange={(e) => setEditName(e.target.value)}/>}
-                    {isEditing && <Image src={product?.picture} alt="productImg" onClick={() => handleEditPicture()}/>}
+                    {isEditing && <img src={product?.picture} alt="productImg" onClick={() => handleEditPicture()}/>}
                     {isEditing && <textarea defaultValue={product?.description} onChange={(e) => setEditDescription(e.target.value)}/>}
                 </div>
             </div>

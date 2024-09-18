@@ -2,7 +2,6 @@ import "./news_item.css";
 import useNews from "@/src/hooks/useNews";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 
 export type NewsProps = {
     id?: number;
@@ -97,8 +96,8 @@ export default function NewsItem({ id, title, picture, description, date, isAddi
         <div>
             <div className="newsItem prevent-select" onClick={() => setIsEditing(true)}>
                 <div className="newsImg">
-                    {!isEditing && <Image src={picture} alt="1" />}
-                    {isEditing && <Image src={picture} alt="1" className="editNewsImgButton" onClick={() => handleChangeImg()} />}
+                    {!isEditing && <img src={picture} alt="1" />}
+                    {isEditing && <img src={picture} alt="1" className="editNewsImgButton" onClick={() => handleChangeImg()} />}
                 </div>
                 <div className="newsInfo">
                     {!isEditing && <p className="newsTitle">{title}</p>}
