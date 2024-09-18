@@ -1,6 +1,6 @@
 'use client';
 import "./layout.css";
-import { ProductContext } from "@/src/context/Products";
+import { ProductContext, Product } from "@/src/context/Products";
 import useProducts from "@/src/hooks/useProducts";
 
 import React, { useContext, useState, useEffect } from "react";
@@ -24,7 +24,7 @@ export default function RootLayout({
     const router = useRouter();
     const { products } = useContext(ProductContext);
     const { getProducts, deleteProducts } = useProducts();
-    const [ productList, setProductList ] = useState<ProductContext[]>([]);
+    const [ productList, setProductList ] = useState<Product[]>([]);
     const [ homePage, setHomePage ] = useState<boolean>(true);
     const [ isEditing, setIsEditing ] = useState<boolean>(false);
     const [ saveProduct, setSaveProduct ] = useState<boolean>(false);
@@ -32,7 +32,7 @@ export default function RootLayout({
     useEffect(() => {
         const fetchProductList = async () => {
             const productListInit = await getProducts();
-            const productListJSON: ProductContext[] = productListInit["products"];
+            const productListJSON: Product[] = productListInit["products"];
             setProductList(productListJSON);
         }
         const checkHomePage = () => {
