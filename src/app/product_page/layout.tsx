@@ -10,10 +10,10 @@ export default function RootLayout({ children }: { children: React.ReactNode; })
     const router = useRouter();
     const { products } = useContext(ProductContext);
     const { getProducts, deleteProducts } = useProducts();
-    const [productList, setProductList] = useState<ProductContext[]>([]);
-    const [homePage, setHomePage] = useState<boolean>(true);
-    const [isEditing, setIsEditing] = useState<boolean>(false);
-    const [saveProduct, setSaveProduct] = useState<boolean>(false);
+    const [ productList, setProductList ] = useState<ProductContext[]>([]);
+    const [ homePage, setHomePage ] = useState<boolean>(true);
+    const [ isEditing, setIsEditing ] = useState<boolean>(false);
+    const [ saveProduct, setSaveProduct ] = useState<boolean>(false);
 
     useEffect(() => {
         const fetchProductList = async () => {
@@ -34,7 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode; })
 
     const childrenWithProps = React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
-            return React.cloneElement(child, { isEditing, saveProduct });
+            return React.cloneElement(child, { isEditing, saveProduct } as React.Attributes);
         }
         return child;
     });
@@ -50,7 +50,8 @@ export default function RootLayout({ children }: { children: React.ReactNode; })
         }
     }
 
-    // console.log(productList);
+    console.log("isEditing in Layout.tsx: ", isEditing);
+    console.log("saveProduct in Layout.tsx: ", saveProduct);
 
     return (
         <div className="container">
@@ -61,16 +62,16 @@ export default function RootLayout({ children }: { children: React.ReactNode; })
             <div className="wrapper">
                 <div className="productPanel">
                     <p onClick={() => {
-                        router.push("/product_page");
                         setHomePage(true);
+                        router.push("/product_page");
                     }}>產品介紹</p>
                     {productList.map((product) => (
                         <p
                             className="product"
                             key={product.id}
                             onClick={() => {
-                                router.push(`/product_page/id=${product.id}`);
                                 setHomePage(false);
+                                router.push(`/product_page/id=${product.id}`);
                             }}>
                             {product.name}
                         </p>
