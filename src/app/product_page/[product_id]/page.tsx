@@ -4,6 +4,7 @@ import "./page.css";
 import { ProductContext, Product } from "@/src/context/Products";
 import useProducts from "@/src/hooks/useProducts";
 
+import { GetServerSideProps } from "next";
 import { useContext, useState, useEffect } from "react";
 import Image from "next/image";
 
@@ -11,6 +12,15 @@ type PageProps = {
     isEditing: boolean;
     saveProduct: boolean;
 }
+
+export const getServerSideProps: GetServerSideProps = async () => {
+    return {
+        props: {
+            isEditing: false,
+            saveProduct: false,
+        }, 
+    };
+};
 
 const Page = ({ isEditing, saveProduct }: PageProps) => {
     const [ product, setProduct ] = useState<Product>();
