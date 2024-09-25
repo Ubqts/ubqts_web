@@ -1,31 +1,24 @@
 'use client';
-import { NewsContext } from "@/src/context/News";
+import { NewsContext, type News } from "@/src/context/News";
 import useNews from "@/src/hooks/useNews";
 import "./page.css";
 import NewsItem from "@/src/components/news_item";
 
 import React, { useState, useEffect, useContext } from "react";
-
+import addIcon from "@/public/img/addIcon.png";
 import banner from "@/public/img/banner.png";
 
-type NewsList = {
-    id: number;
-    title: string;
-    picture: string;
-    description: string;
-    date: Date;
-}
-
-export default function News() {
+type NewsProps = { params: { lng: string } };
+export default function News({ params: { lng } }: NewsProps) {
     const { news } = useContext(NewsContext);
     const { getNews } = useNews();
-    const [newsList, setNewsList] = useState<NewsList[]>([]);
-    const [isAdding, setIsAdding] = useState<boolean>(false);
+    const [ newsList, setNewsList ] = useState<News[]>([]);
+    const [ isAdding, setIsAdding ] = useState<boolean>(false);
 
     useEffect(() => {
         const fetchNewsList = async () => {
             const newsListInit = await getNews();
-            const newsListJSON: NewsList[] = newsListInit["news"];
+            const newsListJSON: News[] = newsListInit["news"];
             setNewsList(newsListJSON);
         }
         fetchNewsList();
@@ -42,7 +35,7 @@ export default function News() {
             <div className="content">
                 <h1>最新消息</h1>
                 <div className="newsList">
-                    {newsList.map((news) => (
+                    {newsList.filter((news) => (news.language.match(lng))).map((news) => (
                         <React.Fragment key={news.id}>
                             <NewsItem
                                 id={news.id}
@@ -68,7 +61,7 @@ export default function News() {
                         </>
                     }
                     <div className="addNews" onClick={() => setIsAdding(true)}>
-                        <img src="./img/addIcon.png" alt="addNews" />
+                        <img src={addIcon.src} alt="addNews" />
                     </div>
                     <div className="split" />
                 </div>
