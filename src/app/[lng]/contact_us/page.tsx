@@ -28,7 +28,7 @@ export default async function ContactUs({ params: { lng } }: ContactUsProps) {
                         <div className="phone">{t("agent-phone-1")}<br />&emsp;&emsp;&emsp;{t("agent-cellphone-1")}</div>
                         <div className="email">{t("agent-email-1")}</div>
                     </div>
-                    <a className="contactBtn" href="https://mail.google.com/mail/?view=cm&fs=1&to=sale@ubqts.com.tw" target="_blank">發送Email</a>
+                    <a className="contactBtn" href="https://mail.google.com/mail/?view=cm&fs=1&to=sale@ubqts.com.tw" target="_blank">{t("send-email")}</a>
                 </div>
                 <div className="contactService">
                     {/* <h2>售後聯絡</h2> */}
@@ -45,7 +45,7 @@ export default async function ContactUs({ params: { lng } }: ContactUsProps) {
                         <div className="phone">{t("agent-phone-1")}<br />&emsp;&emsp;&emsp;{t("agent-cellphone-1")}</div>
                         <div className="email">{t("agent-email-1")}</div>
                     </div>
-                    <a className="contactBtn" href="https://mail.google.com/mail/?view=cm&fs=1&to=sale@ubqts.com.tw" target="_blank">發送Email</a>
+                    <a className="contactBtn" href="https://mail.google.com/mail/?view=cm&fs=1&to=sale@ubqts.com.tw" target="_blank">{t("send-email")}</a>
                 </div>
             </div>
             <div className="blankBanner" />
