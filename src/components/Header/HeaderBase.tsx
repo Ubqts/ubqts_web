@@ -4,6 +4,7 @@ import companyLogo from "@/public/img/logo.png";
 import languageList from "@/public/img/langIcon.png";
 import dropDownIcon from "@/public/img/dropDownIcon.png";
 import menuIcon from "@/public/img/menuIcon.png";
+import loginIcon from "@/public/img/loginIcon.png";
 
 import { TFunction } from "i18next";
 import { languages } from "../../i18n/settings";
@@ -27,7 +28,7 @@ export const HeaderBase = ({ t }: HeaderProps) => {
         <div className="header prevent-select">
             <a className="logoHomeLink" href="/#">
                 <div className="headerLogo">
-                    <img className="logo" src={companyLogo.src} alt="logo" width={103} height={60}/>
+                    <img className="logo" src={companyLogo.src} alt="logo" width={103} height={60} />
                     <div className="logoText">
                         <div className="zh">洲通能源科技有限公司</div>
                         <div className="en">UBQTS Power Technology Co.,Ltd</div>
@@ -64,7 +65,13 @@ export const HeaderBase = ({ t }: HeaderProps) => {
                     </div>
                 </div>
                 <img className="sidebarIcon" src={menuIcon.src} alt="menu" onClick={handleSidebarDisplay} />
+                <div className="login">
+                    <a href="admin">
+                        <img className="loginIcon" src={loginIcon.src} alt="login" />
+                    </a>
+                </div>
             </div>
+
         </div>
     );
 }
