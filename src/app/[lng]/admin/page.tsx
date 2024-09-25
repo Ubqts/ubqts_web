@@ -11,7 +11,7 @@ export default function Admin() {
     }
 
     return (
-        <div>
+        <div style={{ boxSizing: "content-box", minHeight: "calc(100vh - 80px - 411px)" }}>
             <div className="loginBox prevent-select">
                 <p style={{ margin: "0 auto 25px auto", fontWeight: "bold" }}>管理員登入</p>
                 <input
