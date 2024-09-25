@@ -1,5 +1,6 @@
 import "./carousel_item.css";
 import useAds from "../hooks/useAds";
+import closeIcon from "@/public/img/closeIcon.png";
 
 type CarouselProps = {
     id: number;
@@ -23,7 +24,7 @@ export default function CarouselItem({ id, picture }: CarouselProps) {
     return (
         <div className="entity">
             <img className="carouselImg" src={picture} alt="1" />
-            <img className="deleteBtn" src="./img/closeIcon.png" alt="delete" onClick={() => handleDelete()} />
+            <img className="deleteBtn" src={closeIcon.src} alt="delete" onClick={() => handleDelete()} />
         </div>
     )
 }

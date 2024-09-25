@@ -28,7 +28,7 @@ export function AdProvider({ children }: Props) {
     useEffect(() => {
         const fetchAds = async () => {
             try {
-                const res = await fetch('/api/ads', {
+                const res = await fetch('../../api/ads', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ export function AdProvider({ children }: Props) {
 
     const sendAds = async (ad: Omit<Ad, 'id'>) => {
         try {
-            const res = await fetch('/api/ad', {
+            const res = await fetch('/api/ads', {
                 method: 'POST',
                 body: JSON.stringify(ad),
                 headers: {
