@@ -1,10 +1,11 @@
 import "./page.css";
+import banner from "@/public/img/banner.png";
 
 export default function NewsPage() {
     return (
         <div className="container prevent-select">
             <div className="banner">
-                <img src="https://picsum.photos/1700/450" alt="banner" />
+                <img src={banner.src} alt="banner" />
             </div>
             <div className="blankBanner" />
             <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, laboriosam!</h1>

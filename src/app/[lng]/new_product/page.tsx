@@ -1,4 +1,5 @@
 'use client';
+import banner from "@/public/img/banner.png";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -40,7 +41,7 @@ export default function NewProduct() {
     return (
         <div className="container">
             <div className="banner">
-                <img src="https://picsum.photos/1700/450" alt="banner" />
+                <img src={banner.src} alt="banner" />
             </div>
             <div className="blankBanner" />
             <div className="content">

@@ -42,6 +42,11 @@ footer p {
     font-size: normal;
 }
 
+.contact {
+    text-align: left;
+    max-width: 18%;
+}
+
 div.split-1 {
     height: 100px;
     width: 0.5px;
@@ -68,6 +73,12 @@ div.split-3 {
     width: 30%;
 }
 
+.counter {
+    width: 100%;
+    text-align: center;
+    margin-top: 40px;
+}
+
 @media screen and (max-width: 1315px) {
     footer {
         padding-top: 30px;
@@ -83,6 +94,10 @@ div.split-3 {
         min-width: 275px;
     }
 
+    .contact {
+        max-width: none;
+    }
+
     div.split-3 {
         display: block;
     }
@@ -93,7 +108,7 @@ div.split-3 {
     }
 }
 
-@media screen and (max-width: 859px) {
+@media screen and (max-width: 1100px) {
     footer > .footerCompany, .contact, .hashTags {
         flex: 1 100%;
         align-items: center;
