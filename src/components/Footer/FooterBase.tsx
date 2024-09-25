@@ -32,6 +32,10 @@ export const FooterBase = ({ t }: FooterProps) => {
                     #大型電池組 #大型電池組解決方案 #鋰電池 #儲能電池 #AI伺服器電池 #AI伺服器電池解決方案 #充放電設備 #BMS #電池化成 #高精度 #客製化 #高功率 #微電流 #可攜式 #電動自行車解決方案 #半自動化解決方案 #電池材料 #超級電容 #AOI #工業自動化 #智慧能源 #零組件 #電池盒配件 #鋰電池分選設備 #鋰電池點焊設備 #佳優科技 #洲通能源科技
                 </p> */}
             </div>
+            <div className="counter">
+                造訪次數：
+                <a href="https://www.stylemap.co.jp/"><img src="https://www.f-counter.net/j/64/1727279783/" alt="アクセスカウンター" /></a>
+            </div>
         </footer>
     );
 }
