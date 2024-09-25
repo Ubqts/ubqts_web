@@ -6,6 +6,8 @@ import NewsItem from "@/src/components/news_item";
 
 import React, { useState, useEffect, useContext } from "react";
 
+import banner from "@/public/img/banner.png";
+
 type NewsList = {
     id: number;
     title: string;
@@ -17,8 +19,8 @@ type NewsList = {
 export default function News() {
     const { news } = useContext(NewsContext);
     const { getNews } = useNews();
-    const [ newsList, setNewsList ] = useState<NewsList[]>([]);
-    const [ isAdding, setIsAdding ] = useState<boolean>(false);
+    const [newsList, setNewsList] = useState<NewsList[]>([]);
+    const [isAdding, setIsAdding] = useState<boolean>(false);
 
     useEffect(() => {
         const fetchNewsList = async () => {
@@ -34,7 +36,7 @@ export default function News() {
     return (
         <div className="container prevent-select">
             <div className="banner">
-                <img src="https://picsum.photos/1700/450" alt="banner" />
+                <img src={banner.src} alt="banner" />
             </div>
 
             <div className="content">
