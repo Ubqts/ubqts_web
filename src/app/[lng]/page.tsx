@@ -20,7 +20,7 @@ type HomeProps = { params: { lng: string } };
 
 export default function Home({ params: { lng } }: HomeProps) {
     const router = useRouter();
-    const { t } = useTranslation(lng, "home");
+    const { t } = useTranslation(lng , "home");
     const { getAds, postAds } = useAds();
     const { getProducts } = useProducts();
     const { ads } = useContext(AdContext);
@@ -61,6 +61,8 @@ export default function Home({ params: { lng } }: HomeProps) {
             }
         }
     };
+
+    // console.log("lng: \"", lng, "\"");
 
     return (
         <div className="container prevent-select">
