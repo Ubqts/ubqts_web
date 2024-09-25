@@ -1,4 +1,5 @@
 import "./page.css";
+import banner from "@/public/img/banner.png";
 import DownloadItem from "@/src/components/download_item";
 import downloadIcon from "@/public/img/downloadIcon.png";
 
@@ -12,7 +13,7 @@ export default async function DownloadFiles({ params: { lng } }: DownloadFilesPr
     return (
         <div className="container prevent-select">
             <div className="banner">
-                <img src="https://picsum.photos/1700/450" alt="banner" />
+                <img src={banner.src} alt="banner" />
             </div>
             {/* <h1>下載專區</h1> */}
             <h1>{t("downloadFiles")}</h1>
