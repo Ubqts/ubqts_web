@@ -1,4 +1,5 @@
 import "./download_item.css";
+import downloadIcon from "@/public/img/downloadIcon2.png"
 
 export default function DownloadItem() {
     return (
@@ -21,7 +22,7 @@ export default function DownloadItem() {
                         <td colSpan={2}>
                             <a>
                                 <div className="downloadBtn">
-                                    <img className="downloadIcon" src="./img/downloadIcon2.png" alt="download" />
+                                    <img className="downloadIcon" src={downloadIcon.src} alt="download" />
                                     <div>檔案下載</div>
                                 </div>
                             </a>
