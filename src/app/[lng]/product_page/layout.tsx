@@ -6,6 +6,8 @@ import useProducts from "@/src/hooks/useProducts";
 import React, { useContext, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
+import banner from "@/public/img/banner.png";
+
 // type LayoutProps = {
 //     children: React.ReactNode;
 //     isEditing: boolean;
@@ -24,10 +26,10 @@ export default function RootLayout({
     const router = useRouter();
     const { products } = useContext(ProductContext);
     const { getProducts, deleteProducts } = useProducts();
-    const [ productList, setProductList ] = useState<Product[]>([]);
-    const [ homePage, setHomePage ] = useState<boolean>(true);
-    const [ isEditing, setIsEditing ] = useState<boolean>(false);
-    const [ saveProduct, setSaveProduct ] = useState<boolean>(false);
+    const [productList, setProductList] = useState<Product[]>([]);
+    const [homePage, setHomePage] = useState<boolean>(true);
+    const [isEditing, setIsEditing] = useState<boolean>(false);
+    const [saveProduct, setSaveProduct] = useState<boolean>(false);
 
     useEffect(() => {
         const fetchProductList = async () => {
@@ -70,7 +72,7 @@ export default function RootLayout({
     return (
         <div className="container">
             <div className="banner">
-                <img src="https://picsum.photos/1700/450" alt="banner" />
+                <img src={banner.src} alt="banner" />
             </div>
             <div className="blankBanner" />
             <div className="wrapper">

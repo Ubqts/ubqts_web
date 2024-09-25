@@ -1,6 +1,8 @@
 import { useTranslation } from "@/src/i18n";
 import "./page.css";
 
+import banner from "@/public/img/banner.png";
+
 import sefLogo from "@/public/img/partner_logos/sefLogo.png";
 import cmcLogo from "@/public/img/partner_logos/cmcLogo.png";
 import nemkoLogo from "@/public/img/partner_logos/nemkoLogo.png";
@@ -40,14 +42,14 @@ export default async function Partners({ params: { lng } }: PartnersProps) {
     return (
         <div className="container prevent-select">
             <div className="banner">
-                <img src="https://picsum.photos/1700/450" alt="banner" />
+                <img src={banner.src} alt="banner" />
             </div>
-                {/* <h1>合作夥伴</h1> */}
-                <h1>{t("partners")}</h1>
+            {/* <h1>合作夥伴</h1> */}
+            <h1>{t("partners")}</h1>
             <div className="partnerType">
                 {/* <h2>國際品牌大廠</h2> */}
                 <h2>{t("manufacturers")}</h2>
-            <div className="line" />
+                <div className="line" />
                 <div className="partner">
                     <div className="partnerCard"><img src={sefLogo.src} alt="SEF" /></div>
                     <div className="partnerCard"><img src={cmcLogo.src} alt="CMC" /></div>

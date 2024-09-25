@@ -1,6 +1,8 @@
 import "./page.css";
 import { useTranslation } from "@/src/i18n";
 
+import banner from "@/public/img/banner.png";
+
 type ContactUsProps = { params: { lng: string; }; }
 
 export default async function ContactUs({ params: { lng } }: ContactUsProps) {
@@ -8,7 +10,7 @@ export default async function ContactUs({ params: { lng } }: ContactUsProps) {
     return (
         <div className="container">
             <div className="banner">
-                <img src="https://picsum.photos/1700/450" alt="banner" />
+                <img src={banner.src} alt="banner" />
             </div>
             <h1>{t("contact-us")}</h1>
             <div className="blankBanner" />
