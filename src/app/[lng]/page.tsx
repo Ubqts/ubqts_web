@@ -2,11 +2,12 @@
 import "./page.css";
 import { AdContext, Ad } from "@/src/context/Ads";
 import { ProductContext, Product } from "@/src/context/Products";
-import useAds from "../../hooks/useAds";
-import useProducts from "../../hooks/useProducts";
+import useAds from "@/src/hooks/useAds";
+import useProducts from "@/src/hooks/useProducts";
 // import BootstrapCarousel from "../components/bootstrap_carousel";
-import CarouselItem from "../../components/carousel_item";
-import ProductItem from "../../components/product_item";
+import CarouselItem from "@/src/components/carousel_item";
+import ProductItem from "@/src/components/product_item";
+import NewAdsDialog from "@/src/components/NewAdsDialog";
 
 import React, { useEffect, useContext, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -27,6 +28,7 @@ export default function Home({ params: { lng } }: HomeProps) {
     const { products } = useContext(ProductContext);
     const [ adsList, setAdsList ] = useState<Ad[]>([]);
     const [ productsList, setProductsList ] = useState<Product[]>([]);
+    const [ showNewAdsDialog, setShowNewAdsDialog ] = useState(false);
     const [ index, setIndex ] = useState(0);
 
     useEffect(() => {
@@ -48,20 +50,6 @@ export default function Home({ params: { lng } }: HomeProps) {
         setIndex(selectedIndex);
     };
 
-    const handleAddAds = () => {
-        const newImg = prompt("請輸入新圖片網址");
-        if (newImg) {
-            try {
-                postAds({ picture: newImg, language: 'zh-tw' });
-                alert("新增廣告成功！");
-                location.reload();
-            } catch (error) {
-                alert("新增廣告失敗！");
-                console.log("error: ", error);
-            }
-        }
-    };
-
     // console.log("lng: \"", lng, "\"");
 
     return (
@@ -69,7 +57,7 @@ export default function Home({ params: { lng } }: HomeProps) {
             {/* <BootstrapCarousel /> */}
 
             <Carousel activeIndex={index} onSelect={handleSelect}>
-                {adsList.map((item) => (
+                {adsList.filter((item) => (item.language.match(lng))).map((item) => (
                     <Carousel.Item key={item.id} interval={4000}>
                         <img src={item.picture} alt="slides" width={"100%"} style={{ objectFit: "cover", height: "50vw", maxHeight: "90vh" }} />
                         {/* <Carousel.Caption /> */}
@@ -84,7 +72,7 @@ export default function Home({ params: { lng } }: HomeProps) {
                         <CarouselItem id={ads.id} picture={ads.picture} />
                     </React.Fragment>
                 ))}
-                <div className="addCarousel" onClick={() => handleAddAds()}>
+                <div className="addCarousel" onClick={() => setShowNewAdsDialog(true)}>
                     <img src={addIcon.src} alt="addCarousel" />
                 </div>
             </div>
@@ -116,7 +104,7 @@ export default function Home({ params: { lng } }: HomeProps) {
             <div className="content">
                 <h1>{t("product-introduction-title")}</h1>
                 <div className="productTable">
-                    {productsList.map((product) => (
+                    {productsList.filter((product) => (product.language.match(lng))).map((product) => (
                         <React.Fragment key={product.id}>
                             <ProductItem id={product.id} picture={product.picture} name={product.name} />
                         </React.Fragment>
@@ -131,6 +119,8 @@ export default function Home({ params: { lng } }: HomeProps) {
 
             <div className="blankBanner" />
             <div className="blankBanner" />
+
+            <NewAdsDialog open={showNewAdsDialog} onClose={() => setShowNewAdsDialog(false)} />
         </div >
     );
 }
