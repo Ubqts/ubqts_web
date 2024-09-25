@@ -101,3 +101,9 @@ h1 {
     box-shadow: 7px 7px 10px 5px rgba(0, 0, 0, 0.3);
     background-position: right;
 }
+
+@media screen and (max-width: 800px) {
+    .fastContact .businessCard {
+        max-width: 75vw;
+    }
+}

@@ -65,8 +65,20 @@ a {
     user-select: none; /* Standard syntax */
 }
 
+.banner img {
+    width: 100vw;
+    height: 70vh;
+    object-fit: cover;
+}
+
 @layer utilities {
     .text-balance {
         text-wrap: balance;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .banner img {
+        height: 30vh;
     }
 }

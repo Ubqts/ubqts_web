@@ -5,6 +5,8 @@ import "./page.css";
 import NewsItem from "@/src/components/news_item";
 
 import React, { useState, useEffect, useContext } from "react";
+
+import banner from "@/public/img/banner.png";
 import addIcon from "@/public/img/addIcon.png";
 
 type NewsProps = { params: { lng: string } };
@@ -28,7 +30,7 @@ export default function News({ params: { lng } }: NewsProps) {
     return (
         <div className="container prevent-select">
             <div className="banner">
-                <img src="https://picsum.photos/1700/450" alt="banner" />
+                <img src={banner.src} alt="banner" />
             </div>
 
             <div className="content">

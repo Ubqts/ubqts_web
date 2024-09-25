@@ -149,6 +149,32 @@
                 background-color 0.2s ease-in-out;
 }
 
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    min-width: 100px;
+    transition: padding-top 0.2s ease-in-out,
+                border-bottom 0.2s ease-in-out,
+                background-color 0.2s ease-in-out;
+}
+
+.login:hover {
+    background-color: #e5e5e5;
+    cursor: pointer;
+    border-bottom: 3px solid #6FBA2C;
+    padding-top: 5px;
+    transition: padding-top 0.2s ease-in-out,
+                border-bottom 0.2s ease-in-out,
+                background-color 0.5s ease-in-out;
+}
+
+.loginIcon {
+    height: 25px;
+    width: 25px;
+}
+
 .sidebarIcon {
     display: none;
     cursor: pointer;
@@ -156,13 +182,13 @@
     min-width: 30px;
 }
 
-@media screen and (max-width: 1215px) {
+@media screen and (max-width: 1270px) {
     .logoText {
         display: none;
     }
 }
 
-@media screen and (max-width: 1030px) {
+@media screen and (max-width: 1080px) {
     .logoText {
         display: block;
     }
@@ -173,6 +199,10 @@
 
     .sidebarIcon {
         display: block;
+    }
+
+    .login {
+        display: none;
     }
 }
 
