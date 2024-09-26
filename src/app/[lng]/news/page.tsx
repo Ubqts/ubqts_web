@@ -1,15 +1,18 @@
 'use client';
 import { NewsContext, type News } from "@/src/context/News";
+import { useTranslation } from "@/src/i18n/client";
 import useNews from "@/src/hooks/useNews";
-import "./page.css";
-import NewsItem from "@/src/components/news_item";
 
 import React, { useState, useEffect, useContext } from "react";
-import addIcon from "@/public/img/addIcon.png";
+
+import NewsItem from "@/src/components/news_item";
 import banner from "@/public/img/banner.png";
+import addIcon from "@/public/img/addIcon.png";
+import "./page.css";
 
 type NewsProps = { params: { lng: string } };
 export default function News({ params: { lng } }: NewsProps) {
+    const { t } = useTranslation(lng, "news-page");
     const { news } = useContext(NewsContext);
     const { getNews } = useNews();
     const [ newsList, setNewsList ] = useState<News[]>([]);
@@ -33,7 +36,7 @@ export default function News({ params: { lng } }: NewsProps) {
             </div>
 
             <div className="content">
-                <h1>最新消息</h1>
+                <h1>{t("latest-news")}</h1>
                 <div className="newsList">
                     {newsList.filter((news) => (news.language.match(lng))).map((news) => (
                         <React.Fragment key={news.id}>

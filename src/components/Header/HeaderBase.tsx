@@ -18,6 +18,8 @@ type HeaderProps = {
 export const HeaderBase = ({ t }: HeaderProps) => {
     const { data: session } = useSession();
 
+    console.log(session);
+
     const handleSidebarDisplay = () => {
         const sidebar = document.querySelector(".sidebar")!;
         const sidebarMenu = document.querySelector(".sidebarMenu")!;
