@@ -5,13 +5,13 @@ import { getServerSession } from "next-auth"
 const page = async () => {
     const session = await getServerSession(authOptions);
 
-    // if (session?.user) {
+    if (session?.user) {
         return (
             <div className="w-full">
                 <SignUpForm />
             </div>
         )
-    // }
+    }
 
     return (
         <div className="w-full">
