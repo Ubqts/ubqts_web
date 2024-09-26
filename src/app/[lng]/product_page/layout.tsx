@@ -2,8 +2,9 @@
 import "./layout.css";
 import { ProductContext, Product } from "@/src/context/Products";
 import useProducts from "@/src/hooks/useProducts";
+import { languages } from "@/src/i18n/settings";
 
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, ReactElement } from "react";
 import { useRouter } from "next/navigation";
 
 import banner from "@/public/img/banner.png";
@@ -16,12 +17,18 @@ import banner from "@/public/img/banner.png";
 //     setSaveProduct: React.Dispatch<React.SetStateAction<boolean>>;
 // }
 
+// type RootLayoutProps = { children: ReactElement; params: { lng: string } };
+// export async function generateStaticParams() {
+//     return languages.map((lng) => ({ params: { lng } }));
+// }
 
 // export default function RootLayout({ children , isEditing, saveProduct, setIsEditing, setSaveProduct }: LayoutProps) {
 export default function RootLayout({
     children,
+    // params: { lng },
 }: Readonly<{
     children: React.ReactNode;
+    // params: { lng: string };
 }>) {
     const router = useRouter();
     const { products } = useContext(ProductContext);
@@ -81,7 +88,7 @@ export default function RootLayout({
                         setHomePage(true);
                         router.push("/product_page");
                     }}>產品介紹</p>
-                    {productList.map((product) => (
+                    {productList./*filter((product) => (product.language.match(lng))).*/map((product) => (
                         <p
                             className="product"
                             key={product.id}
