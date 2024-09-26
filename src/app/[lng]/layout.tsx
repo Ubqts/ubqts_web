@@ -37,7 +37,7 @@ export default function RootLayout({
                     <Header lng={lng} />
                     <Sidebar lng={lng} />
                     <div style={{ height: "80px" }} />
-                    {children}
+                    <div className="mainContent">{children}</div>
                     <Footer lng={lng} />
                 </Providers>
             </body>

@@ -47,7 +47,7 @@ export const SidebarBase = ({ t }: SidebarBaseProps) => {
                 <div className="linkSplit" />
                 <a className="sidebarLink" href="download_files">{t("downloads")}</a>
                 <div className="linkSplit" />
-                <a className="sidebarLink" href="admin">{t("login")}</a>
+                <a className="sidebarLink" href="login">{t("login")}</a>
             </div>
         </div>
     );

@@ -66,7 +66,7 @@ export const HeaderBase = ({ t }: HeaderProps) => {
                 </div>
                 <img className="sidebarIcon" src={menuIcon.src} alt="menu" onClick={handleSidebarDisplay} />
                 <div className="login">
-                    <a href="admin">
+                    <a href="login">
                         <img className="loginIcon" src={loginIcon.src} alt="login" />
                     </a>
                 </div>
