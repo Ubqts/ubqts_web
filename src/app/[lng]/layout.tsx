@@ -10,6 +10,7 @@ import Providers from "@/src/app/[lng]/Providers";
 import { Header } from "@/src/components/Header/client";
 import { Sidebar } from "@/src/components/Sidebar/client";
 import { Footer } from "../../components/Footer/client";
+import Provider from "@/components/Provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -33,13 +34,15 @@ export default function RootLayout({
     return (
         <html lang={lng} dir={dir(lng)}>
             <body className={inter.className}>
-                <Providers>
-                    <Header lng={lng} />
-                    <Sidebar lng={lng} />
-                    <div style={{ height: "80px" }} />
-                    <div className="mainContent">{children}</div>
-                    <Footer lng={lng} />
-                </Providers>
+                <Provider>
+                    <Providers>
+                        <Header lng={lng} />
+                        <Sidebar lng={lng} />
+                        <div style={{ height: "80px" }} />
+                        <div className="mainContent">{children}</div>
+                        <Footer lng={lng} />
+                    </Providers>
+                </Provider>
             </body>
         </html>
     );
