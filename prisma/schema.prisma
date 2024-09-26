@@ -8,13 +8,13 @@ datasource db {
 }
 
 model ads {
-  id       Int     @id @default(autoincrement())
+  id       Int    @id @default(autoincrement())
   picture  String
   language String
 }
 
 model news {
-  id          Int     @id @default(autoincrement())
+  id          Int      @id @default(autoincrement())
   title       String
   picture     String
   description String
@@ -23,9 +23,17 @@ model news {
 }
 
 model products {
-  id          Int     @id @default(autoincrement())
+  id          Int    @id @default(autoincrement())
   name        String
   picture     String
   description String
   language    String
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
