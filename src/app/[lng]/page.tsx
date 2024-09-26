@@ -76,8 +76,8 @@ export default function Home({ params: { lng } }: HomeProps) {
             </Carousel>
 
             <div className="blankBanner" />
-            <div className="editCarousel">
-                {session && adsList.map((ads) => (
+            {session && <div className="editCarousel">
+                {adsList.map((ads) => (
                     <React.Fragment key={ads.id}>
                         <CarouselItem id={ads.id} picture={ads.picture} />
                     </React.Fragment>
@@ -85,7 +85,7 @@ export default function Home({ params: { lng } }: HomeProps) {
                 <div className="addCarousel" onClick={() => setShowNewAdsDialog(true)}>
                     <img src={addIcon.src} alt="addCarousel" />
                 </div>
-            </div>
+            </div>}
 
             <div className="blankBanner" />
 
