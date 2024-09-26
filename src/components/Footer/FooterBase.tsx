@@ -33,7 +33,7 @@ export const FooterBase = ({ t }: FooterProps) => {
                 </p> */}
             </div>
             <div className="counter">
-                造訪次數：
+                {t("visiters")}
                 <a href="https://www.stylemap.co.jp/"><img src="https://www.f-counter.net/j/64/1727279783/" alt="アクセスカウンター" /></a>
             </div>
         </footer>

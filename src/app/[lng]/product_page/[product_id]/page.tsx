@@ -76,9 +76,6 @@ const Page = ({/*{ isEditing, saveProduct }: PageProps*/}) => {
         }
     }
 
-    console.log("isEditing in page.tsx: ", isEditing);
-    console.log("saveProduct in page.tsx: ", saveProduct);
-
     return (
         <div className="container">
             <div className="wrapper">
