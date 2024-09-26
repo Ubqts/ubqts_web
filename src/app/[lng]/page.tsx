@@ -21,15 +21,15 @@ type HomeProps = { params: { lng: string } };
 
 export default function Home({ params: { lng } }: HomeProps) {
     const router = useRouter();
-    const { t } = useTranslation(lng , "home");
+    const { t } = useTranslation(lng, "home");
     const { getAds, postAds } = useAds();
     const { getProducts } = useProducts();
     const { ads } = useContext(AdContext);
     const { products } = useContext(ProductContext);
-    const [ adsList, setAdsList ] = useState<Ad[]>([]);
-    const [ productsList, setProductsList ] = useState<Product[]>([]);
-    const [ showNewAdsDialog, setShowNewAdsDialog ] = useState(false);
-    const [ index, setIndex ] = useState(0);
+    const [adsList, setAdsList] = useState<Ad[]>([]);
+    const [productsList, setProductsList] = useState<Product[]>([]);
+    const [showNewAdsDialog, setShowNewAdsDialog] = useState(false);
+    const [index, setIndex] = useState(0);
 
     useEffect(() => {
         const fetchAdsList = async () => {
