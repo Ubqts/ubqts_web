@@ -5,15 +5,18 @@ import languageList from "@/public/img/langIcon.png";
 import dropDownIcon from "@/public/img/dropDownIcon.png";
 import menuIcon from "@/public/img/menuIcon.png";
 import loginIcon from "@/public/img/loginIcon.png";
+import logoutIcon from "@/public/img/logoutIcon.png";
 
 import { TFunction } from "i18next";
 import { languages } from "../../i18n/settings";
+import { signOut, useSession } from "next-auth/react";
 
 type HeaderProps = {
     t: ((key: string) => string) & TFunction<"translation", undefined>;
 };
 
 export const HeaderBase = ({ t }: HeaderProps) => {
+    const { data: session } = useSession();
 
     const handleSidebarDisplay = () => {
         const sidebar = document.querySelector(".sidebar")!;
@@ -65,11 +68,19 @@ export const HeaderBase = ({ t }: HeaderProps) => {
                     </div>
                 </div>
                 <img className="sidebarIcon" src={menuIcon.src} alt="menu" onClick={handleSidebarDisplay} />
-                <div className="login">
-                    <a href="login">
-                        <img className="loginIcon" src={loginIcon.src} alt="login" />
-                    </a>
-                </div>
+                {
+                    session ? (
+                        <div className="logout">
+                            <img className="logoutIcon" onClick={() => signOut()} src={logoutIcon.src} alt="logout" />
+                        </div>
+                    ) : (
+                        <div className="login">
+                            <a href="login">
+                                <img className="loginIcon" src={loginIcon.src} alt="login" />
+                            </a>
+                        </div>
+                    )
+                }
             </div>
 
         </div>
