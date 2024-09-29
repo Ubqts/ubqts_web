@@ -18,8 +18,6 @@ type HeaderProps = {
 export const HeaderBase = ({ t }: HeaderProps) => {
     const { data: session } = useSession();
 
-    console.log(session);
-
     const handleSidebarDisplay = () => {
         const sidebar = document.querySelector(".sidebar")!;
         const sidebarMenu = document.querySelector(".sidebarMenu")!;
@@ -27,6 +25,10 @@ export const HeaderBase = ({ t }: HeaderProps) => {
         setTimeout(() => {
             sidebarMenu.classList.add("active");
         }, 1);
+    }
+    const handleSignOut = () => {
+        console.log("sign out");
+        signOut();
     }
 
     return (
@@ -64,7 +66,7 @@ export const HeaderBase = ({ t }: HeaderProps) => {
                     <div className="languageList">
                         {languages.map((lang) => (
                             <a key={lang} href={`/${lang}`}>
-                                {lang === "zh-tw" ? "繁體中文" : lang === "zh-cn" ? "简体中文" : "English"}
+                                {lang === "tw" ? "繁體中文" : lang === "cn" ? "简体中文" : "English"}
                             </a>
                         ))}
                     </div>
@@ -73,7 +75,7 @@ export const HeaderBase = ({ t }: HeaderProps) => {
                 {
                     session ? (
                         <div className="logout">
-                            <img className="logoutIcon" onClick={() => signOut()} src={logoutIcon.src} alt="logout" />
+                            <img className="logoutIcon" onClick={() => handleSignOut()} src={logoutIcon.src} alt="logout" />
                         </div>
                     ) : (
                         <div className="login">
