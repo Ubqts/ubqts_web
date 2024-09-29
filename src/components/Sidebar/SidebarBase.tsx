@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { TFunction } from "i18next";
+import { signOut, useSession } from "next-auth/react";
 
 import closeIcon from "@/public/img/closeIcon.png";
 import "./SidebarBase.css";
@@ -11,6 +12,8 @@ type SidebarBaseProps = {
 };
 
 export const SidebarBase = ({ t }: SidebarBaseProps) => {
+    const { data: session } = useSession();
+
     useEffect(() => {
         const sidebar = document.querySelector('.sidebar')!;
         const clsBtn = document.querySelector('.clsBtn > img')!;
@@ -27,6 +30,11 @@ export const SidebarBase = ({ t }: SidebarBaseProps) => {
         clsBtn.addEventListener('click', handleSidebarHide);
         pageBlur.addEventListener('click', handleSidebarHide);
     }, []);
+
+    const handleSignOut = () => {
+        console.log("sign out");
+        signOut();
+    }
 
     return (
         <div className="sidebar prevent-select">
@@ -47,7 +55,11 @@ export const SidebarBase = ({ t }: SidebarBaseProps) => {
                 <div className="linkSplit" />
                 <a className="sidebarLink" href="download_files">{t("downloads")}</a>
                 <div className="linkSplit" />
-                <a className="sidebarLink" href="login">{t("login")}</a>
+                {session ? (
+                    <a className="sidebarLink" onClick={() => handleSignOut()}>{t("logout")}</a>
+                ) : (
+                    <a className="sidebarLink" href="login">{t("login")}</a>
+                )}
             </div>
         </div>
     );
