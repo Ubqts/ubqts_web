@@ -1,17 +1,13 @@
 'use client';
 import "./layout.css";
 import { SidePanel } from "@/src/components/SidePanel/client";
-import PrevPage from "@/src/components/prev_page";
+// import PrevPage from "@/src/components/prev_page";
 
 import React, { ReactElement } from "react";
-import { languages } from "@/src/i18n/settings";
 
 import banner from "@/public/img/banner.png";
 
 type RootLayoutProps = { children: ReactElement; params: { lng: string } };
-// export async function generateStaticParams() {
-//     return languages.map((lng) => ({ params: { lng } }));
-// }
 
 export default function RootLayout({
     children,
@@ -29,7 +25,7 @@ export default function RootLayout({
                 {children}
             </div>
             <div className="blankBanner" />
-                <PrevPage />
+                {/* <PrevPage isEditing={isEditing}/> */}
             <div className="blankBanner" />
             <div className="blankBanner" />
         </div>
