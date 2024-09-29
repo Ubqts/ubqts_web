@@ -49,11 +49,13 @@ export function useTranslation(lng: string, ns: string, options?: {}) {
     useEffect(() => {
       if (!lng || i18n.resolvedLanguage === lng) return;
       i18n.changeLanguage(lng);
+      // console.log("set languange to", lng);
     }, [lng, i18n]);
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
       if (cookies.i18next === lng) return;
       setCookie(cookieName, lng, { path: "/" });
+      // console.log("setCookie", lng);
     }, [lng, cookies.i18next, setCookie]);
   }
   return ret;
