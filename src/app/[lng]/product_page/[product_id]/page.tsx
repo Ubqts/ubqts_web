@@ -31,7 +31,7 @@ const Page = () => {
             }
         }
         fetchProduct();
-    }, [editDescription, editName, editPicture]);
+    }, []);
 
     const handleEditPicture = () => {
         const newImg = prompt("請輸入新圖片網址");

@@ -4,6 +4,7 @@ import { useTranslation } from "@/src/i18n/client";
 import useNews from "@/src/hooks/useNews";
 
 import React, { useState, useEffect, useContext } from "react";
+import { useSession } from "next-auth/react";
 
 import NewsItem from "@/src/components/news_item";
 import banner from "@/public/img/banner.png";
@@ -13,6 +14,7 @@ import "./page.css";
 type NewsProps = { params: { lng: string } };
 export default function News({ params: { lng } }: NewsProps) {
     const { t } = useTranslation(lng, "news-page");
+    const { data: session } = useSession();
     const { news } = useContext(NewsContext);
     const { getNews } = useNews();
     const [ newsList, setNewsList ] = useState<News[]>([]);
@@ -38,19 +40,33 @@ export default function News({ params: { lng } }: NewsProps) {
             <div className="content">
                 <h1>{t("latest-news")}</h1>
                 <div className="newsList">
-                    {newsList.filter((news) => (news.language.match(lng))).map((news) => (
-                        <React.Fragment key={news.id}>
-                            <NewsItem
-                                id={news.id}
-                                title={news.title}
-                                picture={news.picture}
-                                description={news.description}
-                                date={news.date}
-                                isAdding={false}
-                            />
-                            <div className="split" />
-                        </React.Fragment>
-                    ))}
+                    {session ? (
+                        newsList.filter((news) => (news.language.match(lng))).map((news) => (
+                            <React.Fragment key={news.id}>
+                                <NewsItem
+                                    id={news.id}
+                                    title={news.title}
+                                    picture={news.picture}
+                                    description={news.description}
+                                    date={news.date}
+                                    isAdding={false}
+                                />
+                                <div className="split" />
+                            </React.Fragment>
+                    ))) : (
+                        newsList.filter((news) => (news.language.match(lng))).map((news) => (
+                            <React.Fragment key={news.id}>
+                                <NewsItem
+                                    id={news.id}
+                                    title={news.title}
+                                    picture={news.picture}
+                                    description={news.description}
+                                    date={news.date}
+                                    isAdding={false}
+                                />
+                                <div className="split" />
+                            </React.Fragment>
+                    )))}
                     {isAdding &&
                         <>
                             <NewsItem
@@ -63,9 +79,9 @@ export default function News({ params: { lng } }: NewsProps) {
                             <div className="split" />
                         </>
                     }
-                    <div className="addNews" onClick={() => setIsAdding(true)}>
+                    {session && <div className="addNews" onClick={() => setIsAdding(true)}>
                         <img src={addIcon.src} alt="addNews" />
-                    </div>
+                    </div>}
                     <div className="split" />
                 </div>
             </div>
