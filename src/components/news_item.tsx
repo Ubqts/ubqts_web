@@ -1,7 +1,9 @@
 import "./news_item.css";
 import useNews from "@/src/hooks/useNews";
 
+import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export type NewsProps = {
     id?: number;
@@ -14,6 +16,8 @@ export type NewsProps = {
 }
 
 export default function NewsItem({ id, title, picture, description, date, isAdding, setIsAdding }: NewsProps) {
+    const router = useRouter();
+    const { data: session } = useSession();
     const [ EditTitle, setEditTitle ] = useState(title);
     const [ EditPicture, setEditPicture ] = useState(picture);
     const [ EditDescription, setEditDescription ] = useState(description);
@@ -93,6 +97,14 @@ export default function NewsItem({ id, title, picture, description, date, isAddi
         }
     }
 
+    const handleOnClick = () => {
+        if (session) {
+            setIsEditing(true);
+        } else {
+            router.push(`/news/id=${id}`);
+        }
+    }
+
     const handleCancel = () => {
         setIsEditing(false);
         if (setIsAdding) {
@@ -102,7 +114,7 @@ export default function NewsItem({ id, title, picture, description, date, isAddi
 
     return (
         <div>
-            <div className="newsItem prevent-select" onClick={() => setIsEditing(true)}>
+            <div className="newsItem prevent-select" onClick={() => handleOnClick()}>
                 <div className="newsImg">
                     {!isEditing && <img src={picture} alt="1" />}
                     {isEditing && <img src={picture} alt="1" className="editNewsImgButton" onClick={() => handleChangeImg()} />}
@@ -112,21 +124,21 @@ export default function NewsItem({ id, title, picture, description, date, isAddi
                     {!isEditing && <p className="newsContent">{description}</p>}
                     {isEditing && <input className="newsTitle" defaultValue={title} onChange={(e) => setEditTitle(e.target.value)} />}
                     {isEditing && <textarea className="newsContent" defaultValue={description} onChange={(e) => setEditDescription(e.target.value)} />}
-                    {isAdding &&
-                            <div>
-                                <div>
-                                    <input type="checkbox" value="en" checked={imgLng === "en"} onChange={(e) => {setImgLng(e.target.value)}} />
-                                    <p>英文</p>
-                                </div>
-                                <div>
-                                    <input type="checkbox" value="zh-tw" checked={imgLng === "zh-tw"} onChange={(e) => setImgLng(e.target.value)} />
-                                    <p>繁體中文</p>
-                                </div>
-                                <div>
-                                    <input type="checkbox" value="zh-cn" checked={imgLng === "zh-cn"} onChange={(e) => setImgLng(e.target.value)} />
-                                    <p>簡體中文</p>
-                                </div>
-                            </div>
+                    {(isAdding || isEditing) &&
+                        <div>
+                        <div>
+                            <input type="checkbox" value="en" checked={imgLng === "en"} onChange={(e) => {setImgLng(e.target.value)}} />
+                            <p>英文</p>
+                        </div>
+                        <div>
+                            <input type="checkbox" value="zh-tw" checked={imgLng === "zh-tw"} onChange={(e) => setImgLng(e.target.value)} />
+                            <p>繁體中文</p>
+                        </div>
+                        <div>
+                            <input type="checkbox" value="zh-cn" checked={imgLng === "zh-cn"} onChange={(e) => setImgLng(e.target.value)} />
+                            <p>簡體中文</p>
+                        </div>
+                        </div>
                     }
                 </div>
                 {/* <p className="date">{date.getFullYear()}-{date.getMonth()}-{date.getDate()}</p> */}
