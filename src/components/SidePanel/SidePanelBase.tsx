@@ -29,23 +29,25 @@ export const SidePanelBase = ({ t, lng }: SidePanelProps) => {
 
     return (
         <div className="productPanel">
-            <p onClick={() => router.push("/product_page")}>{t("product-introduction")}</p>
+            <a href="/product_page">{t("product-introduction")}</a>
             {session ? (
                 productList.map((product) => (
-                    <p
+                    <a
                         className="product"
                         key={product.id}
-                        onClick={() => router.push(`/product_page/id=${product.id}`)}>
+                        href={`/product_page/id=${product.id}`}
+                    >
                         {product.name}
-                    </p>
+                    </a>
             ))) : (
                 productList.filter((product) => (product.language.match(lng))).map((product) => (
-                    <p
+                    <a
                         className="product"
                         key={product.id}
-                        onClick={() => router.push(`/product_page/id=${product.id}`)}>
+                        href={`/product_page/id=${product.id}`}
+                    >
                         {product.name}
-                    </p>
+                    </a>
             )))}
         </div>
     )

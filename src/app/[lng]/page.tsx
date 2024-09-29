@@ -114,20 +114,17 @@ export default function Home({ params: { lng } }: HomeProps) {
             <div className="content">
                 <h1>{t("product-introduction-title")}</h1>
                 <div className="productTable">
-                    {
-                    session ? (
+                    {session ? (
                         productsList.map((product) => (
                         <React.Fragment key={product.id}>
-                            <ProductItem id={product.id} picture={product.picture} name={product.name} />
+                            <ProductItem id={product.id} picture={product.picture} name={product.name} lng={lng} />
                         </React.Fragment>
                     ))) : (
                         productsList.filter((product) => (product.language.match(lng))).map((product) => (
                         <React.Fragment key={product.id}>
-                            <ProductItem id={product.id} picture={product.picture} name={product.name} />
+                            <ProductItem id={product.id} picture={product.picture} name={product.name} lng={lng} />
                         </React.Fragment>
-                    ))
-                    )
-                    }
+                    )))}
                     {session && (
                         <a href="/new_product">
                             <div className="addProduct">
