@@ -6,20 +6,14 @@ import useProducts from "@/src/hooks/useProducts";
 
 import { useContext, useState, useEffect } from "react";
 
-// type PageProps = {
-//     isEditing: boolean;
-//     saveProduct: boolean;
-// }
-
-const Page = ({/*{ isEditing, saveProduct }: PageProps*/}) => {
-    const [ isEditing, setIsEditing ] = useState<boolean>(false);
-    const [ saveProduct, setSaveProduct ] = useState<boolean>(false);
+const Page = () => {
     const [ product, setProduct ] = useState<Product>();
+    const [ isEditing, setIsEditing ] = useState<boolean>(false);
     const [ editName, setEditName ] = useState<string>("");
     const [ editPicture, setEditPicture ] = useState<string>("");
     const [ editDescription, setEditDescription ] = useState<string>("");
     const { products } = useContext(ProductContext);
-    const { putProducts } = useProducts();
+    const { deleteProducts, putProducts } = useProducts();
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -36,38 +30,8 @@ const Page = ({/*{ isEditing, saveProduct }: PageProps*/}) => {
                 console.log("error: ", error);
             }
         }
-        const handleSaveProduct = async () => {
-            if (!saveProduct) {
-                return;
-            } else {
-                if (!editName) {
-                    alert("請輸入產品名稱！");
-                } else if (!editPicture) {
-                    alert("請輸入產品圖片！");
-                } else if (!editDescription) {
-                    alert("請輸入產品描述！");
-                } else {
-                    const url = window.location.href;
-                    const id = Number(url.split('=').pop());
-                    try {
-                        await putProducts({
-                            id: id,
-                            name: editName,
-                            picture: editPicture,
-                            description: editDescription,
-                        });
-                        alert("產品修改成功！");
-                        location.reload();
-                    } catch (error) {
-                        alert("產品修改失敗！");
-                        console.log("error: ", error);
-                    }
-                }
-            }
-        }
         fetchProduct();
-        handleSaveProduct();
-    }, [editDescription, editName, editPicture, putProducts, saveProduct]);
+    }, [editDescription, editName, editPicture]);
 
     const handleEditPicture = () => {
         const newImg = prompt("請輸入新圖片網址");
@@ -76,7 +40,25 @@ const Page = ({/*{ isEditing, saveProduct }: PageProps*/}) => {
         }
     }
 
+    const handleSave = async () => {
+        const url = window.location.href;
+        const id = Number(url.split('=').pop());
+        try {
+            putProducts({
+                id: id, 
+                name: editName,
+                picture: editPicture,
+                description: editDescription,
+            });
+            alert("編輯成功！");    
+        } catch(error) {
+            alert("編輯失敗！");
+            console.log("error: ", error);
+        }
+    }
+
     return (
+        <>
         <div className="container">
             <div className="wrapper">
                 <div className="content">
@@ -90,6 +72,19 @@ const Page = ({/*{ isEditing, saveProduct }: PageProps*/}) => {
             </div>
             <div className="blankBanner" />
         </div>
+        <div className="">
+            {!isEditing && <a className="prevPage" onClick={() => setIsEditing(true)}>編輯產品</a>}
+            {isEditing && <a className="prevPage" onClick={() => setIsEditing(false)}>取消編輯</a>}
+            {isEditing && <a className="prevPage" onClick={() => handleSave()}>儲存編輯</a>}
+            <a className="prevPage" onClick={() => {
+                const url = window.location.href;
+                const id = Number(url.split('=').pop());
+                deleteProducts(id);
+            }}>刪除產品</a>
+        </div>
+        </>
+        
+        
     )
 }
 
