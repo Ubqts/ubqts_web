@@ -15,7 +15,7 @@ const storage = new Storage({
     keyFilename: process.env.GOOGLE_CLOUD_KEY_FILE,
 });
 
-const bucket = storage.bucket(process.env.GOOGLE_CLOUD_BUCKET);
+// const bucket = storage.bucket(process.env.GOOGLE_CLOUD_BUCKET);
 
 export async function POST(req: NextRequest)  {
     // const form = new formidable.IncomingForm();
