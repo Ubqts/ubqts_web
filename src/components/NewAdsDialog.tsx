@@ -10,21 +10,25 @@ type NewAdsDialogProps = {
 
 export default function NewAdsDialog({ open, onClose }: NewAdsDialogProps) {
     const [ newImg, setNewImg ] = useState<string>("");
+    const [ image, setImage ] = useState(null);
     const [ imgLng, setImgLng ] = useState<string>("");
     const { postAds } = useAds();
 
-    const handleSetImgLng = (e: any) => {
-        setImgLng(e.target.value);
+    const handleFileChange = (e: any) => {
+        setImage(e.target.files[0]);
     }
 
     const handleAddAds = () => {
-        if (newImg === "") {
-            alert("請輸入新圖片網址");
+        if (newImg === ""/* image === null */) {
+            alert("請輸入圖片網址");
             return;
         } else if (imgLng === "") {
             alert("請輸入語言");
             return;
         } else {
+            const formData = new FormData();
+            if(image) formData.append("file", image);
+            
             try {
                 postAds({ picture: newImg, language: imgLng });
                 alert("新增廣告成功！");
@@ -48,10 +52,14 @@ export default function NewAdsDialog({ open, onClose }: NewAdsDialogProps) {
                         value={newImg}
                         onChange={(e) => setNewImg(e.target.value)}
                     />
+                    <Input 
+                        type="file" 
+                        onChange={handleFileChange} 
+                    />
                 </div>
                 <div>
                     <div>
-                        <input type="checkbox" value="en" checked={imgLng === "en"} onChange={(e) => {setImgLng(e.target.value)}} />
+                        <input type="checkbox" value="en" checked={imgLng === "en"} onChange={(e) => setImgLng(e.target.value)} />
                         <p>英文</p>
                     </div>
                     <div>

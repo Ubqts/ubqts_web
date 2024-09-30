@@ -27,8 +27,6 @@ export default function NewsPage() {
         fetchNews();
     }, []);
 
-    console.log(newsItem);
-
     return (
         <div className="container prevent-select">
             <div className="banner">

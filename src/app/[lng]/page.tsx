@@ -53,8 +53,6 @@ export default function Home({ params: { lng } }: HomeProps) {
         setIndex(selectedIndex);
     };
 
-    // console.log("lng: \"", lng, "\"");
-
     return (
         <div className="container prevent-select">
             {/* <BootstrapCarousel /> */}
