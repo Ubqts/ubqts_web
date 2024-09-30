@@ -1,19 +1,19 @@
 import { Storage } from '@google-cloud/storage';
 import prisma from '@/src/lib/prisma';
 import { NextResponse, type NextRequest } from 'next/server';
-import formidable from 'formidable';
-import fs from 'fs';
+// import formidable from 'formidable';
+// import fs from 'fs';
 
-export const config = {
-    api: {
-        bodyParser: false, // 關閉內建body解析，因為我們使用formidable來處理檔案
-    },
-};
+// export const config = {
+//     api: {
+//         bodyParser: false, // 關閉內建body解析，因為我們使用formidable來處理檔案
+//     },
+// };
 
-const storage = new Storage({
-    projectId: process.env.GOOGLE_CLOUD_PROJECT_ID,
-    keyFilename: process.env.GOOGLE_CLOUD_KEY_FILE,
-});
+// const storage = new Storage({
+//     projectId: process.env.GOOGLE_CLOUD_PROJECT_ID,
+//     keyFilename: process.env.GOOGLE_CLOUD_KEY_FILE,
+// });
 
 // const bucket = storage.bucket(process.env.GOOGLE_CLOUD_BUCKET);
 
