@@ -19,6 +19,7 @@ export const HeaderBase = ({ t }: HeaderProps) => {
     const { data: session } = useSession();
 
     const handleSidebarDisplay = () => {
+        document.body.style.overflowY = "hidden";
         const sidebar = document.querySelector(".sidebar")!;
         const sidebarMenu = document.querySelector(".sidebarMenu")!;
         sidebar.classList.add("active");
