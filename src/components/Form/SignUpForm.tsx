@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import './LoginForm.css'
@@ -12,6 +13,7 @@ const FormSchema = z.object({
     username: z.string().min(1, '帳號不得為空').min(4, '帳號長度不得小於4').max(20, '帳號長度不得大於20'),
     password: z.string().min(1, '密碼不得為空').min(6, '密碼長度不得小於6').max(30, '密碼長度不得大於30'),
     confirmPassword: z.string().min(1, '請確認密碼'),
+    role: z.enum(['admin', 'user']),
 }).refine(data => data.password === data.confirmPassword, {
     path: ['confirmPassword'],
     message: '密碼不一致',
@@ -25,6 +27,7 @@ const SignUpForm = () => {
             username: "",
             password: "",
             confirmPassword: "",
+            role: "user",
         },
     })
 
@@ -37,6 +40,7 @@ const SignUpForm = () => {
             body: JSON.stringify({
                 username: values.username,
                 password: values.password,
+                role: values.role,
             }),
         })
 
@@ -91,6 +95,27 @@ const SignUpForm = () => {
                                 <FormControl>
                                     <Input placeholder="請再次輸入密碼" type='password' {...field} />
                                 </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="role"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>身分</FormLabel>
+                                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                    <FormControl>
+                                        <SelectTrigger>
+                                            <SelectValue placeholder="請選擇身分" />
+                                        </SelectTrigger>
+                                    </FormControl>
+                                    <SelectContent>
+                                        <SelectItem value="user">訪客</SelectItem>
+                                        <SelectItem value="admin">管理員</SelectItem>
+                                    </SelectContent>
+                                </Select>
                                 <FormMessage />
                             </FormItem>
                         )}

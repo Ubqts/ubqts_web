@@ -37,7 +37,7 @@ export const HeaderBase = ({ t }: HeaderProps) => {
 
     return (
         <div className="header prevent-select">
-            <a className="logoHomeLink" href="/#">
+            <a className="logoHomeLink" href="/">
                 <div className="headerLogo">
                     <img className="logo" src={companyLogo.src} alt="logo" width={103} height={60} />
                     <div className="logoText">
@@ -48,7 +48,7 @@ export const HeaderBase = ({ t }: HeaderProps) => {
             </a>
 
             <div className="headerMenu">
-                <a href="/#">{t("home-page")}</a>
+                <a href="/">{t("home-page")}</a>
                 <a href="partners">{t("partners")}</a>
                 <a href="contact_us">{t("contact-us")}</a>
                 <a href="news">{t("news")}</a>
@@ -63,7 +63,9 @@ export const HeaderBase = ({ t }: HeaderProps) => {
                     </div>
                     <div className="languageList">
                         {languages.map((lang) => {
-                            const newUrl = window.location.origin + window.location.pathname.replace(/^\/(tw|cn|en)/, `/${lang}`);
+                            const newUrl = typeof window !== "undefined"
+                                ? window.location.origin + window.location.pathname.replace(/^\/(tw|cn|en)/, `/${lang}`)
+                                : `/${lang}`;
                             return (
                                 <a key={lang} href={newUrl}>
                                     {lang === "tw" ? "繁體中文" : lang === "cn" ? "简体中文" : "English"}

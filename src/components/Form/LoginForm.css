@@ -1,4 +1,5 @@
-.test input {
+.test input,
+.test button {
     background-color: white;
 }
 
