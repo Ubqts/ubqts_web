@@ -17,8 +17,8 @@ export default function News({ params: { lng } }: NewsProps) {
     const { data: session } = useSession();
     const { news } = useContext(NewsContext);
     const { getNews } = useNews();
-    const [ newsList, setNewsList ] = useState<News[]>([]);
-    const [ isAdding, setIsAdding ] = useState<boolean>(false);
+    const [newsList, setNewsList] = useState<News[]>([]);
+    const [isAdding, setIsAdding] = useState<boolean>(false);
 
     useEffect(() => {
         const fetchNewsList = async () => {
@@ -40,7 +40,7 @@ export default function News({ params: { lng } }: NewsProps) {
             <div className="content">
                 <h1>{t("latest-news")}</h1>
                 <div className="newsList">
-                    {session ? (
+                    {session?.user.role === "admin" ? (
                         newsList.filter((news) => (news.language.match(lng))).map((news) => (
                             <React.Fragment key={news.id}>
                                 <NewsItem
@@ -53,7 +53,7 @@ export default function News({ params: { lng } }: NewsProps) {
                                 />
                                 <div className="split" />
                             </React.Fragment>
-                    ))) : (
+                        ))) : (
                         newsList.filter((news) => (news.language.match(lng))).map((news) => (
                             <React.Fragment key={news.id}>
                                 <NewsItem
@@ -66,7 +66,7 @@ export default function News({ params: { lng } }: NewsProps) {
                                 />
                                 <div className="split" />
                             </React.Fragment>
-                    )))}
+                        )))}
                     {isAdding &&
                         <>
                             <NewsItem
@@ -79,7 +79,7 @@ export default function News({ params: { lng } }: NewsProps) {
                             <div className="split" />
                         </>
                     }
-                    {session && <div className="addNews" onClick={() => setIsAdding(true)}>
+                    {session?.user.role === "admin" && <div className="addNews" onClick={() => setIsAdding(true)}>
                         <img src={addIcon.src} alt="addNews" />
                     </div>}
                     <div className="split" />
