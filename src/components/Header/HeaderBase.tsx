@@ -19,6 +19,7 @@ export const HeaderBase = ({ t }: HeaderProps) => {
     const { data: session } = useSession();
 
     const handleSidebarDisplay = () => {
+        document.body.style.overflowY = "hidden";
         const sidebar = document.querySelector(".sidebar")!;
         const sidebarMenu = document.querySelector(".sidebarMenu")!;
         sidebar.classList.add("active");
@@ -30,10 +31,13 @@ export const HeaderBase = ({ t }: HeaderProps) => {
         console.log("sign out");
         signOut();
     }
+    const handleSignIn = () => {
+        window.location.href = "/api/auth/signin";
+    }
 
     return (
         <div className="header prevent-select">
-            <a className="logoHomeLink" href="/#">
+            <a className="logoHomeLink" href="/">
                 <div className="headerLogo">
                     <img className="logo" src={companyLogo.src} alt="logo" width={103} height={60} />
                     <div className="logoText">
@@ -44,13 +48,7 @@ export const HeaderBase = ({ t }: HeaderProps) => {
             </a>
 
             <div className="headerMenu">
-                {/* <a href="/#">首頁</a> */}
-                {/* <a href="product_solutions">產品解決方案</a> */}
-                {/* <a href="partners">合作夥伴</a> */}
-                {/* <a href="contact_us">聯絡我們</a> */}
-                {/* <a href="news">公司最新消息</a> */}
-                {/* <a href="download_files">下載專區</a> */}
-                <a href="/#">{t("home-page")}</a>
+                <a href="/">{t("home-page")}</a>
                 <a href="partners">{t("partners")}</a>
                 <a href="contact_us">{t("contact-us")}</a>
                 <a href="news">{t("news")}</a>
@@ -64,24 +62,32 @@ export const HeaderBase = ({ t }: HeaderProps) => {
                         <img src={dropDownIcon.src} alt="dropdown" />
                     </div>
                     <div className="languageList">
-                        {languages.map((lang) => (
+                        {languages.map((lang) => {
+                            const newUrl = typeof window !== "undefined"
+                                ? window.location.origin + window.location.pathname.replace(/^\/(tw|cn|en)/, `/${lang}`)
+                                : `/${lang}`;
+                            return (
+                                <a key={lang} href={newUrl}>
+                                    {lang === "tw" ? "繁體中文" : lang === "cn" ? "简体中文" : "English"}
+                                </a>
+                            );
+                        })}
+                        {/* {languages.map((lang) => (
                             <a key={lang} href={`/${lang}`}>
                                 {lang === "tw" ? "繁體中文" : lang === "cn" ? "简体中文" : "English"}
                             </a>
-                        ))}
+                        ))} */}
                     </div>
                 </div>
                 <img className="sidebarIcon" src={menuIcon.src} alt="menu" onClick={handleSidebarDisplay} />
                 {
                     session ? (
-                        <div className="logout">
-                            <img className="logoutIcon" onClick={() => handleSignOut()} src={logoutIcon.src} alt="logout" />
+                        <div className="logout" onClick={() => handleSignOut()}>
+                            <img className="logoutIcon" src={logoutIcon.src} alt="logout" />
                         </div>
                     ) : (
-                        <div className="login">
-                            <a href="login">
-                                <img className="loginIcon" src={loginIcon.src} alt="login" />
-                            </a>
+                        <div className="login" onClick={() => handleSignIn()}>
+                            <img className="loginIcon" src={loginIcon.src} alt="login" />
                         </div>
                     )
                 }

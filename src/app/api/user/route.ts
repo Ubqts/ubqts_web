@@ -6,12 +6,13 @@ import * as z from 'zod';
 const userSchema = z.object({
     username: z.string().min(1, '帳號不得為空').min(4, '帳號長度不得小於4').max(20, '帳號長度不得大於20'),
     password: z.string().min(1, '密碼不得為空').min(6, '密碼長度不得小於6').max(30, '密碼長度不得大於30'),
+    role: z.enum(['admin', 'user']),
 })
 
 export async function POST(req: Request) {
     try {
         const body = await req.json();
-        const { username, password } = userSchema.parse(body);
+        const { username, password, role } = userSchema.parse(body);
 
         const existingUser = await db.user.findUnique({
             where: { username: username }
@@ -27,7 +28,8 @@ export async function POST(req: Request) {
         const newUser = await db.user.create({
             data: {
                 username,
-                password: hashedPassword
+                password: hashedPassword,
+                role,
             }
         });
         const { password: newUserPassword, ...newUserWithoutPassword } = newUser;

@@ -58,23 +58,23 @@ export default function Home({ params: { lng } }: HomeProps) {
             {/* <BootstrapCarousel /> */}
 
             <Carousel activeIndex={index} onSelect={handleSelect}>
-                {session ? (
+                {session?.user.role === "admin" ? (
                     adsList.map((item) => (
                         <Carousel.Item key={item.id} interval={4000}>
                             <img src={item.picture} alt="slides" width={"100%"} style={{ objectFit: "cover", height: "50vw", maxHeight: "90vh" }} />
                             {/* <Carousel.Caption /> */}
                         </Carousel.Item>
-                ))) : (
+                    ))) : (
                     adsList.filter((item) => (item.language.match(lng))).map((item) => (
                         <Carousel.Item key={item.id} interval={4000}>
                             <img src={item.picture} alt="slides" width={"100%"} style={{ objectFit: "cover", height: "50vw", maxHeight: "90vh" }} />
                             {/* <Carousel.Caption /> */}
                         </Carousel.Item>
-                )))}
+                    )))}
             </Carousel>
 
             <div className="blankBanner" />
-            {session && <div className="editCarousel">
+            {session?.user.role === "admin" && <div className="editCarousel">
                 {adsList.map((ads) => (
                     <React.Fragment key={ads.id}>
                         <CarouselItem id={ads.id} picture={ads.picture} />
@@ -112,18 +112,18 @@ export default function Home({ params: { lng } }: HomeProps) {
             <div className="content">
                 <h1>{t("product-introduction-title")}</h1>
                 <div className="productTable">
-                    {session ? (
+                    {session?.user.role === "admin" ? (
                         productsList.map((product) => (
-                        <React.Fragment key={product.id}>
-                            <ProductItem id={product.id} picture={product.picture} name={product.name} lng={lng} />
-                        </React.Fragment>
-                    ))) : (
+                            <React.Fragment key={product.id}>
+                                <ProductItem id={product.id} picture={product.picture} name={product.name} lng={lng} />
+                            </React.Fragment>
+                        ))) : (
                         productsList.filter((product) => (product.language.match(lng))).map((product) => (
-                        <React.Fragment key={product.id}>
-                            <ProductItem id={product.id} picture={product.picture} name={product.name} lng={lng} />
-                        </React.Fragment>
-                    )))}
-                    {session && (
+                            <React.Fragment key={product.id}>
+                                <ProductItem id={product.id} picture={product.picture} name={product.name} lng={lng} />
+                            </React.Fragment>
+                        )))}
+                    {session?.user.role === "admin" && (
                         <a href="/new_product">
                             <div className="addProduct">
                                 <img src={addIcon.src} alt="addProduct" onClick={() => { router.push(`${lng}/new_product`) }} />
