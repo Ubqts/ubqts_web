@@ -10,6 +10,7 @@ import Providers from "@/src/app/[lng]/Providers";
 import { Header } from "@/src/components/Header/client";
 import { Sidebar } from "@/src/components/Sidebar/client";
 import { Footer } from "../../components/Footer/client";
+import PrivacyNotification from "@/src/components/privacy_notification";
 import Provider from "@/components/Provider";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -41,6 +42,7 @@ export default function RootLayout({
                         <div style={{ height: "80px" }} />
                         <div className="mainContent">{children}</div>
                         <Footer lng={lng} />
+                        <PrivacyNotification />
                     </Providers>
                 </Provider>
             </body>
