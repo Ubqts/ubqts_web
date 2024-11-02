@@ -1,3 +1,4 @@
+"use client";
 import "./NewAdsDialog.css";
 import React, { useState } from 'react';
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Input } from '@mui/material';
@@ -20,21 +21,20 @@ export default function NewAdsDialog({ open, onClose }: NewAdsDialogProps) {
     }
 
     const handleAddAds = () => {
-        if (newImg === ""/* image === null */) {
-            alert("請輸入圖片網址");
+        if (/* newImg === "" */ image === null) {
+            alert("請輸入圖片");
             return;
         } else if (imgLng === "") {
             alert("請輸入語言");
             return;
         } else {
-            const formData = new FormData();
-            if (image) formData.append("file", image);
+            console.log("image: ", image);
 
             try {
-                postAds({ picture: newImg, language: imgLng });
+                postAds({ picture: image, language: imgLng });
                 alert("新增廣告成功！");
                 onClose();
-                location.reload();
+                // location.reload();
             } catch (error) {
                 alert("新增廣告失敗！");
                 console.log("error: ", error);
@@ -47,14 +47,15 @@ export default function NewAdsDialog({ open, onClose }: NewAdsDialogProps) {
             <div>
                 <DialogTitle>新增廣告</DialogTitle>
                 <div>
-                    <DialogContent>請輸入圖片網址</DialogContent>
+                    {/* <DialogContent>請輸入圖片網址</DialogContent>
                     <Input
                         type="text"
                         value={newImg}
                         onChange={(e) => setNewImg(e.target.value)}
-                    />
-                    <Input
+                    /> */}
+                    <input
                         type="file"
+                        accept=".jpg, .jpeg, .png"
                         onChange={handleFileChange}
                     />
                 </div>

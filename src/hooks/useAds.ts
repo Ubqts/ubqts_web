@@ -9,18 +9,19 @@ export default function useAds() {
         picture,
         language,
     }: {
-        picture: string;
+        picture: File;
         language: string;
     }) => {
+        const formData = new FormData();
+        formData.append("picture", picture, language);
+        console.log(formData)
+
         const res = await fetch("/api/ads", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({
-                picture,
-                language,
-            }),
+            body: formData,
         });
         if (!res.ok) {
             const body = await res.json();

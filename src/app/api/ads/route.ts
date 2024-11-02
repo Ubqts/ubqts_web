@@ -1,84 +1,64 @@
 import { Storage } from '@google-cloud/storage';
 import prisma from '@/src/lib/prisma';
 import { NextResponse, type NextRequest } from 'next/server';
-// import formidable from 'formidable';
-// import fs from 'fs';
 
-// export const config = {
-//     api: {
-//         bodyParser: false, // 關閉內建body解析，因為我們使用formidable來處理檔案
-//     },
-// };
+// POST
+// export async function POST(req: NextRequest)  {
+//     const data = await req.json();
+//     const { picture, language } = data;
 
-// const storage = new Storage({
-//     projectId: process.env.GOOGLE_CLOUD_PROJECT_ID,
-//     keyFilename: process.env.GOOGLE_CLOUD_KEY_FILE,
-// });
-
-// const bucket = storage.bucket(process.env.GOOGLE_CLOUD_BUCKET);
-
-export async function POST(req: NextRequest)  {
-    // const form = new formidable.IncomingForm();
-
-    // return new Promise((resolve, reject) => {
-    //     form.parse(req, async (err, fields, files) => {
-    //         if (err) {
-    //             console.error('Error parsing the file:', err);
-    //             return resolve(NextResponse.json(
-    //                 { error: 'Failed to parse the file.' },
-    //                 { status: 500 }
-    //             ));
-    //         }
-
-    //         const { language } = fields;
-    //         const { picture } = files;
-
-    //         try {
-    //             const blob = bucket.file(picture.originalFilename);
-    //             const blobStream = blob.createWriteStream();
-
-    //             blobStream.on('error', (error) => {
-    //                 console.error('Error uploading to Google Cloud Storage:', error);
-    //                 return resolve(NextResponse.json(
-    //                     { error: 'Failed to upload image.' },
-    //                     { status: 500 }
-    //                 ));
-    //             });
-
-    //             blobStream.on('finish', async () => {
-    //                 const publicUrl = `https://storage.googleapis.com/${bucket.name}/${blob.name}`;
-
-    //                 // 將圖片URL與其他資料儲存到資料庫
-    //                 const ads = await prisma.ads.create({
-    //                     data: {
-    //                         picture: publicUrl, // 儲存圖片的URL
-    //                         language,
-    //                     },
-    //                 });
-
-    //                 return resolve(NextResponse.json({ status: 200, ads }));
-    //             });
-
-    //             fs.createReadStream(picture.filepath).pipe(blobStream);
-    //         } catch (error) {
-    //             console.error(error);
-    //             return resolve(NextResponse.json(
-    //                 { error: 'Something went wrong.' },
-    //                 { status: 500 }
-    //             ));
-    //         }
-    //     });
-    // });
-    const data = await req.json();
-    const { picture, language } = data;
-
+//     try {
+//         const ads = await prisma.ads.create({
+//             data: {
+//                 picture,
+//                 language,
+//             },
+//         });
+//         return NextResponse.json({ status: 200 });
+//     } catch (error) {
+//         console.log("error: ", error);
+//         return NextResponse.json(
+//             { error: "Something went wrong." }, 
+//             { status: 500 }
+//         );
+//     }
+// }
+export async function POST(req: Request, res: Response) {
     try {
-        const ads = await prisma.ads.create({
-            data: {
-                picture,
-                language,
-            },
+        const data = await req.formData();
+        const picture = data.get("picture") as File;
+
+        if (!picture) {
+            return NextResponse.json(
+                { error: "No picture provided." }, 
+                { status: 400 }
+            );
+        }
+
+        const filePath = picture?.name;
+
+        const googleStorage = new Storage({
+            projectId: process.env.GOOGLE_PROJECT_ID,
+            keyFilename: process.env.GOOGLE_APPLICATION_CREDENTIALS,
         });
+        const googleBucket = googleStorage.bucket(process.env.GOOGLE_STORAGE_BUCKET_NAME || '');
+
+        const bytes = await picture.arrayBuffer();
+        const buffer = Buffer.from(bytes);
+
+        await new Promise((resolve, reject) => {
+            const blob = googleBucket.file(filePath);
+            const blobStream = blob.createWriteStream({
+                resumable: false,
+            });
+
+            blobStream
+            .on("error", (error) => reject(error))
+            .on("finish", () => resolve(true));
+
+            blobStream.end(buffer);
+        });
+
         return NextResponse.json({ status: 200 });
     } catch (error) {
         console.log("error: ", error);
@@ -88,6 +68,7 @@ export async function POST(req: NextRequest)  {
         );
     }
 }
+
 
 //GET
 export async function GET() {
