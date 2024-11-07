@@ -10,7 +10,7 @@
 .yarn/install-state.gz
 
 # google-cloud json
-google_cloud.json
+/.google_cloud.json
 
 # testing
 /coverage
