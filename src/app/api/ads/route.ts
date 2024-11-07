@@ -3,62 +3,17 @@ import prisma from '@/src/lib/prisma';
 import { NextResponse, type NextRequest } from 'next/server';
 
 // POST
-// export async function POST(req: NextRequest)  {
-//     const data = await req.json();
-//     const { picture, language } = data;
+export async function POST(req: NextRequest)  {
+    const data = await req.json();
+    const { picture, language } = data;
 
-//     try {
-//         const ads = await prisma.ads.create({
-//             data: {
-//                 picture,
-//                 language,
-//             },
-//         });
-//         return NextResponse.json({ status: 200 });
-//     } catch (error) {
-//         console.log("error: ", error);
-//         return NextResponse.json(
-//             { error: "Something went wrong." }, 
-//             { status: 500 }
-//         );
-//     }
-// }
-export async function POST(req: Request, res: Response) {
     try {
-        const data = await req.formData();
-        const picture = data.get("picture") as File;
-
-        if (!picture) {
-            return NextResponse.json(
-                { error: "No picture provided." }, 
-                { status: 400 }
-            );
-        }
-
-        const filePath = picture?.name;
-
-        const googleStorage = new Storage({
-            projectId: process.env.GOOGLE_PROJECT_ID,
-            keyFilename: process.env.GOOGLE_APPLICATION_CREDENTIALS,
+        const ads = await prisma.ads.create({
+            data: {
+                picture,
+                language,
+            },
         });
-        const googleBucket = googleStorage.bucket(process.env.GOOGLE_STORAGE_BUCKET_NAME || '');
-
-        const bytes = await picture.arrayBuffer();
-        const buffer = Buffer.from(bytes);
-
-        await new Promise((resolve, reject) => {
-            const blob = googleBucket.file(filePath);
-            const blobStream = blob.createWriteStream({
-                resumable: false,
-            });
-
-            blobStream
-            .on("error", (error) => reject(error))
-            .on("finish", () => resolve(true));
-
-            blobStream.end(buffer);
-        });
-
         return NextResponse.json({ status: 200 });
     } catch (error) {
         console.log("error: ", error);
@@ -68,7 +23,6 @@ export async function POST(req: Request, res: Response) {
         );
     }
 }
-
 
 //GET
 export async function GET() {

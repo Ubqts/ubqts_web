@@ -32,7 +32,6 @@ export default function NewAdsDialog({ open, onClose }: NewAdsDialogProps) {
 
             try {
                 postAds({ picture: image, language: imgLng });
-                alert("新增廣告成功！");
                 onClose();
                 // location.reload();
             } catch (error) {
@@ -55,6 +54,7 @@ export default function NewAdsDialog({ open, onClose }: NewAdsDialogProps) {
                     /> */}
                     <input
                         type="file"
+                        name="file"
                         accept=".jpg, .jpeg, .png"
                         onChange={handleFileChange}
                     />
