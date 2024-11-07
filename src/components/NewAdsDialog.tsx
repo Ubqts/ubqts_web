@@ -11,9 +11,9 @@ type NewAdsDialogProps = {
 };
 
 export default function NewAdsDialog({ open, onClose }: NewAdsDialogProps) {
-    const [newImg, setNewImg] = useState<string>("");
-    const [image, setImage] = useState(null);
-    const [imgLng, setImgLng] = useState<string>("");
+    const [ newImg, setNewImg ] = useState<string>("");
+    const [ image, setImage ] = useState(null);
+    const [ imgLng, setImgLng ] = useState<string>("");
     const { postAds } = useAds();
 
     const handleFileChange = (e: any) => {
