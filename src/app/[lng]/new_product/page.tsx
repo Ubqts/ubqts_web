@@ -9,10 +9,10 @@ import useProducts from "@/src/hooks/useProducts";
 export default function NewProduct() {
     const router = useRouter();
     const { postProducts } = useProducts();
-    const [productName, setProductName] = useState("");
-    const [productDescription, setproductDescription] = useState("");
-    const [picture, setPicture] = useState("");
-    const [imgLng, setImgLng] = useState("");
+    const [ productName, setProductName ] = useState("");
+    const [ productDescription, setproductDescription ] = useState("");
+    const [ picture, setPicture ] = useState("");
+    const [ imgLng, setImgLng ] = useState("");
 
     const handleSave = () => {
         if (!productName) {

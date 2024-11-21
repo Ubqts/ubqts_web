@@ -1,6 +1,7 @@
 "use client";
 import "./NewAdsDialog.css";
 import React, { useState } from 'react';
+import { useRouter } from "next/navigation";
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Input } from '@mui/material';
 
 import useAds from "@/src/hooks/useAds";
@@ -11,17 +12,13 @@ type NewAdsDialogProps = {
 };
 
 export default function NewAdsDialog({ open, onClose }: NewAdsDialogProps) {
-    const [newImg, setNewImg] = useState<string>("");
-    const [image, setImage] = useState(null);
-    const [imgLng, setImgLng] = useState<string>("");
+    const [ image, setImage ] = useState<File | null>(null);
+    const [ imgLng, setImgLng ] = useState<string>("");
     const { postAds } = useAds();
-
-    const handleFileChange = (e: any) => {
-        setImage(e.target.files[0]);
-    }
+    const router = useRouter();
 
     const handleAddAds = () => {
-        if (/* newImg === "" */ image === null) {
+        if (image === null) {
             alert("請輸入圖片");
             return;
         } else if (imgLng === "") {
@@ -29,11 +26,12 @@ export default function NewAdsDialog({ open, onClose }: NewAdsDialogProps) {
             return;
         } else {
             console.log("image: ", image);
-
+            console.log("imgLng: ", imgLng);
             try {
                 postAds({ picture: image, language: imgLng });
+                alert("新增廣告成功！");
                 onClose();
-                // location.reload();
+                router.refresh();
             } catch (error) {
                 alert("新增廣告失敗！");
                 console.log("error: ", error);
@@ -46,18 +44,8 @@ export default function NewAdsDialog({ open, onClose }: NewAdsDialogProps) {
             <div>
                 <DialogTitle>新增廣告</DialogTitle>
                 <div>
-                    {/* <DialogContent>請輸入圖片網址</DialogContent>
-                    <Input
-                        type="text"
-                        value={newImg}
-                        onChange={(e) => setNewImg(e.target.value)}
-                    /> */}
-                    <input
-                        type="file"
-                        name="file"
-                        accept=".jpg, .jpeg, .png"
-                        onChange={handleFileChange}
-                    />
+                    <input type="file" accept=".jpg, .jpeg, .png"
+                        onChange={(e) => setImage(e.target.files ? e.target.files[0] : null)}/>
                 </div>
                 <div className="langContainer">
                     <div className="choice">

@@ -42,6 +42,8 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-
 #prisma
 /prisma
+
+# google-cloud json
+.hallowed-byte-439007-c7-f71aa2e9533b.json
