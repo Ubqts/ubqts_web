@@ -2,7 +2,7 @@ import { Storage } from "@google-cloud/storage";
 
 export const googleStorage = new Storage({
   projectId: process.env.GOOGLE_PROJECT_ID,
-  keyFilename: process.env.GOOGLE_APPLICATION_CREDENTIALS,
+  keyFilename: process.env.GOOGLE_SERVICE_KEYFILE_NAME,
 });
 
 export const googleBucket = googleStorage.bucket(process.env.GOOGLE_STORAGE_BUCKET_NAME || '');

@@ -25,14 +25,14 @@ export default function Home({ params: { lng } }: HomeProps) {
     const { t } = useTranslation(lng, "home");
     const { data: session } = useSession();
 
-    const { getAds, postAds } = useAds();
+    const { getAds } = useAds();
     const { getProducts } = useProducts();
     const { ads } = useContext(AdContext);
     const { products } = useContext(ProductContext);
-    const [adsList, setAdsList] = useState<Ad[]>([]);
-    const [productsList, setProductsList] = useState<Product[]>([]);
-    const [showNewAdsDialog, setShowNewAdsDialog] = useState(false);
-    const [index, setIndex] = useState(0);
+    const [ adsList, setAdsList ] = useState<Ad[]>([]);
+    const [ productsList, setProductsList ] = useState<Product[]>([]);
+    const [ showNewAdsDialog, setShowNewAdsDialog ] = useState(false);
+    const [ index, setIndex ] = useState(0);
 
     useEffect(() => {
         const fetchAdsList = async () => {
@@ -52,6 +52,20 @@ export default function Home({ params: { lng } }: HomeProps) {
     const handleSelect = (selectedIndex: React.SetStateAction<number>, e: any) => {
         setIndex(selectedIndex);
     };
+
+    // const [ image, setImage ] = useState<File | null>(null);
+    // const testApi = () => {
+    //     try {
+    //         if (image != null)  {
+    //             postAds({ picture: image, language: "en" });
+    //             alert("upload success!");
+    //             router.refresh();
+    //         }
+    //     } catch(error) {
+    //         alert("error occurred!");
+    //         console.log("error: ", error);
+    //     }
+    // }
 
     return (
         <div className="container prevent-select">
@@ -74,7 +88,7 @@ export default function Home({ params: { lng } }: HomeProps) {
             </Carousel>
 
             <div className="blankBanner" />
-            {/* session?.user.role === "admin" && */ <div className="editCarousel">
+            {session?.user.role === "admin" && <div className="editCarousel">
                 {adsList.map((ads) => (
                     <React.Fragment key={ads.id}>
                         <CarouselItem id={ads.id} picture={ads.picture} />
@@ -89,6 +103,12 @@ export default function Home({ params: { lng } }: HomeProps) {
 
             <div className="content origin">
                 <h1>{t("company-introduction-title")}</h1>
+
+                {/* <div className="flex justify-between">
+                    <input type="file" onChange={(e) => setImage(e.target.files ? e.target.files[0] : null)}/>
+                    <button className="w-44 border bg-gray-50 rounded-md" onClick={() => testApi()}>upload</button>
+                </div> */}
+
                 <div className="imgWithText">
                     <img src="https://picsum.photos/400?random=4" alt="companyIntro" />
                     <div>
