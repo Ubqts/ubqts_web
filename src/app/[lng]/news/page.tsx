@@ -79,7 +79,7 @@ export default function News({ params: { lng } }: NewsProps) {
                             <div className="split" />
                         </>
                     }
-                    {session?.user.role === "admin" && <div className="addNews" onClick={() => setIsAdding(true)}>
+                    {/*session?.user.role === "admin" &&*/ !isAdding && <div className="addNews" onClick={() => setIsAdding(true)}>
                         <img src={addIcon.src} alt="addNews" />
                     </div>}
                     <div className="split" />

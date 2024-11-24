@@ -18,33 +18,27 @@ export type NewsProps = {
 export default function NewsItem({ id, title, picture, description, date, isAdding, setIsAdding }: NewsProps) {
     const router = useRouter();
     const { data: session } = useSession();
-    const [EditTitle, setEditTitle] = useState(title);
-    const [EditPicture, setEditPicture] = useState(picture);
-    const [EditDescription, setEditDescription] = useState(description);
-    const [imgLng, setImgLng] = useState("");
-    const [isEditing, setIsEditing] = useState(false);
+    const [ EditTitle, setEditTitle ] = useState(title);
+    const [ EditPicture, setEditPicture ] = useState<File | null>(null);
+    const [ EditImage, setEditImage ] = useState(picture);
+    const [ EditDescription, setEditDescription ] = useState(description);
+    const [ imgLng, setImgLng ] = useState("");
+    const [ isEditing, setIsEditing ] = useState(false);
     const { postNews, putNews, deleteNews } = useNews();
 
     useEffect(() => {
         if (isAdding) {
             setIsEditing(true);
         }
-    }, [isAdding])
-
-    const handleChangeImg = () => {
-        const newImg = prompt("請輸入新圖片網址");
-        if (newImg) {
-            setEditPicture(newImg);
-        }
-    }
+    }, [isAdding]);
 
     const handleSave = () => {
         if (!EditTitle) {
             alert("新聞標題不得為空！");
         } else if (!EditDescription) {
             alert("新聞內容不得為空！");
-        } else if (!EditPicture) {
-            alert("圖片網址不得為空！");
+        } else if (EditPicture === null) {
+            alert("圖片不得為空！");
         } else {
             if (!isAdding && id) {
                 try {
@@ -112,12 +106,33 @@ export default function NewsItem({ id, title, picture, description, date, isAddi
         }
     }
 
+    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files[0]) {
+            setEditPicture(e.target.files[0]);
+            const newImage = URL.createObjectURL(e.target.files[0]);
+            setEditImage(newImage);
+        }
+    }
+
     return (
         <div>
-            <div className="newsItem prevent-select" onClick={() => handleOnClick()}>
+            <div className="newsItem prevent-select" onClick={!isEditing ? () => handleOnClick() : undefined}>
                 <div className="newsImg">
                     {!isEditing && <img src={picture} alt="1" />}
-                    {isEditing && <img src={picture} alt="1" className="editNewsImgButton" onClick={() => handleChangeImg()} />}
+                    {isEditing && 
+                        <>
+                            <label htmlFor="fileInput">
+                                <img src={EditImage} alt="1" className="editNewsImgButton" />
+                            </label>
+                            <input
+                                id="fileInput"
+                                type="file"
+                                accept="image/*"
+                                onChange={handleImageChange}
+                                style={{ display: 'none' }}
+                            />
+                        </>
+                    }
                 </div>
                 <div className="newsInfo">
                     {!isEditing && <p className="newsTitle">{title}</p>}
@@ -127,7 +142,7 @@ export default function NewsItem({ id, title, picture, description, date, isAddi
                     {(isAdding || isEditing) &&
                         <div className="langContainer">
                             <div className="choice">
-                                <input type="checkbox" value="en" id="enNews" checked={imgLng === "en"} onChange={(e) => { setImgLng(e.target.value) }} />
+                                <input type="checkbox" value="en" id="enNews" checked={imgLng === "en"} onChange={(e) => setImgLng(e.target.value)} />
                                 <label htmlFor="enNews">英文</label>
                             </div>
                             <div className="choice">

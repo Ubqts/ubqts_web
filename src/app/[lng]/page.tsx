@@ -143,7 +143,7 @@ export default function Home({ params: { lng } }: HomeProps) {
                                 <ProductItem id={product.id} picture={product.picture} name={product.name} lng={lng} />
                             </React.Fragment>
                         )))}
-                    {session?.user.role === "admin" && (
+                    {/* session?.user.role === "admin" && */(
                         <a href="/new_product">
                             <div className="addProduct">
                                 <img src={addIcon.src} alt="addProduct" onClick={() => { router.push(`${lng}/new_product`) }} />

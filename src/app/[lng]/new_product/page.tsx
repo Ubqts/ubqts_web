@@ -11,7 +11,8 @@ export default function NewProduct() {
     const { postProducts } = useProducts();
     const [ productName, setProductName ] = useState("");
     const [ productDescription, setproductDescription ] = useState("");
-    const [ picture, setPicture ] = useState("");
+    const [ picture, setPicture ] = useState<File | null>(null);
+    const [ image, setImage ] = useState("");
     const [ imgLng, setImgLng ] = useState("");
 
     const handleSave = () => {
@@ -40,6 +41,14 @@ export default function NewProduct() {
         }
     }
 
+    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files[0]) {
+            setPicture(e.target.files[0]);
+            const newImage = URL.createObjectURL(e.target.files[0]);
+            setImage(newImage);
+        }
+    }
+
     return (
         <div className="container">
             <div className="banner">
@@ -47,8 +56,15 @@ export default function NewProduct() {
             </div>
             <div className="blankBanner" />
             <div className="content">
-                <input className="title" placeholder="產品名稱" onChange={(e) => setProductName(e.target.value)} />
-                <input className="img" placeholder="產品圖片網址" onChange={(e) => setPicture(e.target.value)} />
+                <div className="flex">
+                    <div className="titleAndImage">
+                        <input className="title" placeholder="產品名稱" onChange={(e) => setProductName(e.target.value)} />
+                        <input id="fileInput" type="file" accept="image/*" onChange={handleImageChange} />
+                    </div>
+                    <label htmlFor="fileInput">
+                        <img src={image} alt="product picture preview" />
+                    </label>
+                </div>
                 <textarea className="description" placeholder="產品描述" onChange={(e) => setproductDescription(e.target.value)} />
             </div>
             <div className="langContainer">
