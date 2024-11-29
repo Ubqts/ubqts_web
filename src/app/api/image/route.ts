@@ -27,6 +27,33 @@ export async function POST(req: NextRequest) {
     }
 }
 
+export async function PUT(req: NextRequest) {
+    const form = await req.formData();
+
+    try {
+        // update the image to google cloud storage
+        const file = form.get("file") as File;
+        if (!file)  throw new Error("No file uploaded.");
+        if (file.size < 1)  throw new Error("File is empty.");
+
+        const buffer = await file.arrayBuffer();
+        const storage = new Storage();
+        await storage.bucket('ubqts-web-image-storage').file(file.name).save(Buffer.from(buffer));
+        await storage.bucket('ubqts-web-image-storage').file(file.name).makePublic();
+
+        return NextResponse.json(
+            { url: `https://storage.googleapis.com/ubqts-web-image-storage/${file.name}` },
+            { status: 200 }
+        );
+    } catch (error) {
+        console.log("error: ", error);
+        return NextResponse.json(
+            { error: "Error updating image." },
+            { status: 500 }
+        );
+    }
+}
+
 export async function DELETE(req: NextRequest) {
     const data = await req.json();
     const { url } = data;

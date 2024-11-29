@@ -1,0 +1,43 @@
+h1 {
+    padding: 50px 0px;
+    text-align: center;
+    background-color: #efefef;
+    color: #333;
+    margin-bottom: 50px;
+}
+
+ol {
+    list-style: none;
+    text-indent: -0.825em;
+}
+
+li::before {
+    content: "• ";
+}
+
+.content {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.par {
+    margin-bottom: 20px;
+}
+
+.par > p, .par > ol {
+    padding-left: 40px;
+}
+
+.par ol li {
+    padding-left: 30px;
+}
+
+.par > p:first-child {
+    padding-left: 0px;
+    padding-bottom: 5px;
+    margin-top: 20px;
+}
+
+.blankBanner {
+    height: 60px;
+}

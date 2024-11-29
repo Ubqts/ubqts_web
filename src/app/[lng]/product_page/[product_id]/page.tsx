@@ -5,12 +5,14 @@ import { ProductContext, Product } from "@/src/context/Products";
 import useProducts from "@/src/hooks/useProducts";
 
 import { useContext, useState, useEffect } from "react";
+import { set } from "zod";
 
 const Page = () => {
     const [ product, setProduct ] = useState<Product>();
     const [ isEditing, setIsEditing ] = useState<boolean>(false);
     const [ editName, setEditName ] = useState<string>("");
-    const [ editPicture, setEditPicture ] = useState<string>("");
+    const [ editImage, setEditImage ] = useState<string>("");
+    const [ editPicture, setEditPicture ] = useState<File | null>(null);
     const [ editDescription, setEditDescription ] = useState<string>("");
     const { products } = useContext(ProductContext);
     const { deleteProducts, putProducts } = useProducts();
@@ -26,6 +28,9 @@ const Page = () => {
                 }
                 const productData = await response.json();
                 setProduct(productData);
+                setEditImage(productData.picture);
+                setEditName(productData.name);
+                setEditDescription(productData.description);
             } catch (error) {
                 console.log("error: ", error);
             }
@@ -33,27 +38,39 @@ const Page = () => {
         fetchProduct();
     }, []);
 
-    const handleEditPicture = () => {
-        const newImg = prompt("請輸入新圖片網址");
-        if (newImg) {
-            setEditPicture(newImg);
+    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files[0]) {
+            setEditPicture(e.target.files[0]);
+            const newImage = URL.createObjectURL(e.target.files[0]);
+            setEditImage(newImage);
         }
     }
 
     const handleSave = async () => {
         const url = window.location.href;
         const id = Number(url.split('=').pop());
-        try {
-            putProducts({
-                id: id, 
-                name: editName,
-                picture: editPicture,
-                description: editDescription,
-            });
-            alert("編輯成功！");    
-        } catch(error) {
-            alert("編輯失敗！");
-            console.log("error: ", error);
+        if (editPicture === null) {
+            alert("請輸入圖片");
+            return;
+        } else if (editName === "") {
+            alert("請輸入名稱");
+            return;
+        } else if (editDescription === "") {
+            alert("請輸入描述");
+            return;
+        } else {
+            try {
+                putProducts({
+                    id: id, 
+                    name: editName,
+                    picture: editPicture,
+                    description: editDescription,
+                });
+                alert("編輯成功！");    
+            } catch(error) {
+                alert("編輯失敗！");
+                console.log("error: ", error);
+            }    
         }
     }
 
@@ -66,7 +83,20 @@ const Page = () => {
                     {!isEditing && <img src={product?.picture} alt="productImg" />}
                     {!isEditing && <p>{product?.description}</p>}
                     {isEditing && <input className="title" defaultValue={product?.name} onChange={(e) => setEditName(e.target.value)}/>}
-                    {isEditing && <img src={product?.picture} alt="productImg" onClick={() => handleEditPicture()}/>}
+                    {isEditing &&
+                        <>
+                            <label htmlFor="fileInput">
+                                <img src={editImage} alt="1" className="editNewsImgButton" />
+                            </label>
+                            <input
+                                id="fileInput"
+                                type="file"
+                                accept="image/*"
+                                onChange={handleImageChange}
+                                style={{ display: 'none' }}
+                            />
+                        </>
+                    }
                     {isEditing && <textarea defaultValue={product?.description} onChange={(e) => setEditDescription(e.target.value)}/>}
                 </div>
             </div>
