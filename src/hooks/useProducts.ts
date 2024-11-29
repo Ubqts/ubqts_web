@@ -40,10 +40,10 @@ export default function useProducts() {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    name, 
-                    picture,
-                    description,
-                    language,
+                    name: name, 
+                    picture: imageUrl.url,
+                    description: description,
+                    language: language,
                 }),
             });
             if (!res.ok) {
@@ -139,9 +139,9 @@ export default function useProducts() {
             },
             body: JSON.stringify({
                 id,
-                name, 
-                picture,
-                description,
+                name: name, 
+                picture: imageUrl.url,
+                description: description,
             }),
         });
         if (!res.ok) {

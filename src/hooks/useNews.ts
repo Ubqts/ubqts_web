@@ -144,9 +144,9 @@ export default function useNews() {
             },
             body: JSON.stringify({
                 id, 
-                title,
-                picture,
-                description,
+                title: title,
+                picture: imageUrl.url,
+                description: description,
             }),
         });
         const data = await res.json();

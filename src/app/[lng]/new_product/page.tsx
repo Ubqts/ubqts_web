@@ -1,19 +1,28 @@
 'use client';
 import banner from "@/public/img/banner.png";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
 
 import "./page.css";
 import useProducts from "@/src/hooks/useProducts";
 
 export default function NewProduct() {
     const router = useRouter();
+    const { data: session } = useSession();
     const { postProducts } = useProducts();
     const [ productName, setProductName ] = useState("");
     const [ productDescription, setproductDescription ] = useState("");
     const [ picture, setPicture ] = useState<File | null>(null);
     const [ image, setImage ] = useState("");
     const [ imgLng, setImgLng ] = useState("");
+
+    // useEffect(() => {
+    //     if (session?.user.role !== "admin") {
+    //         alert("您無權限新增產品！");
+    //         router.push("/");
+    //     }
+    // }, [session]);
 
     const handleSave = () => {
         if (!productName) {
@@ -33,7 +42,7 @@ export default function NewProduct() {
                     language: imgLng
                 });
                 alert("產品新增成功！");
-                // router.push("/");
+                router.push("/");
             } catch (error) {
                 alert("產品新增失敗！");
                 console.log(error);
@@ -62,7 +71,7 @@ export default function NewProduct() {
                         <input id="fileInput" type="file" accept="image/*" onChange={handleImageChange} />
                     </div>
                     <label htmlFor="fileInput">
-                        <img src={image} alt="product picture preview" />
+                        {image !== "" && <img src={image} alt="product picture preview" />}
                     </label>
                 </div>
                 <textarea className="description" placeholder="產品描述" onChange={(e) => setproductDescription(e.target.value)} />

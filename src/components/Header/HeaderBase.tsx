@@ -10,6 +10,7 @@ import logoutIcon from "@/public/img/logoutIcon.png";
 import { TFunction } from "i18next";
 import { languages } from "../../i18n/settings";
 import { signOut, useSession } from "next-auth/react";
+import { CounterClockwiseClockIcon } from "@radix-ui/react-icons";
 
 type HeaderProps = {
     t: ((key: string) => string) & TFunction<"translation", undefined>;
@@ -63,20 +64,15 @@ export const HeaderBase = ({ t }: HeaderProps) => {
                     </div>
                     <div className="languageList">
                         {languages.map((lang) => {
-                            const newUrl = typeof window !== "undefined"
-                                ? window.location.origin + window.location.pathname.replace(/^\/(tw|cn|en)/, `/${lang}`)
-                                : `/${lang}`;
+                            const url = window.location.href;
+                            const page = url.split("/").slice(4).join("/");
+                            console.log("page: ", page);
                             return (
-                                <a key={lang} href={newUrl}>
+                                <a key={lang} href={`/${lang}/${page}`}>
                                     {lang === "tw" ? "繁體中文" : lang === "cn" ? "简体中文" : "English"}
                                 </a>
                             );
                         })}
-                        {/* {languages.map((lang) => (
-                            <a key={lang} href={`/${lang}`}>
-                                {lang === "tw" ? "繁體中文" : lang === "cn" ? "简体中文" : "English"}
-                            </a>
-                        ))} */}
                     </div>
                 </div>
                 <img className="sidebarIcon" src={menuIcon.src} alt="menu" onClick={handleSidebarDisplay} />
@@ -92,7 +88,6 @@ export const HeaderBase = ({ t }: HeaderProps) => {
                     )
                 }
             </div>
-
         </div>
     );
 }
