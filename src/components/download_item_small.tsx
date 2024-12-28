@@ -1,7 +1,7 @@
-import "./download_item.css";
+import "./download_item_small.css";
 import downloadIcon from "@/public/img/downloadIcon2.png"
 
-export default function DownloadItem() {
+export default function DownloadItemSmall() {
     return (
         <li className="downloadItem">
             <table>
