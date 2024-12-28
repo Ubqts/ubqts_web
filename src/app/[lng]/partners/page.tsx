@@ -1,7 +1,7 @@
 import { useTranslation } from "@/src/i18n";
 import "./page.css";
 
-import banner from "@/public/img/banner.png";
+import banner from "@/public/img/partnerBanner.png";
 
 import sefLogo from "@/public/img/partner_logos/sefLogo.png";
 import cmcLogo from "@/public/img/partner_logos/cmcLogo.png";

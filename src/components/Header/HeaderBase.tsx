@@ -64,9 +64,12 @@ export const HeaderBase = ({ t }: HeaderProps) => {
                     </div>
                     <div className="languageList">
                         {languages.map((lang) => {
-                            const url = window.location.href;
-                            const page = url.split("/").slice(4).join("/");
-                            console.log("page: ", page);
+                            let page = "";
+                            if (typeof window !== "undefined") {
+                                const url = window.location.href;
+                                const page = url.split("/").slice(4).join("/");
+                                console.log("page: ", page);
+                            }
                             return (
                                 <a key={lang} href={`/${lang}/${page}`}>
                                     {lang === "tw" ? "繁體中文" : lang === "cn" ? "简体中文" : "English"}
