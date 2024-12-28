@@ -1,3 +1,13 @@
+input[type="file"] {
+    width: 100%;
+}
+
+
+.fileContainer {
+    width: 80%;
+    margin: 30px auto 10px auto;
+}
+
 .langContainer {
     display: flex;
     gap: 10px;

@@ -12,8 +12,8 @@ type NewAdsDialogProps = {
 };
 
 export default function NewAdsDialog({ open, onClose }: NewAdsDialogProps) {
-    const [ image, setImage ] = useState<File | null>(null);
-    const [ imgLng, setImgLng ] = useState<string>("");
+    const [image, setImage] = useState<File | null>(null);
+    const [imgLng, setImgLng] = useState<string>("");
     const { postAds } = useAds();
     const router = useRouter();
 
@@ -43,9 +43,9 @@ export default function NewAdsDialog({ open, onClose }: NewAdsDialogProps) {
         <Dialog open={open} onClose={onClose}>
             <div>
                 <DialogTitle>新增廣告</DialogTitle>
-                <div>
+                <div className="fileContainer">
                     <input type="file" accept=".jpg, .jpeg, .png"
-                        onChange={(e) => setImage(e.target.files ? e.target.files[0] : null)}/>
+                        onChange={(e) => setImage(e.target.files ? e.target.files[0] : null)} />
                 </div>
                 <div className="langContainer">
                     <div className="choice">
