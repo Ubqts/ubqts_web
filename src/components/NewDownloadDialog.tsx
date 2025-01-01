@@ -40,7 +40,7 @@ export default function NewDownloadDialog({ open, onClose }: NewDownloadProps) {
     return (
         <Dialog open={open} onClose={onClose}>
             <div>
-                <DialogTitle>新增廣告</DialogTitle>
+                <DialogTitle>新增檔案</DialogTitle>
                 <div className="fileContainer">
                     <input type="file"
                         onChange={(e) => setFile(e.target.files ? e.target.files[0] : null)} />

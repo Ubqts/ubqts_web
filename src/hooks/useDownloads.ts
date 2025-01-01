@@ -30,8 +30,6 @@ export default function useDownloads() {
             const fileUrl = await fileRes.json();
             const fileType = file.type.split("/")[1];
             const fileSize = file.size / (1024 * 1024);
-            // make type from "image/jpeg" to ".jpeg" or "application/pdf" to ".pdf"
-            // make size from byte to MB
             console.log("fileUrl: ", fileUrl.url);
             console.log("fileSize: ", fileSize);
             console.log("fileType: ", fileType);

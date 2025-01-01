@@ -8,6 +8,11 @@ textarea {
     max-width: 100%;
 }
 
+input[type="file"] {
+    border: none;
+    padding-left: 0px;
+}
+
 textarea {
     width: 100%;
     height: 50vh;

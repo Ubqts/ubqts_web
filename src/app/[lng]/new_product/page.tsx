@@ -6,6 +6,7 @@ import { useSession } from "next-auth/react";
 
 import "./page.css";
 import useProducts from "@/src/hooks/useProducts";
+import TextEditor from "@/src/components/text_editor";
 
 export default function NewProduct() {
     const router = useRouter();
@@ -74,7 +75,8 @@ export default function NewProduct() {
                         {image !== "" && <img src={image} alt="product picture preview" />}
                     </label>
                 </div>
-                <textarea className="description" placeholder="產品描述" onChange={(e) => setproductDescription(e.target.value)} />
+                {/* <textarea className="description" placeholder="產品描述" onChange={(e) => setproductDescription(e.target.value)} /> */}
+                <TextEditor editorContent={productDescription} setEditorContent={setproductDescription}/>
             </div>
             <div className="langContainer">
                 <div className="choice">
