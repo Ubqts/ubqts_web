@@ -1,4 +1,5 @@
 import downloadIcon from "@/public/img/downloadIcon.png";
+import deleteIcon from "@/public/img/deleteIcon.png";
 
 import useDownloads from "@/src/hooks/useDownloads";
 
@@ -38,13 +39,13 @@ export default function DownloadItemSmall({ id, fileName, fileType, fileSize, do
             <td>.{fileType}</td>
             <td>{fileSize} MB</td>
             <td>
-                <a href="#" onClick={(e) => {e.preventDefault(); handleDownload();}}>
-                    <img className="downloadIcon" src={downloadIcon.src} alt="download"/>
+                <a href="#" onClick={(e) => { e.preventDefault(); handleDownload(); }}>
+                    <img className="downloadIcon" src={downloadIcon.src} alt="download" />
                 </a>
             </td>
             <td>
                 <a href="#" onClick={() => handleDelete()}>
-                    <img className="deleteIcon" src="" alt="delete"/>
+                    <img className="deleteIcon" src={deleteIcon.src} alt="delete" />
                 </a>
             </td>
         </tr>
