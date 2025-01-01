@@ -30,6 +30,14 @@ model products {
   language    String
 }
 
+model downloads {
+  id      Int     @id @default(autoincrement())
+  name    String
+  type    String
+  size    BigInt
+  url     String
+}
+
 model User {
   id        Int      @id @default(autoincrement())
   username  String   @unique

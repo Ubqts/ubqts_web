@@ -53,20 +53,6 @@ export default function Home({ params: { lng } }: HomeProps) {
         setIndex(selectedIndex);
     };
 
-    // const [ image, setImage ] = useState<File | null>(null);
-    // const testApi = () => {
-    //     try {
-    //         if (image != null)  {
-    //             postAds({ picture: image, language: "en" });
-    //             alert("upload success!");
-    //             router.refresh();
-    //         }
-    //     } catch(error) {
-    //         alert("error occurred!");
-    //         console.log("error: ", error);
-    //     }
-    // }
-
     return (
         <div className="container prevent-select">
             {/* <BootstrapCarousel /> */}
@@ -115,11 +101,6 @@ export default function Home({ params: { lng } }: HomeProps) {
 
             <div className="content origin">
                 <h1>{t("company-introduction-title")}</h1>
-
-                {/* <div className="flex justify-between">
-                    <input type="file" onChange={(e) => setImage(e.target.files ? e.target.files[0] : null)}/>
-                    <button className="w-44 border bg-gray-50 rounded-md" onClick={() => testApi()}>upload</button>
-                </div> */}
 
                 <div className="imgWithText">
                     <img src="https://picsum.photos/400?random=4" alt="companyIntro" />
