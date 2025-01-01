@@ -47,3 +47,5 @@ next-env.d.ts
 
 # google-cloud json
 .hallowed-byte-439007-c7-f71aa2e9533b.json
+
+.package-lock.json
