@@ -2,8 +2,8 @@ h1 {
 	padding: 50px 0px;
 	text-align: center;
 	background-color: #efefef;
-    color: #333;
-    margin-bottom: 50px;
+	color: #333;
+	margin-bottom: 50px;
 }
 
 span {
@@ -51,16 +51,16 @@ td {
 }
 
 .category,
-.category > tr,
-.category > tr:hover {
+.category>tr,
+.category>tr:hover {
 	font-size: calc(12px + 0.5vw);
 	background-color: #4eb555;
 	color: white;
 }
 
 .title,
-.title > tr,
-.title > tr:hover {
+.title>tr,
+.title>tr:hover {
 	font-size: calc(8px + 0.5vw);
 	background-color: #307c3d;
 	color: white;
@@ -68,7 +68,8 @@ td {
 }
 
 .name {
-	width: 60%;
+	/* width: 60%; */
+	width: 50%;
 }
 
 .fileName {
@@ -76,9 +77,15 @@ td {
 	padding-left: 5%;
 }
 
-.downloadIcon {
+.downloadIcon,
+.deleteIcon,
+.addIcon {
 	width: 20px;
 	height: 20px;
+}
+
+.more {
+	cursor: pointer;
 }
 
 .blankBanner {
