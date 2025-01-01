@@ -12,6 +12,7 @@ import addIcon from "@/public/img/addIcon.png";
 import "./page.css";
 
 type NewsProps = { params: { lng: string } };
+
 export default function News({ params: { lng } }: NewsProps) {
     const { t } = useTranslation(lng, "news-page");
     const { data: session } = useSession();
@@ -41,7 +42,7 @@ export default function News({ params: { lng } }: NewsProps) {
                 <h1>{t("latest-news")}</h1>
                 <div className="newsList">
                     {session?.user.role === "admin" ? (
-                        newsList.filter((news) => (news.language.match(lng))).map((news) => (
+                        newsList.map((news) => (
                             <React.Fragment key={news.id}>
                                 <NewsItem
                                     id={news.id}

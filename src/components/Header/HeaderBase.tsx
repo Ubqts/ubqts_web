@@ -68,7 +68,6 @@ export const HeaderBase = ({ t }: HeaderProps) => {
                             if (typeof(window) !== "undefined") {
                                 const url = window.location.href;
                                 page = url.split("/").slice(4).join("/");
-                                console.log(page);
                             }
                             return (
                                 <a key={lang} href={`/${lang}/${page}`}>
