@@ -5,7 +5,6 @@ import { ProductContext, Product } from "@/src/context/Products";
 import useProducts from "@/src/hooks/useProducts";
 
 import { useContext, useState, useEffect } from "react";
-import { set } from "zod";
 
 const Page = () => {
     const [ product, setProduct ] = useState<Product>();
