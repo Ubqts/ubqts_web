@@ -1,6 +1,7 @@
 "use client";
 import "./page.css";
 import banner from "@/public/img/banner.png";
+import addIcon from "@/public/img/addIcon.png";
 import DownloadItemSmall from "@/src/components/download_item_small";
 import DownloadItemLarge from "@/src/components/download_item_large";
 import NewDownloadDialog from "@/src/components/NewDownloadDialog";
@@ -14,14 +15,14 @@ import { useState, useEffect } from "react";
 type DownloadFilesProps = { params: { lng: string; }; }
 
 export default function DownloadFiles({ params: { lng } }: DownloadFilesProps) {
-    const [ addDialog, setAddDialog ] = useState<boolean>(false);
-    const [ downloadsList, setDownloadsList ] = useState<Download[]>([]);
+    const [addDialog, setAddDialog] = useState<boolean>(false);
+    const [downloadsList, setDownloadsList] = useState<Download[]>([]);
     const { getDownloads } = useDownloads();
 
     const { t } = useTranslation(lng, "download-files-page");
     const { data: session } = useSession();
 
-    useEffect (() => {
+    useEffect(() => {
         const fetchDownloadsList = async () => {
             try {
                 const downloadsListInit = await getDownloads();
@@ -68,11 +69,11 @@ export default function DownloadFiles({ params: { lng } }: DownloadFilesProps) {
                             />
                         ))}
                         {/* {session?.user.role === "admin" &&  */}
-                            <tr>
-                                <td colSpan={5} className="more" onClick={() => setAddDialog(true)}>
-                                    add
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colSpan={5} className="more" onClick={() => setAddDialog(true)}>
+                                <img className="addIcon" src={addIcon.src} alt="add" />
+                            </td>
+                        </tr>
                         {/* } */}
                     </tbody>
                 </table>
@@ -106,8 +107,7 @@ export default function DownloadFiles({ params: { lng } }: DownloadFilesProps) {
                             {/* {session?.user.role === "admin" &&  */}
                                 <tr>
                                     <td colSpan={5} className="more" onClick={() => setAddDialog(true)}>
-                                        add
-                                    </td>
+                                        <img className="addIcon" src={addIcon.src} alt="add" />                                    </td>
                                 </tr>
                             {/* } */}
                         </tbody>
