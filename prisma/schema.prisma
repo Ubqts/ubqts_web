@@ -31,11 +31,11 @@ model products {
 }
 
 model downloads {
-  id      Int     @id @default(autoincrement())
-  name    String
-  type    String
-  size    BigInt
-  url     String
+  id   Int    @id @default(autoincrement())
+  name String
+  type String
+  size String
+  url  String
 }
 
 model User {

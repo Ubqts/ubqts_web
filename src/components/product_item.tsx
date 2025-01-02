@@ -11,13 +11,17 @@ type ProductProps = {
 export default function ProductItem({ id, picture, name, lng }: ProductProps) {
     const router = useRouter();
 
+    const handleOnClick = () => {
+        router.push(`/${lng}/product_page/id=${id}`);
+    }
+
     return (
-        <div className="productItem" onClick={() => { router.push(`/${lng}/product_page/id=${id}`) }}>
+        <a href={`/${lng}/product_page/id=${id}`} className="productItem">
             {/* <img src={picture} alt="1" /> */}
             <div className="productImgHolder">
                 <img src={picture} alt="1" />
             </div>
             <p>{name}</p>
-        </div>
+        </a>
     )
 }

@@ -6,7 +6,7 @@ export type Download = {
     id: number;
     name: string;
     type: string;
-    size: number;
+    size: string;
     url: string;
 };
 

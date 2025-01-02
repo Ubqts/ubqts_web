@@ -23,11 +23,17 @@ export default function DownloadFiles({ params: { lng } }: DownloadFilesProps) {
 
     useEffect (() => {
         const fetchDownloadsList = async () => {
-            const downloadsListInit = await getDownloads();
-            const downloadsListJSON: Download[] = downloadsListInit["downloads"];
-            setDownloadsList(downloadsListJSON);
+            try {
+                const downloadsListInit = await getDownloads();
+                const downloadsListJSON: Download[] = downloadsListInit["downloads"];
+                setDownloadsList(downloadsListJSON);    
+            } catch (error) {
+                console.log(error);
+            }
         };
+
         fetchDownloadsList();
+        console.log(downloadsList);
     }, [getDownloads]);
 
     return (
@@ -51,11 +57,7 @@ export default function DownloadFiles({ params: { lng } }: DownloadFilesProps) {
                         </tr>
                     </thead>
                     <tbody>
-                        <DownloadItemLarge id={1} fileName="lorem ipsum" fileType="pdf" fileSize={1.5} downloadUrl="https://storage.googleapis.com/ubqts-web-image-storage/WMN%E6%9C%9F%E6%9C%AB%E5%A4%A7%E6%8A%84.pdf"/>
-                        <DownloadItemLarge id={1} fileName="lorem ipsum" fileType="pdf" fileSize={1.5} downloadUrl="about:blank"/>
-                        <DownloadItemLarge id={1} fileName="lorem ipsum" fileType="pdf" fileSize={1.5} downloadUrl="about:blank"/>
-                        <DownloadItemLarge id={1} fileName="lorem ipsum" fileType="pdf" fileSize={1.5} downloadUrl="about:blank"/>
-                        {downloadsList.filter((download) => (download.type === "pdf")).map((download) => (
+                        {downloadsList && downloadsList.filter((download) => (download.type === "pdf")).map((download) => (
                             <DownloadItemLarge 
                                 key={download.id}
                                 id={download.id}
@@ -91,10 +93,7 @@ export default function DownloadFiles({ params: { lng } }: DownloadFilesProps) {
                             </tr>
                         </thead>
                         <tbody>
-                            <DownloadItemLarge id={1} fileName="lorem ipsum" fileType="pdf" fileSize={1.5} downloadUrl="https://storage.cloud.google.com/ubqts-web-image-storage/strawberry-perl-5.40.0.1-64bit.msi"/>
-                            <DownloadItemLarge id={1} fileName="lorem ipsum" fileType="pdf" fileSize={1.5} downloadUrl="about:blank"/>
-                            <DownloadItemLarge id={1} fileName="lorem ipsum" fileType="pdf" fileSize={1.5} downloadUrl="about:blank"/>
-                            {downloadsList.filter((download) => (download.type !== "pdf")).map((download) => (
+                            {downloadsList && downloadsList.filter((download) => (download.type !== "pdf")).map((download) => (
                                 <DownloadItemLarge 
                                     key={download.id}
                                     id={download.id}
@@ -120,12 +119,7 @@ export default function DownloadFiles({ params: { lng } }: DownloadFilesProps) {
                     <h2>{t("catalog")}</h2>
                 </div>
                 <ul>
-                    <DownloadItemSmall fileName="lorem ipsum" fileType="pdf" fileSize={1.5} downloadUrl="about:blank"/>
-                    <DownloadItemSmall fileName="lorem ipsum" fileType="pdf" fileSize={1.5} downloadUrl="about:blank"/>
-                    <DownloadItemSmall fileName="lorem ipsum" fileType="pdf" fileSize={1.5} downloadUrl="about:blank"/>
-                    <DownloadItemSmall fileName="lorem ipsum" fileType="pdf" fileSize={1.5} downloadUrl="about:blank"/>
-                    <DownloadItemSmall fileName="lorem ipsum" fileType="pdf" fileSize={1.5} downloadUrl="about:blank"/>
-                    {downloadsList.filter((download) => (download.type === "pdf")).map((download) => (
+                    {downloadsList && downloadsList.filter((download) => (download.type === "pdf")).map((download) => (
                         <DownloadItemSmall
                             key={download.id}
                             fileName={download.name}
@@ -142,10 +136,7 @@ export default function DownloadFiles({ params: { lng } }: DownloadFilesProps) {
                         <h2>{t("software")}</h2>
                     </div>
                     <ul>
-                        <DownloadItemSmall fileName="lorem ipsum" fileType="pdf" fileSize={1.5} downloadUrl="about:blank"/>
-                        <DownloadItemSmall fileName="lorem ipsum" fileType="pdf" fileSize={1.5} downloadUrl="about:blank"/>
-                        <DownloadItemSmall fileName="lorem ipsum" fileType="pdf" fileSize={1.5} downloadUrl="about:blank"/>
-                        {downloadsList.filter((download) => (download.type !== "pdf")).map((download) => (
+                        {downloadsList && downloadsList.filter((download) => (download.type !== "pdf")).map((download) => (
                             <DownloadItemSmall
                                 key={download.id}
                                 fileName={download.name}
