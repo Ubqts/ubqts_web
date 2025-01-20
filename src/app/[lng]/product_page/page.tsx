@@ -24,7 +24,7 @@ export default function ProductPage() {
                 <img src="https://picsum.photos/400/200?random=1" alt="productImg" />
                 <div dangerouslySetInnerHTML={{ __html: test_string }} />
             </div>
-            <a className="prevPage" href="/new_product">新增產品</a>
+            <div><a className="prevPage" href="/new_product">新增產品</a></div>
         </>
     );
 }
