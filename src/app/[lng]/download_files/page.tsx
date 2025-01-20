@@ -54,7 +54,7 @@ export default function DownloadFiles({ params: { lng } }: DownloadFilesProps) {
                             <th className="type">{t("catagory")}</th>
                             <th className="size">{t("size")}</th>
                             <th className="download">{t("download")}</th>
-                            {/* session?.user.role === "admin" && */ <th className="edit">刪除</th>}
+                            {session?.user.role === "admin" && <th className="edit">刪除</th>}
                         </tr>
                     </thead>
                     <tbody>
@@ -68,21 +68,21 @@ export default function DownloadFiles({ params: { lng } }: DownloadFilesProps) {
                                 downloadUrl={download.url}
                             />
                         ))}
-                        {/* {session?.user.role === "admin" &&  */}
-                        <tr>
-                            <td colSpan={5} className="more" onClick={() => setAddDialog(true)}>
-                                <img className="addIcon" src={addIcon.src} alt="add" />
-                            </td>
-                        </tr>
-                        {/* } */}
+                        {session?.user.role === "admin" && 
+                            <tr>
+                                <td colSpan={5} className="more" onClick={() => setAddDialog(true)}>
+                                    <img className="addIcon" src={addIcon.src} alt="add" />
+                                </td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
                 <div className="blankBanner" />
                 <div className="blankBanner" />
-                {/* {session?.user.role === "user" && */}
+                {(session?.user.role === "user" || session?.user.role === "admin") &&
                     <table>
                         <thead className="category">
-                            <tr><th colSpan={session?.user.role === "admin" ? 5 : 5}>{t("software")}</th></tr>
+                            <tr><th colSpan={session?.user.role === "admin" ? 5 : 4}>{t("software")}</th></tr>
                         </thead>
                         <thead className="title">
                             <tr>
@@ -90,7 +90,7 @@ export default function DownloadFiles({ params: { lng } }: DownloadFilesProps) {
                                 <th className="type">{t("catagory")}</th>
                                 <th className="size">{t("size")}</th>
                                 <th className="download">{t("download")}</th>
-                                {/* session?.user.role === "admin" && */ <th className="edit">刪除</th>}
+                                { session?.user.role === "admin" && <th className="edit">刪除</th>}
                             </tr>
                         </thead>
                         <tbody>
@@ -104,15 +104,15 @@ export default function DownloadFiles({ params: { lng } }: DownloadFilesProps) {
                                     downloadUrl={download.url}
                                 />
                             ))}
-                            {/* {session?.user.role === "admin" &&  */}
+                            {session?.user.role === "admin" && 
                                 <tr>
                                     <td colSpan={5} className="more" onClick={() => setAddDialog(true)}>
                                         <img className="addIcon" src={addIcon.src} alt="add" />                                    </td>
                                 </tr>
-                            {/* } */}
+                            }
                         </tbody>
                     </table>
-                {/* } */}
+                }
             </div>
             <div className="smallSize">
                 <div className="category">
@@ -130,8 +130,8 @@ export default function DownloadFiles({ params: { lng } }: DownloadFilesProps) {
                     ))}
                 </ul>
                 <div className="blankBanner" />
-                {/* {session?.user.role === "user" && */}
-                <>
+                {(session?.user.role === "user" || session?.user.role === "admin") &&
+                    <>
                     <div className="category">
                         <h2>{t("software")}</h2>
                     </div>
@@ -146,8 +146,8 @@ export default function DownloadFiles({ params: { lng } }: DownloadFilesProps) {
                             />
                         ))}
                     </ul>
-                </>
-                {/* } */}
+                    </>
+                }
             </div>
             <div className="blankBanner" />
             <div className="blankBanner" />
