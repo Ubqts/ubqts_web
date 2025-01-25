@@ -34,7 +34,7 @@ export default function DownloadFiles({ params: { lng } }: DownloadFilesProps) {
         };
 
         fetchDownloadsList();
-        console.log(downloadsList);
+        // console.log(downloadsList);
     }, [getDownloads]);
 
     return (
@@ -46,7 +46,7 @@ export default function DownloadFiles({ params: { lng } }: DownloadFilesProps) {
             <div className="largeSize">
                 <table>
                     <thead className="category">
-                        <tr><th colSpan={session?.user.role === "admin" ? 5 : 5}>{t("catalog")}</th></tr>
+                        <tr><th colSpan={session?.user.role === "admin" ? 5 : 4}>{t("catalog")}</th></tr>
                     </thead>
                     <thead className="title">
                         <tr>
@@ -107,7 +107,8 @@ export default function DownloadFiles({ params: { lng } }: DownloadFilesProps) {
                             {session?.user.role === "admin" && 
                                 <tr>
                                     <td colSpan={5} className="more" onClick={() => setAddDialog(true)}>
-                                        <img className="addIcon" src={addIcon.src} alt="add" />                                    </td>
+                                        <img className="addIcon" src={addIcon.src} alt="add" />
+                                    </td>
                                 </tr>
                             }
                         </tbody>

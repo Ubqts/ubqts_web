@@ -20,7 +20,7 @@ const TextEditor: React.FC<TextEditorProps> = React.memo(({ editorContent, setEd
                 plugins: 'advlist autolink lists link image table paste',
                 toolbar: 'undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | table',
             }}
-            onEditorChange={(e) => {setEditorContent(e); console.log(typeof(editorContent)); console.log(editorContent);}}
+            onEditorChange={(e) => {setEditorContent(e); /* console.log(typeof(editorContent)); console.log(editorContent); */}}
         />
         </>
     )

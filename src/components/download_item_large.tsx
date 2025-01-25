@@ -1,5 +1,7 @@
+"use client";
 import downloadIcon from "@/public/img/downloadIcon.png";
 import deleteIcon from "@/public/img/deleteIcon.png";
+import { useSession } from "next-auth/react";
 
 import useDownloads from "@/src/hooks/useDownloads";
 
@@ -12,6 +14,7 @@ export type DownloadItemProps = {
 }
 
 export default function DownloadItemSmall({ id, fileName, fileType, fileSize, downloadUrl }: DownloadItemProps) {
+    const { data: session } = useSession();
     const { deleteDownloads } = useDownloads();
 
     const handleDelete = async () => {
@@ -56,11 +59,13 @@ export default function DownloadItemSmall({ id, fileName, fileType, fileSize, do
                     <img className="downloadIcon" src={downloadIcon.src} alt="download" />
                 </a>
             </td>
-            <td>
-                <a href="#" onClick={() => handleDelete()}>
-                    <img className="deleteIcon" src={deleteIcon.src} alt="delete" />
-                </a>
-            </td>
+            {session?.user.role === "admin" &&
+                <td>
+                    <a href="#" onClick={() => handleDelete()}>
+                        <img className="deleteIcon" src={deleteIcon.src} alt="delete" />
+                    </a>
+                </td>
+            }
         </tr>
     );
 }
