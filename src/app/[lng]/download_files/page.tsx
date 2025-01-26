@@ -24,11 +24,17 @@ export default function DownloadFiles({ params: { lng } }: DownloadFilesProps) {
 
     useEffect(() => {
         const fetchDownloadsList = async () => {
-            const downloadsListInit = await getDownloads();
-            const downloadsListJSON: Download[] = downloadsListInit["downloads"];
-            setDownloadsList(downloadsListJSON);
+            try {
+                const downloadsListInit = await getDownloads();
+                const downloadsListJSON: Download[] = downloadsListInit["downloads"];
+                setDownloadsList(downloadsListJSON);    
+            } catch (error) {
+                console.log(error);
+            }
         };
+
         fetchDownloadsList();
+        // console.log(downloadsList);
     }, [getDownloads]);
 
     return (
@@ -40,7 +46,7 @@ export default function DownloadFiles({ params: { lng } }: DownloadFilesProps) {
             <div className="largeSize">
                 <table>
                     <thead className="category">
-                        <tr><th colSpan={session?.user.role === "admin" ? 5 : 5}>{t("catalog")}</th></tr>
+                        <tr><th colSpan={session?.user.role === "admin" ? 5 : 4}>{t("catalog")}</th></tr>
                     </thead>
                     <thead className="title">
                         <tr>
@@ -48,16 +54,12 @@ export default function DownloadFiles({ params: { lng } }: DownloadFilesProps) {
                             <th className="type">{t("catagory")}</th>
                             <th className="size">{t("size")}</th>
                             <th className="download">{t("download")}</th>
-                            {/* session?.user.role === "admin" && */ <th className="edit">刪除</th>}
+                            {session?.user.role === "admin" && <th className="edit">刪除</th>}
                         </tr>
                     </thead>
                     <tbody>
-                        <DownloadItemLarge id={1} fileName="lorem ipsum" fileType="pdf" fileSize={1.5} downloadUrl="https://storage.googleapis.com/ubqts-web-image-storage/WMN%E6%9C%9F%E6%9C%AB%E5%A4%A7%E6%8A%84.pdf" />
-                        <DownloadItemLarge id={1} fileName="lorem ipsum" fileType="pdf" fileSize={1.5} downloadUrl="about:blank" />
-                        <DownloadItemLarge id={1} fileName="lorem ipsum" fileType="pdf" fileSize={1.5} downloadUrl="about:blank" />
-                        <DownloadItemLarge id={1} fileName="lorem ipsum" fileType="pdf" fileSize={1.5} downloadUrl="about:blank" />
-                        {downloadsList.filter((download) => (download.type === "pdf")).map((download) => (
-                            <DownloadItemLarge
+                        {downloadsList && downloadsList.filter((download) => (download.type === "pdf")).map((download) => (
+                            <DownloadItemLarge 
                                 key={download.id}
                                 id={download.id}
                                 fileName={download.name}
@@ -66,67 +68,59 @@ export default function DownloadFiles({ params: { lng } }: DownloadFilesProps) {
                                 downloadUrl={download.url}
                             />
                         ))}
-                        {/* {session?.user.role === "admin" &&  */}
-                        <tr>
-                            <td colSpan={5} className="more" onClick={() => setAddDialog(true)}>
-                                <img className="addIcon" src={addIcon.src} alt="add" />
-                            </td>
-                        </tr>
-                        {/* } */}
+                        {session?.user.role === "admin" && 
+                            <tr>
+                                <td colSpan={5} className="more" onClick={() => setAddDialog(true)}>
+                                    <img className="addIcon" src={addIcon.src} alt="add" />
+                                </td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
                 <div className="blankBanner" />
                 <div className="blankBanner" />
-                {/* {session?.user.role === "user" && */}
-                <table>
-                    <thead className="category">
-                        <tr><th colSpan={session?.user.role === "admin" ? 5 : 5}>{t("software")}</th></tr>
-                    </thead>
-                    <thead className="title">
-                        <tr>
-                            <th className="name">{t("name")}</th>
-                            <th className="type">{t("catagory")}</th>
-                            <th className="size">{t("size")}</th>
-                            <th className="download">{t("download")}</th>
-                            {/* session?.user.role === "admin" && */ <th className="edit">刪除</th>}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <DownloadItemLarge id={1} fileName="lorem ipsum" fileType="pdf" fileSize={1.5} downloadUrl="https://storage.cloud.google.com/ubqts-web-image-storage/strawberry-perl-5.40.0.1-64bit.msi" />
-                        <DownloadItemLarge id={1} fileName="lorem ipsum" fileType="pdf" fileSize={1.5} downloadUrl="about:blank" />
-                        <DownloadItemLarge id={1} fileName="lorem ipsum" fileType="pdf" fileSize={1.5} downloadUrl="about:blank" />
-                        {downloadsList.filter((download) => (download.type !== "pdf")).map((download) => (
-                            <DownloadItemLarge
-                                key={download.id}
-                                id={download.id}
-                                fileName={download.name}
-                                fileType={download.type}
-                                fileSize={download.size}
-                                downloadUrl={download.url}
-                            />
-                        ))}
-                        {/* {session?.user.role === "admin" &&  */}
-                        <tr>
-                            <td colSpan={5} className="more" onClick={() => setAddDialog(true)}>
-                                <img className="addIcon" src={addIcon.src} alt="add" />
-                            </td>
-                        </tr>
-                        {/* } */}
-                    </tbody>
-                </table>
-                {/* } */}
+                {(session?.user.role === "user" || session?.user.role === "admin") &&
+                    <table>
+                        <thead className="category">
+                            <tr><th colSpan={session?.user.role === "admin" ? 5 : 4}>{t("software")}</th></tr>
+                        </thead>
+                        <thead className="title">
+                            <tr>
+                                <th className="name">{t("name")}</th>
+                                <th className="type">{t("catagory")}</th>
+                                <th className="size">{t("size")}</th>
+                                <th className="download">{t("download")}</th>
+                                { session?.user.role === "admin" && <th className="edit">刪除</th>}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {downloadsList && downloadsList.filter((download) => (download.type !== "pdf")).map((download) => (
+                                <DownloadItemLarge 
+                                    key={download.id}
+                                    id={download.id}
+                                    fileName={download.name}
+                                    fileType={download.type}
+                                    fileSize={download.size}
+                                    downloadUrl={download.url}
+                                />
+                            ))}
+                            {session?.user.role === "admin" && 
+                                <tr>
+                                    <td colSpan={5} className="more" onClick={() => setAddDialog(true)}>
+                                        <img className="addIcon" src={addIcon.src} alt="add" />
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
             </div>
             <div className="smallSize">
                 <div className="category">
                     <h2>{t("catalog")}</h2>
                 </div>
                 <ul>
-                    <DownloadItemSmall fileName="lorem ipsum" fileType="pdf" fileSize={1.5} downloadUrl="about:blank" />
-                    <DownloadItemSmall fileName="lorem ipsum" fileType="pdf" fileSize={1.5} downloadUrl="about:blank" />
-                    <DownloadItemSmall fileName="lorem ipsum" fileType="pdf" fileSize={1.5} downloadUrl="about:blank" />
-                    <DownloadItemSmall fileName="lorem ipsum" fileType="pdf" fileSize={1.5} downloadUrl="about:blank" />
-                    <DownloadItemSmall fileName="lorem ipsum" fileType="pdf" fileSize={1.5} downloadUrl="about:blank" />
-                    {downloadsList.filter((download) => (download.type === "pdf")).map((download) => (
+                    {downloadsList && downloadsList.filter((download) => (download.type === "pdf")).map((download) => (
                         <DownloadItemSmall
                             key={download.id}
                             fileName={download.name}
@@ -137,16 +131,13 @@ export default function DownloadFiles({ params: { lng } }: DownloadFilesProps) {
                     ))}
                 </ul>
                 <div className="blankBanner" />
-                {/* {session?.user.role === "user" && */}
-                <>
+                {(session?.user.role === "user" || session?.user.role === "admin") &&
+                    <>
                     <div className="category">
                         <h2>{t("software")}</h2>
                     </div>
                     <ul>
-                        <DownloadItemSmall fileName="lorem ipsum" fileType="pdf" fileSize={1.5} downloadUrl="about:blank" />
-                        <DownloadItemSmall fileName="lorem ipsum" fileType="pdf" fileSize={1.5} downloadUrl="about:blank" />
-                        <DownloadItemSmall fileName="lorem ipsum" fileType="pdf" fileSize={1.5} downloadUrl="about:blank" />
-                        {downloadsList.filter((download) => (download.type !== "pdf")).map((download) => (
+                        {downloadsList && downloadsList.filter((download) => (download.type !== "pdf")).map((download) => (
                             <DownloadItemSmall
                                 key={download.id}
                                 fileName={download.name}
@@ -156,8 +147,8 @@ export default function DownloadFiles({ params: { lng } }: DownloadFilesProps) {
                             />
                         ))}
                     </ul>
-                </>
-                {/* } */}
+                    </>
+                }
             </div>
             <div className="blankBanner" />
             <div className="blankBanner" />

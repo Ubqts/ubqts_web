@@ -29,7 +29,7 @@ export default function useDownloads() {
             }
             const fileUrl = await fileRes.json();
             const fileType = file.type.split("/")[1];
-            const fileSize = file.size / (1024 * 1024);
+            const fileSize = file.size.toString();
             console.log("fileUrl: ", fileUrl.url);
             console.log("fileSize: ", fileSize);
             console.log("fileType: ", fileType);

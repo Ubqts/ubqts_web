@@ -74,7 +74,7 @@ export default function Home({ params: { lng } }: HomeProps) {
             </Carousel>
 
             <div className="blankBanner" />
-            {/* session?.user.role === "admin" && */ <div className="editCarousel">
+            {session?.user.role === "admin" && <div className="editCarousel">
                 {adsList.map((ads) => (
                     <React.Fragment key={ads.id}>
                         <CarouselItem id={ads.id} picture={ads.picture} />
@@ -136,7 +136,7 @@ export default function Home({ params: { lng } }: HomeProps) {
                                 <ProductItem id={product.id} picture={product.picture} name={product.name} lng={lng} />
                             </React.Fragment>
                         )))}
-                    {/* session?.user.role === "admin" && */(
+                    {session?.user.role === "admin" && (
                         <a href="/new_product">
                             <div className="addProduct">
                                 <img src={addIcon.src} alt="addProduct" onClick={() => { router.push(`${lng}/new_product`) }} />

@@ -4,7 +4,7 @@ import downloadIcon from "@/public/img/downloadIcon2.png"
 export type DownloadItemProps = {
     fileName: string;
     fileType: string;
-    fileSize: number;
+    fileSize: string;
     downloadUrl: string;
 }
 
@@ -14,6 +14,19 @@ export default function DownloadItemSmall({ fileName, fileType, fileSize, downlo
         link.href = downloadUrl;
         link.download = fileName;
         link.click();
+    }
+
+    const formatFileSize = (fileSize: string) => {
+        const size = parseInt(fileSize);
+        if (size < 1024) {
+            return `${size} B`;
+        } else if (size < 1024 * 1024) {
+            return `${(size / 1024).toFixed(size % 1024 === 0 ? 0 : 1)} KB`;
+        } else if (size < 1024 * 1024 * 1024) {
+            return `${(size / (1024 * 1024)).toFixed(size % (1024 * 1024) === 0 ? 0 : 1)} MB`;
+        } else {
+            return `${(size / (1024 * 1024 * 1024)).toFixed(size % (1024 * 1024 * 1024) === 0 ? 0 : 1)} GB`;
+        }
     }
     
     return (
@@ -30,7 +43,7 @@ export default function DownloadItemSmall({ fileName, fileType, fileSize, downlo
                     </tr>
                     <tr>
                         <td className="title">檔案大小</td>
-                        <td>{fileSize} MB</td>
+                        <td>{formatFileSize(fileSize)}</td>
                     </tr>
                     <tr>
                         <td colSpan={2}>

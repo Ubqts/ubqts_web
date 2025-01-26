@@ -5,6 +5,7 @@ import { ProductContext, Product } from "@/src/context/Products";
 import useProducts from "@/src/hooks/useProducts";
 
 import { useContext, useState, useEffect } from "react";
+import TextEditor from "@/src/components/text_editor";
 
 const Page = () => {
     const [ product, setProduct ] = useState<Product>();
@@ -80,7 +81,7 @@ const Page = () => {
                 <div className="content">
                     {!isEditing && <h1 className="title">{product?.name}</h1>}
                     {!isEditing && <img src={product?.picture} alt="productImg" />}
-                    {!isEditing && <p>{product?.description}</p>}
+                    {!isEditing && <div dangerouslySetInnerHTML={{ __html: product?.description || "" }}></div>}
                     {isEditing && <input className="title" defaultValue={product?.name} onChange={(e) => setEditName(e.target.value)}/>}
                     {isEditing &&
                         <>
@@ -96,8 +97,14 @@ const Page = () => {
                             />
                         </>
                     }
-                    {isEditing && <textarea defaultValue={product?.description} onChange={(e) => setEditDescription(e.target.value)}/>}
-                </div>
+                    {/* {isEditing && <textarea defaultValue={product?.description} onChange={(e) => setEditDescription(e.target.value)}/>} */}
+                    {isEditing && 
+                        <TextEditor 
+                            editorContent={editDescription} 
+                            setEditorContent={setEditDescription}
+                        />
+                    }
+                    </div>
             </div>
             <div className="blankBanner" />
         </div>
