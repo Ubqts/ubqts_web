@@ -50,6 +50,7 @@ export default function News({ params: { lng } }: NewsProps) {
                                     picture={news.picture}
                                     description={news.description}
                                     date={news.date}
+                                    language={news.language}
                                     isAdding={false}
                                 />
                                 <div className="split" />
