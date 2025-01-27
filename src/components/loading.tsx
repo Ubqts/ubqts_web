@@ -5,7 +5,6 @@ import React, { useEffect, useState } from "react";
 
 type LoadingProps = {
     open: boolean;
-    // onclose: () => void;
 };
 
 export default function Loading({ open }: LoadingProps) {
@@ -16,7 +15,7 @@ export default function Loading({ open }: LoadingProps) {
             setDots((dots) => (dots + 1) % 4);
         }, 500);
         return () => clearInterval(interval);
-    }, []);
+    }, [dots]);
 
     return (
         <Dialog open={open} className="loadingDialog">
