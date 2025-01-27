@@ -12,11 +12,11 @@ export default function NewProduct() {
     const router = useRouter();
     const { data: session } = useSession();
     const { postProducts } = useProducts();
-    const [ productName, setProductName ] = useState("");
-    const [ productDescription, setproductDescription ] = useState("");
-    const [ picture, setPicture ] = useState<File | null>(null);
-    const [ image, setImage ] = useState("");
-    const [ imgLng, setImgLng ] = useState("");
+    const [productName, setProductName] = useState("");
+    const [productDescription, setproductDescription] = useState("");
+    const [picture, setPicture] = useState<File | null>(null);
+    const [image, setImage] = useState("");
+    const [imgLng, setImgLng] = useState("");
 
     // useEffect(() => {
     //     if (session?.user.role !== "admin") {
@@ -35,7 +35,7 @@ export default function NewProduct() {
         } else if (!imgLng) {
             alert("請選擇語言！");
         } else {
-            try { 
+            try {
                 await postProducts({
                     name: productName,
                     picture: picture,
@@ -59,6 +59,12 @@ export default function NewProduct() {
         }
     }
 
+    // if (session?.user.role !== "admin") {
+    //     alert("您無權限新增產品！");
+    //     router.push("/");
+    //     return null;
+    // }
+
     return (
         <div className="container">
             <div className="banner">
@@ -76,7 +82,7 @@ export default function NewProduct() {
                     </label>
                 </div>
                 {/* <textarea className="description" placeholder="產品描述" onChange={(e) => setproductDescription(e.target.value)} /> */}
-                <TextEditor editorContent={productDescription} setEditorContent={setproductDescription}/>
+                <TextEditor editorContent={productDescription} setEditorContent={setproductDescription} />
             </div>
             <div className="langContainer">
                 <div className="choice">
