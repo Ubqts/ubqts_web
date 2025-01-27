@@ -32,7 +32,7 @@ export default function NewsItem({ id, title, picture, description, date, isAddi
         }
     }, [isAdding]);
 
-    const handleSave = () => {
+    const handleSave = async () => {
         if (!EditTitle) {
             alert("新聞標題不得為空！");
         } else if (!EditDescription) {
@@ -42,7 +42,7 @@ export default function NewsItem({ id, title, picture, description, date, isAddi
         } else {
             if (!isAdding && id) {
                 try {
-                    putNews({
+                    await putNews({
                         id,
                         picture: EditPicture,
                         title: EditTitle,
@@ -56,7 +56,7 @@ export default function NewsItem({ id, title, picture, description, date, isAddi
                 }
             } else {
                 try {
-                    postNews({
+                    await postNews({
                         title: EditTitle,
                         picture: EditPicture,
                         description: EditDescription,
@@ -75,10 +75,10 @@ export default function NewsItem({ id, title, picture, description, date, isAddi
         }
     }
 
-    const handleDelete = () => {
+    const handleDelete = async () => {
         if (id) {
             try {
-                deleteNews(
+                await deleteNews(
                     id,
                 );
                 setIsEditing(false);

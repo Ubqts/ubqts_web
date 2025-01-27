@@ -60,7 +60,7 @@ const Page = () => {
             return;
         } else {
             try {
-                putProducts({
+                await putProducts({
                     id: id, 
                     name: editName,
                     picture: editPicture,
@@ -72,6 +72,12 @@ const Page = () => {
                 console.log("error: ", error);
             }    
         }
+    }
+
+    const handleDelete = async () => {
+        const url = window.location.href;
+        const id = Number(url.split('=').pop());
+        await deleteProducts(id);
     }
 
     return (
@@ -112,11 +118,7 @@ const Page = () => {
             {!isEditing && <a className="prevPage" onClick={() => setIsEditing(true)}>編輯產品</a>}
             {isEditing && <a className="prevPage" onClick={() => setIsEditing(false)}>取消編輯</a>}
             {isEditing && <a className="prevPage" onClick={() => handleSave()}>儲存編輯</a>}
-            <a className="prevPage" onClick={() => {
-                const url = window.location.href;
-                const id = Number(url.split('=').pop());
-                deleteProducts(id);
-            }}>刪除產品</a>
+            <a className="prevPage" onClick={() => handleDelete()}>刪除產品</a>
         </div>
         </>
         

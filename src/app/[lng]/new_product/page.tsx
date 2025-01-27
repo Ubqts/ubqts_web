@@ -18,14 +18,14 @@ export default function NewProduct() {
     const [ image, setImage ] = useState("");
     const [ imgLng, setImgLng ] = useState("");
 
-    useEffect(() => {
-        if (session?.user.role !== "admin") {
-            alert("您無權限新增產品！");
-            router.push("/");
-        }
-    }, [session]);
+    // useEffect(() => {
+    //     if (session?.user.role !== "admin") {
+    //         alert("您無權限新增產品！");
+    //         router.push("/");
+    //     }
+    // }, [session]);
 
-    const handleSave = () => {
+    const handleSave = async () => {
         if (!productName) {
             alert("產品名稱不得為空！");
         } else if (!picture) {
@@ -35,15 +35,15 @@ export default function NewProduct() {
         } else if (!imgLng) {
             alert("請選擇語言！");
         } else {
-            try {
-                postProducts({
+            try { 
+                await postProducts({
                     name: productName,
                     picture: picture,
                     description: productDescription,
                     language: imgLng
                 });
                 alert("產品新增成功！");
-                router.push("/");
+                // router.push("/");
             } catch (error) {
                 alert("產品新增失敗！");
                 console.log(error);

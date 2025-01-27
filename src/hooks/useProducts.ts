@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 export default function useProducts() {
     const router = useRouter();
 
-    //POST
+    // POST
     const postProducts = async ({
         name, 
         picture,
@@ -31,7 +31,10 @@ export default function useProducts() {
                 throw new Error(error);
             }
             const imageUrl = await imageRes.json();
+            console.log("name: ", name);
             console.log("imageUrl: ", imageUrl);
+            console.log("description: ", description);
+            console.log("language: ", language);
 
             // upload the image url and data to the database
             const res = await fetch("/api/products", {

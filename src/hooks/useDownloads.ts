@@ -126,7 +126,6 @@ export default function useDownloads() {
     return {
         postDownloads,
         getDownloads,
-        // putProducts,
         deleteDownloads,
     };
 }
