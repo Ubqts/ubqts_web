@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Input } from '@mui/material';
 
 import useAds from "@/src/hooks/useAds";
+import Loading from "@/src/components/loading";
 
 type NewAdsDialogProps = {
     open: boolean;
@@ -14,6 +15,7 @@ type NewAdsDialogProps = {
 export default function NewAdsDialog({ open, onClose }: NewAdsDialogProps) {
     const [image, setImage] = useState<File | null>(null);
     const [imgLng, setImgLng] = useState<string>("");
+    const [loading, setLoading] = useState(false);
     const { postAds } = useAds();
     const router = useRouter();
 
@@ -28,12 +30,15 @@ export default function NewAdsDialog({ open, onClose }: NewAdsDialogProps) {
             console.log("image: ", image);
             console.log("imgLng: ", imgLng);
             try {
+                setLoading(true);
                 await postAds({ picture: image, language: imgLng });
+                setLoading(false);
                 alert("新增廣告成功！");
-                // router.refresh();
+                router.refresh();
                 onClose();
             } catch (error) {
                 alert("新增廣告失敗！");
+                setLoading(false);
                 console.log("error: ", error);
             }
         }
@@ -66,6 +71,7 @@ export default function NewAdsDialog({ open, onClose }: NewAdsDialogProps) {
                     <Button onClick={() => handleAddAds()}>新增廣告</Button>
                 </DialogActions>
             </div>
+            <Loading open={loading}/>
         </Dialog>
     );
 }

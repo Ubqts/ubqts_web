@@ -5,10 +5,10 @@ import React, { useEffect, useState } from "react";
 
 type LoadingProps = {
     open: boolean;
-    onclose: () => void;
+    // onclose: () => void;
 };
 
-export default function Loading({ open, onclose }: LoadingProps) {
+export default function Loading({ open }: LoadingProps) {
     const [dots, setDots] = useState(0);
 
     useEffect(() => {
@@ -19,7 +19,7 @@ export default function Loading({ open, onclose }: LoadingProps) {
     }, []);
 
     return (
-        <Dialog open={open} onClose={onclose} className="loadingDialog">
+        <Dialog open={open} className="loadingDialog">
             <div className="loadingContent">
                 <p className="loadingText">系統處理中，請稍後{".".repeat(dots)}</p>
                 <div className="loadingContainer">
