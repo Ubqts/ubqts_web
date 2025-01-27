@@ -18,12 +18,12 @@ export default function NewProduct() {
     const [image, setImage] = useState("");
     const [imgLng, setImgLng] = useState("");
 
-    // useEffect(() => {
-    //     if (session?.user.role !== "admin") {
-    //         alert("您無權限新增產品！");
-    //         router.push("/");
-    //     }
-    // }, [session]);
+    useEffect(() => {
+        if (session?.user.role !== "admin") {
+            alert("您無權限新增產品！");
+            router.push("/");
+        }
+    }, [session]);
 
     const handleSave = async () => {
         if (!productName) {
