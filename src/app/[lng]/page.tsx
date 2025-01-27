@@ -8,7 +8,6 @@ import useProducts from "@/src/hooks/useProducts";
 import CarouselItem from "@/src/components/carousel_item";
 import ProductItem from "@/src/components/product_item";
 import NewAdsDialog from "@/src/components/NewAdsDialog";
-import Loading from "@/src/components/loading";
 
 import React, { useEffect, useContext, useState } from "react";
 import { useRouter } from "next/navigation";

@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Input } from '@mui/material';
 
 import useDownloads from "../hooks/useDownloads";
+import Loading from "./loading";
 
 type NewDownloadProps = {
     open: boolean;
@@ -14,6 +15,7 @@ type NewDownloadProps = {
 export default function NewDownloadDialog({ open, onClose }: NewDownloadProps) {
     const [ file, setFile ] = useState<File | null>(null);
     const [ name, setName ] = useState<string>("");
+    const [ loading, setLoading ] = useState(false);
     const { postDownloads } = useDownloads();
     const router = useRouter();
 
@@ -27,11 +29,15 @@ export default function NewDownloadDialog({ open, onClose }: NewDownloadProps) {
                 setName(file.name);
             }
             try {
+                setLoading(true);
                 await postDownloads({ name: name, file: file });
+                setLoading(false);
                 alert("新增檔案成功！");
                 onClose();
                 router.refresh();
             } catch (error) {
+                setLoading(false);
+                alert("發生錯誤！");
                 console.error("error: ", error);
             }
         }
@@ -51,6 +57,8 @@ export default function NewDownloadDialog({ open, onClose }: NewDownloadProps) {
                     <Button onClick={() => handleAddDownloads()}>新增檔案</Button>
                 </DialogActions>
             </div>
+
+            <Loading open={loading} />
         </Dialog>
     );
 }

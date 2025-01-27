@@ -1,5 +1,6 @@
 import "./news_item.css";
 import useNews from "@/src/hooks/useNews";
+import Loading from "./loading";
 
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
@@ -25,6 +26,7 @@ export default function NewsItem({ id, title, picture, description, language, da
     const [ EditDescription, setEditDescription ] = useState(description);
     const [ imgLng, setImgLng ] = useState<string | null>(language || null);
     const [ isEditing, setIsEditing ] = useState(false);
+    const [ loading, setLoading ] = useState(false);
     const { postNews, putNews, deleteNews } = useNews();
 
     useEffect(() => {
@@ -43,6 +45,7 @@ export default function NewsItem({ id, title, picture, description, language, da
         } else {
             if (!isAdding && id) {
                 try {
+                    setLoading(true);
                     await putNews({
                         id,
                         picture: EditPicture,
@@ -50,9 +53,12 @@ export default function NewsItem({ id, title, picture, description, language, da
                         description: EditDescription,
                         // date,
                     });
+                    setLoading(false);
                     alert("編輯新聞成功！");
+                    router.refresh();
                 } catch (error) {
                     alert("發生錯誤！");
+                    setLoading(false);
                     console.log("error: ", error);
                 }
             } else {
@@ -61,6 +67,7 @@ export default function NewsItem({ id, title, picture, description, language, da
                     return;
                 } else {
                     try {
+                        setLoading(true);
                         await postNews({
                             title: EditTitle,
                             picture: EditPicture,
@@ -68,9 +75,12 @@ export default function NewsItem({ id, title, picture, description, language, da
                             date: new Date(),
                             language: imgLng,
                         });
+                        setLoading(false);
                         alert("新增新聞成功！");
+                        router.refresh();
                     } catch (error) {
                         alert("發生錯誤！");
+                        setLoading(false);
                         console.log("error: ", error);
                     }
                 }
@@ -84,14 +94,17 @@ export default function NewsItem({ id, title, picture, description, language, da
     const handleDelete = async () => {
         if (id) {
             try {
+                setLoading(true);
                 await deleteNews(
                     id,
                 );
                 setIsEditing(false);
+                setLoading(false);
                 alert("刪除成功");
                 location.reload();
             } catch (error) {
                 alert("發生錯誤！");
+                setLoading(false);
                 console.log("error: ", error);
             }
         }
@@ -170,6 +183,8 @@ export default function NewsItem({ id, title, picture, description, language, da
                 {isEditing && <button className="saveButton" onClick={() => handleSave()}>儲存</button>}
                 {isEditing && <button className="cancelButton" onClick={() => handleCancel()}>取消</button>}
             </div>
+
+            <Loading open={loading} />
         </div>
     );
 }
