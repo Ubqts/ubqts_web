@@ -1,3 +1,10 @@
+.loadingText {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    color: #6FBA2C;
+}
+
 .loadingContainer {
     display: inline-flex;
     flex-wrap: wrap;
@@ -10,7 +17,7 @@
     height: 0;
     padding-top: 31%;
     margin-bottom: 3%;
-    background-color: SandyBrown;
+    background-color: #6FBA2C;
     animation: hideItem .8s infinite;
 }
 
