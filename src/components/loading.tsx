@@ -1,9 +1,14 @@
 import "./loading.css";
 
+import Dialog from "@mui/material/Dialog";
 import React, { useEffect, useState } from "react";
 
+type LoadingProps = {
+    open: boolean;
+    onclose: () => void;
+};
 
-export default function Loading() {
+export default function Loading({ open, onclose }: LoadingProps) {
     const [dots, setDots] = useState(0);
 
     useEffect(() => {
@@ -14,19 +19,21 @@ export default function Loading() {
     }, []);
 
     return (
-        <div>
-            <p className="loadingText">系統處理中，請稍後{".".repeat(dots)}</p>
-            <div className="loadingContainer">
-                <div className="loadingItem"></div>
-                <div className="loadingItem"></div>
-                <div className="loadingItem"></div>
-                <div className="loadingItem"></div>
-                <div className="loadingItem"></div>
-                <div className="loadingItem"></div>
-                <div className="loadingItem"></div>
-                <div className="loadingItem"></div>
-                <div className="loadingItem"></div>
+        <Dialog open={open} onClose={onclose} className="loadingDialog">
+            <div className="loadingContent">
+                <p className="loadingText">系統處理中，請稍後{".".repeat(dots)}</p>
+                <div className="loadingContainer">
+                    <div className="loadingItem"></div>
+                    <div className="loadingItem"></div>
+                    <div className="loadingItem"></div>
+                    <div className="loadingItem"></div>
+                    <div className="loadingItem"></div>
+                    <div className="loadingItem"></div>
+                    <div className="loadingItem"></div>
+                    <div className="loadingItem"></div>
+                    <div className="loadingItem"></div>
+                </div>
             </div>
-        </div>
+        </Dialog>
     );
 }
