@@ -10,19 +10,20 @@ export type NewsProps = {
     title: string;
     picture: string;
     description: string;
+    language?: string;
     date?: Date;
     isAdding: boolean;
     setIsAdding?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function NewsItem({ id, title, picture, description, date, isAdding, setIsAdding }: NewsProps) {
+export default function NewsItem({ id, title, picture, description, language, date, isAdding, setIsAdding }: NewsProps) {
     const router = useRouter();
     const { data: session } = useSession();
     const [ EditTitle, setEditTitle ] = useState(title);
     const [ EditPicture, setEditPicture ] = useState<File | null>(null);
     const [ EditImage, setEditImage ] = useState(picture);
     const [ EditDescription, setEditDescription ] = useState(description);
-    const [ imgLng, setImgLng ] = useState("");
+    const [ imgLng, setImgLng ] = useState<string | null>(language || null);
     const [ isEditing, setIsEditing ] = useState(false);
     const { postNews, putNews, deleteNews } = useNews();
 
@@ -37,8 +38,8 @@ export default function NewsItem({ id, title, picture, description, date, isAddi
             alert("新聞標題不得為空！");
         } else if (!EditDescription) {
             alert("新聞內容不得為空！");
-        } else if (EditPicture === null) {
-            alert("圖片不得為空！");
+        } else if (imgLng === null) {
+            alert("請選擇語言！");
         } else {
             if (!isAdding && id) {
                 try {
@@ -55,18 +56,23 @@ export default function NewsItem({ id, title, picture, description, date, isAddi
                     console.log("error: ", error);
                 }
             } else {
-                try {
-                    await postNews({
-                        title: EditTitle,
-                        picture: EditPicture,
-                        description: EditDescription,
-                        date: new Date(),
-                        language: imgLng,
-                    });
-                    alert("新增新聞成功！");
-                } catch (error) {
-                    alert("發生錯誤！");
-                    console.log("error: ", error);
+                if (EditPicture === null) {
+                    alert("請選擇圖片！");
+                    return;
+                } else {
+                    try {
+                        await postNews({
+                            title: EditTitle,
+                            picture: EditPicture,
+                            description: EditDescription,
+                            date: new Date(),
+                            language: imgLng,
+                        });
+                        alert("新增新聞成功！");
+                    } catch (error) {
+                        alert("發生錯誤！");
+                        console.log("error: ", error);
+                    }
                 }
             }
             setIsEditing(false);

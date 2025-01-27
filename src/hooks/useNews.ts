@@ -84,7 +84,7 @@ export default function useNews() {
         // date,
     }: {
         id: number;
-        picture: File;
+        picture: File | null;
         title: string;
         description: string;
         // date: Date;
@@ -105,36 +105,39 @@ export default function useNews() {
         const target = news.find((news: any) => news.id === id);
         const url = target.picture;
 
-        // delete image from cloud
-        const resDelete = await fetch("/api/image", {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                url,
-            }),
-        });
-        if (!resDelete.ok) {
-            const body = await resDelete.json();
-            throw new Error(body.error);
-        }
+        let imageUrl = { url: url };
+        if (picture !== null) {
+            // delete image from cloud
+            const resDelete = await fetch("/api/image", {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    url,
+                }),
+            });
+            if (!resDelete.ok) {
+                const body = await resDelete.json();
+                throw new Error(body.error);
+            }
 
-        // upload the new image to cloud
-        const formData = new FormData();
-        formData.append("file", picture);
+            // upload the new image to cloud
+            const formData = new FormData();
+            formData.append("file", picture);
 
-        const imageRes = await fetch("/api/image", {
-            method: "POST",
-            body: formData,
-        });
-        if (!imageRes.ok) {
-            const error = await imageRes.json();
-            alert("Error uploading image");
-            throw new Error(error);
+            const imageRes = await fetch("/api/image", {
+                method: "POST",
+                body: formData,
+            });
+            if (!imageRes.ok) {
+                const error = await imageRes.json();
+                alert("Error uploading image");
+                throw new Error(error);
+            }
+            imageUrl = await imageRes.json();
+            console.log("imageUrl: ", imageUrl);
         }
-        const imageUrl = await imageRes.json();
-        console.log("imageUrl: ", imageUrl);
 
         // update the object in the database
         const res = await fetch('/api/news', {
