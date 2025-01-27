@@ -17,7 +17,7 @@ export default function NewAdsDialog({ open, onClose }: NewAdsDialogProps) {
     const { postAds } = useAds();
     const router = useRouter();
 
-    const handleAddAds = () => {
+    const handleAddAds = async () => {
         if (image === null) {
             alert("請輸入圖片");
             return;
@@ -28,10 +28,10 @@ export default function NewAdsDialog({ open, onClose }: NewAdsDialogProps) {
             console.log("image: ", image);
             console.log("imgLng: ", imgLng);
             try {
-                postAds({ picture: image, language: imgLng });
+                await postAds({ picture: image, language: imgLng });
                 alert("新增廣告成功！");
+                // router.refresh();
                 onClose();
-                router.refresh();
             } catch (error) {
                 alert("新增廣告失敗！");
                 console.log("error: ", error);

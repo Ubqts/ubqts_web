@@ -17,7 +17,7 @@ export default function NewDownloadDialog({ open, onClose }: NewDownloadProps) {
     const { postDownloads } = useDownloads();
     const router = useRouter();
 
-    const handleAddDownloads = () => {
+    const handleAddDownloads = async () => {
         if (file === null) {
             alert("請選擇檔案");
             return;
@@ -27,7 +27,7 @@ export default function NewDownloadDialog({ open, onClose }: NewDownloadProps) {
                 setName(file.name);
             }
             try {
-                postDownloads({ name: name, file: file });
+                await postDownloads({ name: name, file: file });
                 alert("新增檔案成功！");
                 onClose();
                 router.refresh();

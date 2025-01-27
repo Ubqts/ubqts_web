@@ -12,9 +12,9 @@ export default function CarouselItem({ id, picture }: CarouselProps) {
     const { deleteAds } = useAds();
     const router = useRouter();
 
-    const handleDelete = () => {
+    const handleDelete = async () => {
         try {
-            deleteAds(id);
+            await deleteAds(id);
             alert("廣告刪除成功");
             router.refresh();
         } catch (error) {
