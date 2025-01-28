@@ -24,13 +24,14 @@ export default function NewDownloadDialog({ open, onClose }: NewDownloadProps) {
             alert("請選擇檔案");
             return;
         } else {
-            if (name === "") {
-                alert("未輸入檔名，將以原始檔案名稱作為檔名");
-                setName(file.name);
-            }
             try {
                 setLoading(true);
-                await postDownloads({ name: name, file: file });
+                if (name === "") {
+                    alert("未輸入檔名，將以原始檔案名稱作為檔名");
+                    await postDownloads({ name: file.name.substring(0, file.name.lastIndexOf(".")), file: file });
+                } else {
+                    await postDownloads({ name: name, file: file });
+                }
                 setLoading(false);
                 alert("新增檔案成功！");
                 onClose();
@@ -43,13 +44,18 @@ export default function NewDownloadDialog({ open, onClose }: NewDownloadProps) {
         }
     }
 
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files[0]) {
+            setFile(e.target.files[0]);
+        }
+    }
+
     return (
         <Dialog open={open} onClose={onClose}>
             <div>
                 <DialogTitle>新增檔案</DialogTitle>
                 <div className="fileContainer">
-                    <input type="file"
-                        onChange={(e) => setFile(e.target.files ? e.target.files[0] : null)} />
+                    <input type="file" onChange={handleFileChange} />
                     <Input placeholder="檔案名稱" onChange={(e) => setName(e.target.value)}/>
                 </div>
                 <DialogActions>

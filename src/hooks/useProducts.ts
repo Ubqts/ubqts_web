@@ -31,11 +31,8 @@ export default function useProducts() {
                 throw new Error(error);
             }
             const imageUrl = await imageRes.json();
-            console.log("name: ", name);
             console.log("imageUrl: ", imageUrl);
-            console.log("description: ", description);
-            console.log("language: ", language);
-
+            
             // upload the image url and data to the database
             const res = await fetch("/api/products", {
                 method: "POST",
@@ -53,9 +50,9 @@ export default function useProducts() {
                 const body = await res.json();
                 throw new Error(body.error);
             }
-            router.refresh();
+            // router.refresh();
         } catch (error) {
-            console.error("error: ", error);
+            console.error("error: \"", error, "\"");
         }
     }
 
@@ -84,7 +81,7 @@ export default function useProducts() {
     }: {
         id: number;
         name: string;
-        picture: File;
+        picture: File | null;
         description: string;
     }) => {
         // get the image url from the database
@@ -103,36 +100,39 @@ export default function useProducts() {
         const target = products.find((product: any) => product.id === id);
         const url = target.picture;
 
-        // delete image from cloud
-        const resDelete = await fetch("/api/image", {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                url,
-            }),
-        });
-        if (!resDelete.ok) {
-            const body = await resDelete.json();
-            throw new Error(body.error);
-        }
+        let imageUrl = { url: url };
+        if (picture !== null) {
+            // delete image from cloud
+            const resDelete = await fetch("/api/image", {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    url,
+                }),
+            });
+            if (!resDelete.ok) {
+                const body = await resDelete.json();
+                throw new Error(body.error);
+            }
 
-        // upload the new image to cloud
-        const formData = new FormData();
-        formData.append("file", picture);
+            // upload the new image to cloud
+            const formData = new FormData();
+            formData.append("file", picture);
 
-        const imageRes = await fetch("/api/image", {
-            method: "POST",
-            body: formData,
-        });
-        if (!imageRes.ok) {
-            const error = await imageRes.json();
-            alert("Error uploading image");
-            throw new Error(error);
+            const imageRes = await fetch("/api/image", {
+                method: "POST",
+                body: formData,
+            });
+            if (!imageRes.ok) {
+                const error = await imageRes.json();
+                alert("Error uploading image");
+                throw new Error(error);
+            }
+            imageUrl = await imageRes.json();
+            console.log("imageUrl: ", imageUrl);
         }
-        const imageUrl = await imageRes.json();
-        console.log("imageUrl: ", imageUrl);
 
         // update the object in the database
         const res = await fetch('/api/products', {

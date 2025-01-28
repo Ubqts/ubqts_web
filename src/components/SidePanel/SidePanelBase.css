@@ -1,0 +1,14 @@
+.productPanel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    width: 20%;
+    padding: 0 1rem;
+}
+
+.productIntroduction {
+    background-color: #6FBA2C;
+    color: white;
+    padding: 0.5rem;
+}
