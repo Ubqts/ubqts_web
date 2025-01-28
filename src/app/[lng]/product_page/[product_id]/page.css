@@ -4,6 +4,10 @@ td {
     text-align: center;
 }
 
+.container {
+    margin: 0 auto 0 0;
+}
+
 .content {
     width: 70%;
     padding-left: 80px;
