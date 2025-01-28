@@ -1,9 +1,12 @@
 "use client";
 import downloadIcon from "@/public/img/downloadIcon.png";
 import deleteIcon from "@/public/img/deleteIcon.png";
+import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import { useState } from "react";
 
 import useDownloads from "@/src/hooks/useDownloads";
+import Loading from "./loading";
 
 export type DownloadItemProps = {
     id: number;
@@ -14,15 +17,21 @@ export type DownloadItemProps = {
 }
 
 export default function DownloadItemSmall({ id, fileName, fileType, fileSize, downloadUrl }: DownloadItemProps) {
+    const [ loading, setLoading ] = useState(false);
+    const router = useRouter();
     const { data: session } = useSession();
     const { deleteDownloads } = useDownloads();
 
     const handleDelete = async () => {
         if (id) {
             try {
+                setLoading(true);
                 await deleteDownloads(id);
+                setLoading(false);
                 alert("Delete successfully");
+                // router.refresh();
             } catch (error) {
+                setLoading(false);
                 alert("Delete failed");
                 console.error("error: ", error);
             }
@@ -50,6 +59,7 @@ export default function DownloadItemSmall({ id, fileName, fileType, fileSize, do
     }
 
     return (
+        <>
         <tr>
             <td className="fileName">{fileName}</td>
             <td>.{fileType}</td>
@@ -67,5 +77,7 @@ export default function DownloadItemSmall({ id, fileName, fileType, fileSize, do
                 </td>
             }
         </tr>
+        <Loading open={loading} />
+        </>
     );
 }

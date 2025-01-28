@@ -3,19 +3,24 @@ import "./page.css";
 // import EditProductItem from "@/src/components/edit_product_item";
 import { ProductContext, Product } from "@/src/context/Products";
 import useProducts from "@/src/hooks/useProducts";
-
-import { useContext, useState, useEffect } from "react";
 import TextEditor from "@/src/components/text_editor";
+import Loading from "@/src/components/loading";
+import { useContext, useState, useEffect } from "react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const Page = () => {
+    const router = useRouter();
     const [ product, setProduct ] = useState<Product>();
     const [ isEditing, setIsEditing ] = useState<boolean>(false);
     const [ editName, setEditName ] = useState<string>("");
     const [ editImage, setEditImage ] = useState<string>("");
     const [ editPicture, setEditPicture ] = useState<File | null>(null);
     const [ editDescription, setEditDescription ] = useState<string>("");
+    const [ loading, setLoading ] = useState<boolean>(false);
     const { products } = useContext(ProductContext);
     const { deleteProducts, putProducts } = useProducts();
+    const { data: session } = useSession();
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -49,10 +54,7 @@ const Page = () => {
     const handleSave = async () => {
         const url = window.location.href;
         const id = Number(url.split('=').pop());
-        if (editPicture === null) {
-            alert("請輸入圖片");
-            return;
-        } else if (editName === "") {
+        if (editName === "") {
             alert("請輸入名稱");
             return;
         } else if (editDescription === "") {
@@ -60,14 +62,18 @@ const Page = () => {
             return;
         } else {
             try {
+                setLoading(true);
                 await putProducts({
                     id: id, 
                     name: editName,
                     picture: editPicture,
                     description: editDescription,
                 });
-                alert("編輯成功！");    
+                setLoading(false);
+                alert("編輯成功！");
+                router.refresh();
             } catch(error) {
+                setLoading(false);
                 alert("編輯失敗！");
                 console.log("error: ", error);
             }    
@@ -77,7 +83,17 @@ const Page = () => {
     const handleDelete = async () => {
         const url = window.location.href;
         const id = Number(url.split('=').pop());
-        await deleteProducts(id);
+        try {
+            setLoading(true);
+            await deleteProducts(id);
+            setLoading(false);
+            alert("刪除成功！");
+            router.push("/product_page");
+        } catch (error) {
+            setLoading(false);
+            alert("刪除失敗！");
+            console.log("error: ", error);
+        }
     }
 
     return (
@@ -114,15 +130,17 @@ const Page = () => {
             </div>
             <div className="blankBanner" />
         </div>
-        <div className="">
-            {!isEditing && <a className="prevPage" onClick={() => setIsEditing(true)}>編輯產品</a>}
-            {isEditing && <a className="prevPage" onClick={() => setIsEditing(false)}>取消編輯</a>}
-            {isEditing && <a className="prevPage" onClick={() => handleSave()}>儲存編輯</a>}
-            <a className="prevPage" onClick={() => handleDelete()}>刪除產品</a>
-        </div>
+        {session?.user.role === "admin" && 
+            <div className="adminButtons">
+                {!isEditing && <button className="prevPage" onClick={() => setIsEditing(true)}>編輯產品</button>}
+                {isEditing && <button className="prevPage" onClick={() => setIsEditing(false)}>取消編輯</button>}
+                {isEditing && <button className="prevPage" onClick={() => handleSave()}>儲存編輯</button>}
+                <button className="prevPage" onClick={() => handleDelete()}>刪除產品</button>
+                <a className="prevPage" href="/new_product">新增產品</a>
+            </div>
+        }
+        <Loading open={loading} />
         </>
-        
-        
     )
 }
 

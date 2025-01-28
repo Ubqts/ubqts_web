@@ -1,10 +1,11 @@
 import { useRouter } from 'next/navigation';
 import { useState, useContext, useEffect } from 'react';
 import { TFunction } from 'i18next';
+import { useSession } from 'next-auth/react';
 
+import './SidePanelBase.css';
 import { ProductContext, Product } from '../../context/Products';
 import useProducts from '../../hooks/useProducts';
-import { useSession } from 'next-auth/react';
 
 type SidePanelProps = {
     t: ((key: string) => string) & TFunction<"translation", undefined>;
@@ -29,25 +30,13 @@ export const SidePanelBase = ({ t, lng }: SidePanelProps) => {
 
     return (
         <div className="productPanel">
-            <a href="/product_page">{t("product-introduction")}</a>
+            <a className="productIntroduction" href="/product_page">{t("product-introduction")}</a>
             {session ? (
                 productList.map((product) => (
-                    <a
-                        className="product"
-                        key={product.id}
-                        href={`/product_page/id=${product.id}`}
-                    >
-                        {product.name}
-                    </a>
+                    <a className="product" key={product.id} href={`/product_page/id=${product.id}`}>{product.name}</a>
             ))) : (
                 productList.filter((product) => (product.language.match(lng))).map((product) => (
-                    <a
-                        className="product"
-                        key={product.id}
-                        href={`/product_page/id=${product.id}`}
-                    >
-                        {product.name}
-                    </a>
+                    <a className="product" key={product.id} href={`/product_page/id=${product.id}`}>{product.name}</a>
             )))}
         </div>
     )

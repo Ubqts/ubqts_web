@@ -43,9 +43,7 @@ export default function useAds() {
                 const body = await res.json();
                 throw new Error(body.error);
             }
-            
             router.refresh();
-        
         } catch (error) {
             console.error("error: ", error);
         }

@@ -28,8 +28,11 @@ export default function useDownloads() {
                 throw new Error(error);
             }
             const fileUrl = await fileRes.json();
-            const fileType = file.type.split("/")[1];
             const fileSize = file.size.toString();
+            let fileType = file.type.split("/")[1];
+            if (file.name.endsWith(".exe")) {
+                fileType = "exe";
+            }
             console.log("fileUrl: ", fileUrl.url);
             console.log("fileSize: ", fileSize);
             console.log("fileType: ", fileType);
@@ -87,9 +90,9 @@ export default function useDownloads() {
             throw new Error(body.error);
         }
         const downloadsList = await resGet.json();
-        const downloads = downloadsList.products;
+        const downloads = downloadsList.downloads;
         const target = downloads.find((download: any) => download.id === id);
-        const url = target.file;
+        const url = target.url;
 
         // delete image from cloud
         const resDelete = await fetch("/api/image", {

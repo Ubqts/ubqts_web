@@ -7,44 +7,54 @@ import { useSession } from "next-auth/react";
 import "./page.css";
 import useProducts from "@/src/hooks/useProducts";
 import TextEditor from "@/src/components/text_editor";
+import Loading from "@/src/components/loading";
 
 export default function NewProduct() {
     const router = useRouter();
     const { data: session } = useSession();
     const { postProducts } = useProducts();
-    const [productName, setProductName] = useState("");
-    const [productDescription, setproductDescription] = useState("");
+    const [productName, setProductName] = useState("產品名稱");
+    const [productDescription, setproductDescription] = useState("This is the initial content of the editor");
     const [picture, setPicture] = useState<File | null>(null);
     const [image, setImage] = useState("");
     const [imgLng, setImgLng] = useState("");
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        if (session?.user.role !== "admin") {
+        console.log(session);
+        if (session !== undefined && session?.user.role !== "admin") {
             alert("您無權限新增產品！");
-            router.push("/");
+            // router.push("/");
         }
     }, [session]);
 
     const handleSave = async () => {
-        if (!productName) {
+        if (productName === "") {
             alert("產品名稱不得為空！");
-        } else if (!picture) {
-            alert("請輸入產品圖片網址！");
-        } else if (!productDescription) {
+            return;
+        } else if (picture === null) {
+            alert("請輸入產品圖片！");
+            return;
+        } else if (productDescription === "") {
             alert("產品敘述不得為空！");
-        } else if (!imgLng) {
+            return;
+        } else if (imgLng === "") {
             alert("請選擇語言！");
+            return;
         } else {
             try {
+                setLoading(true);
                 await postProducts({
                     name: productName,
                     picture: picture,
                     description: productDescription,
                     language: imgLng
                 });
+                setLoading(false);
                 alert("產品新增成功！");
-                // router.push("/");
+                router.push("/");
             } catch (error) {
+                setLoading(false);
                 alert("產品新增失敗！");
                 console.log(error);
             }
@@ -58,12 +68,6 @@ export default function NewProduct() {
             setImage(newImage);
         }
     }
-
-    // if (session?.user.role !== "admin") {
-    //     alert("您無權限新增產品！");
-    //     router.push("/");
-    //     return null;
-    // }
 
     return (
         <div className="container">
@@ -100,11 +104,13 @@ export default function NewProduct() {
             </div>
             <div className="blankBanner" />
             <div className="btnContainer prevent-select">
-                <a className="add" href="/#" onClick={() => handleSave()}>新增</a>
+                <button className="add" onClick={() => handleSave()}>新增</button>
                 <a className="cancel" href="/#">取消</a>
             </div>
             <div className="blankBanner" />
             <div className="blankBanner" />
+
+            <Loading open={loading} />
         </div>
     );
 };
