@@ -11,14 +11,12 @@ import { TFunction } from "i18next";
 import { languages } from "../../i18n/settings";
 import { signOut, useSession } from "next-auth/react";
 import { CounterClockwiseClockIcon } from "@radix-ui/react-icons";
-import { useRouter } from "next/navigation";
 
 type HeaderProps = {
     t: ((key: string) => string) & TFunction<"translation", undefined>;
 };
 
 export const HeaderBase = ({ t }: HeaderProps) => {
-    const router = useRouter();
     const { data: session } = useSession();
     // let page = "";
 
