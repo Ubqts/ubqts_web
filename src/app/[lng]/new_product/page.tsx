@@ -24,7 +24,7 @@ export default function NewProduct() {
         console.log(session);
         if (session !== undefined && session?.user.role !== "admin") {
             alert("您無權限新增產品！");
-            // router.push("/");
+            router.push("/");
         }
     }, [session]);
 
