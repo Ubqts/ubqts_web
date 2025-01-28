@@ -37,7 +37,7 @@ export default function NewsPage() {
             <div className="imgWithText">
                 <img src={newsItem?.picture} alt="img" />
                 <p>{newsItem?.description}</p>
-                <p>{newsItem?.date?.toString()}</p>
+                {/* <p>{newsItem?.date?.toString()}</p> */}
             </div>
             <div className="blankBanner" />
             <a className="prevPage" href="/news">回上一頁</a>

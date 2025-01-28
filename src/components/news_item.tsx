@@ -175,8 +175,8 @@ export default function NewsItem({ id, title, picture, description, language, da
                         </div>
                     }
                 </div>
-                {/* <p className="date">{date.getFullYear()}-{date.getMonth()}-{date.getDate()}</p> */}
-                <p className="date">{date?.toString()}</p>
+                {/* <p className="date">{date?.getFullYear()}-{date?.getMonth()}-{date?.getDate()}</p> */}
+                <p className="date">{date?.toString().split("T")[0]}</p>
             </div >
             <div className="apiButtons">
                 {(!isAdding && isEditing) && <button className="deleteButton" onClick={() => handleDelete()}>刪除</button>}
