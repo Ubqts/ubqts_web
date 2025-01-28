@@ -18,7 +18,6 @@ type HeaderProps = {
 
 export const HeaderBase = ({ t }: HeaderProps) => {
     const { data: session } = useSession();
-    // let page = "";
 
     const handleSidebarDisplay = () => {
         document.body.style.overflowY = "hidden";
@@ -65,14 +64,13 @@ export const HeaderBase = ({ t }: HeaderProps) => {
                     </div>
                     <div className="languageList">
                         {languages.map((lang) => {
-                            // if (typeof(window) !== "undefined") {
-                            //     const url = window.location.href;
-                            //     page = url.split("/").slice(4).join("/");
-                            //     console.log("lang", lang);
-                            //     console.log("page", page);
-                            // }
+                            let page = "";
+                            if (typeof(window) !== "undefined") {
+                                const url = window.location.href;
+                                page = url.split("/").slice(4).join("/");
+                            }
                             return (
-                                <a key={lang} href={`/${lang}/${window.location.href.split("/").slice(4).join("/")}`}>
+                                <a key={lang} href={`/${lang}/${page}`}>
                                     {lang === "tw" ? "繁體中文" : lang === "cn" ? "简体中文" : "English"}
                                 </a>
                             );
