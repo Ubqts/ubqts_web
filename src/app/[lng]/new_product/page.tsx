@@ -21,7 +21,7 @@ export default function NewProduct() {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        console.log(session);
+        // console.log(session);
         if (session !== undefined && session?.user.role !== "admin") {
             alert("您無權限新增產品！");
             router.push("/");

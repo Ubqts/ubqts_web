@@ -35,7 +35,7 @@ const LoginForm = () => {
             console.error(signInData.error);
             alert('Login failed: wrong username or password');
         } else {
-            console.log('success');
+            // console.log('success');
             alert('Logged in successfully, redirecting to home page');
             router.refresh();
             router.push('/#');

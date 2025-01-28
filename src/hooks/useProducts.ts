@@ -31,7 +31,7 @@ export default function useProducts() {
                 throw new Error(error);
             }
             const imageUrl = await imageRes.json();
-            console.log("imageUrl: ", imageUrl);
+            // console.log("imageUrl: ", imageUrl);
             
             // upload the image url and data to the database
             const res = await fetch("/api/products", {
@@ -131,7 +131,7 @@ export default function useProducts() {
                 throw new Error(error);
             }
             imageUrl = await imageRes.json();
-            console.log("imageUrl: ", imageUrl);
+            // console.log("imageUrl: ", imageUrl);
         }
 
         // update the object in the database
