@@ -1,7 +1,6 @@
 import './page.css';
 
 export default function ProductPage() {
-
     return (
         <>
             {/* 感覺可以放個所有產品的概述之類的 */}
@@ -16,7 +15,6 @@ export default function ProductPage() {
                 <p>Iste mollitia necessitatibus accusamus repellendus rem quo quia sit amet. Delectus ut ducimus tempore corrupti consectetur esse blanditiis ipsum eos inventore, odio facere architecto fuga qui reprehenderit sapiente deleniti ab deserunt assumenda placeat similique quia, sunt dicta! Tempore reprehenderit veniam, sapiente fuga ut nisi sint dolor dolorem, voluptatibus perspiciatis aliquid?</p>
                 <p>Suscipit culpa nesciunt, possimus minus debitis obcaecati excepturi sequi, minima, cumque explicabo autem odio asperiores earum neque nisi quae nobis mollitia vitae. Hic laborum voluptate, quia voluptatem natus perferendis laboriosam similique corrupti itaque, beatae vitae dolores dolore, ab blanditiis dignissimos quae velit minima repellendus minus eveniet impedit! Perspiciatis, laborum assumenda?</p>                
             </div>
-            <div><a className="prevPage" href="/new_product">新增產品</a></div>
         </>
     );
 }
