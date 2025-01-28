@@ -11,13 +11,13 @@ import { useRouter } from "next/navigation";
 
 const Page = () => {
     const router = useRouter();
-    const [ product, setProduct ] = useState<Product>();
-    const [ isEditing, setIsEditing ] = useState<boolean>(false);
-    const [ editName, setEditName ] = useState<string>("");
-    const [ editImage, setEditImage ] = useState<string>("");
-    const [ editPicture, setEditPicture ] = useState<File | null>(null);
-    const [ editDescription, setEditDescription ] = useState<string>("");
-    const [ loading, setLoading ] = useState<boolean>(false);
+    const [product, setProduct] = useState<Product>();
+    const [isEditing, setIsEditing] = useState<boolean>(false);
+    const [editName, setEditName] = useState<string>("");
+    const [editImage, setEditImage] = useState<string>("");
+    const [editPicture, setEditPicture] = useState<File | null>(null);
+    const [editDescription, setEditDescription] = useState<string>("");
+    const [loading, setLoading] = useState<boolean>(false);
     const { products } = useContext(ProductContext);
     const { deleteProducts, putProducts } = useProducts();
     const { data: session } = useSession();
@@ -64,7 +64,7 @@ const Page = () => {
             try {
                 setLoading(true);
                 await putProducts({
-                    id: id, 
+                    id: id,
                     name: editName,
                     picture: editPicture,
                     description: editDescription,
@@ -72,11 +72,11 @@ const Page = () => {
                 setLoading(false);
                 alert("編輯成功！");
                 router.refresh();
-            } catch(error) {
+            } catch (error) {
                 setLoading(false);
                 alert("編輯失敗！");
                 console.log("error: ", error);
-            }    
+            }
         }
     }
 
@@ -98,48 +98,48 @@ const Page = () => {
 
     return (
         <>
-        <div className="container">
-            <div className="wrapper">
-                <div className="content">
-                    {!isEditing && <h1 className="title">{product?.name}</h1>}
-                    {!isEditing && <img src={product?.picture} alt="productImg" />}
-                    {!isEditing && <div dangerouslySetInnerHTML={{ __html: product?.description || "" }}></div>}
-                    {isEditing && <input className="title" defaultValue={product?.name} onChange={(e) => setEditName(e.target.value)}/>}
-                    {isEditing &&
-                        <>
-                            <label htmlFor="fileInput">
-                                <img src={editImage} alt="1" className="editNewsImgButton" />
-                            </label>
-                            <input
-                                id="fileInput"
-                                type="file"
-                                accept="image/*"
-                                onChange={handleImageChange}
-                                style={{ display: 'none' }}
+            <div className="container">
+                <div className="wrapper">
+                    <div className="content">
+                        {!isEditing && <h1 className="title">{product?.name}</h1>}
+                        {!isEditing && <img src={product?.picture} alt="productImg" />}
+                        {!isEditing && <div dangerouslySetInnerHTML={{ __html: product?.description || "" }}></div>}
+                        {isEditing && <input className="title" defaultValue={product?.name} onChange={(e) => setEditName(e.target.value)} />}
+                        {isEditing &&
+                            <>
+                                <label htmlFor="fileInput">
+                                    <img src={editImage} alt="1" className="editNewsImgButton" />
+                                </label>
+                                <input
+                                    id="fileInput"
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={handleImageChange}
+                                    style={{ display: 'none' }}
+                                />
+                            </>
+                        }
+                        {/* {isEditing && <textarea defaultValue={product?.description} onChange={(e) => setEditDescription(e.target.value)}/>} */}
+                        {isEditing &&
+                            <TextEditor
+                                editorContent={editDescription}
+                                setEditorContent={setEditDescription}
                             />
-                        </>
-                    }
-                    {/* {isEditing && <textarea defaultValue={product?.description} onChange={(e) => setEditDescription(e.target.value)}/>} */}
-                    {isEditing && 
-                        <TextEditor 
-                            editorContent={editDescription} 
-                            setEditorContent={setEditDescription}
-                        />
-                    }
+                        }
                     </div>
+                </div>
+                <div className="blankBanner" />
             </div>
-            <div className="blankBanner" />
-        </div>
-        {session?.user.role === "admin" && 
-            <div className="adminButtons">
-                {!isEditing && <button className="prevPage" onClick={() => setIsEditing(true)}>編輯產品</button>}
-                {isEditing && <button className="prevPage" onClick={() => setIsEditing(false)}>取消編輯</button>}
-                {isEditing && <button className="prevPage" onClick={() => handleSave()}>儲存編輯</button>}
-                <button className="prevPage" onClick={() => handleDelete()}>刪除產品</button>
-                <a className="prevPage" href="/new_product">新增產品</a>
-            </div>
-        }
-        <Loading open={loading} />
+            {session?.user.role === "admin" &&
+                <div className="adminButtons">
+                    {!isEditing && <button className="prevPage" onClick={() => setIsEditing(true)}>編輯產品</button>}
+                    {isEditing && <button className="prevPage" onClick={() => setIsEditing(false)}>取消編輯</button>}
+                    {isEditing && <button className="prevPage" onClick={() => handleSave()}>儲存編輯</button>}
+                    <button className="prevPage" onClick={() => handleDelete()}>刪除產品</button>
+                    <a className="prevPage" href="/new_product">新增產品</a>
+                </div>
+            }
+            <Loading open={loading} />
         </>
     )
 }

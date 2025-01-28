@@ -1,0 +1,26 @@
+td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+}
+
+.content {
+    width: 70%;
+    padding-left: 80px;
+    padding-top: 0px;
+    text-align: left;
+}
+
+.content>img {
+    display: block;
+    width: auto;
+    height: auto;
+    max-height: 300px;
+    margin: 2% 0px 5% 0px;
+}
+
+.content>p {
+    text-align: left;
+    margin-bottom: 20px;
+    font-size: calc(11px + 0.3vw);
+}
