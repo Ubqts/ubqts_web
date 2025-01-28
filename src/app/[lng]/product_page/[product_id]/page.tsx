@@ -99,34 +99,32 @@ const Page = () => {
     return (
         <>
             <div className="container">
-                <div className="wrapper">
-                    <div className="content">
-                        {!isEditing && <h1 className="title">{product?.name}</h1>}
-                        {!isEditing && <img src={product?.picture} alt="productImg" />}
-                        {!isEditing && <div dangerouslySetInnerHTML={{ __html: product?.description || "" }}></div>}
-                        {isEditing && <input className="title" defaultValue={product?.name} onChange={(e) => setEditName(e.target.value)} />}
-                        {isEditing &&
-                            <>
-                                <label htmlFor="fileInput">
-                                    <img src={editImage} alt="1" className="editNewsImgButton" />
-                                </label>
-                                <input
-                                    id="fileInput"
-                                    type="file"
-                                    accept="image/*"
-                                    onChange={handleImageChange}
-                                    style={{ display: 'none' }}
-                                />
-                            </>
-                        }
-                        {/* {isEditing && <textarea defaultValue={product?.description} onChange={(e) => setEditDescription(e.target.value)}/>} */}
-                        {isEditing &&
-                            <TextEditor
-                                editorContent={editDescription}
-                                setEditorContent={setEditDescription}
+                <div className="content">
+                    {!isEditing && <h1 className="title">{product?.name}</h1>}
+                    {!isEditing && <img src={product?.picture} alt="productImg" />}
+                    {!isEditing && <div dangerouslySetInnerHTML={{ __html: product?.description || "" }}></div>}
+                    {isEditing && <input className="title" defaultValue={product?.name} onChange={(e) => setEditName(e.target.value)} />}
+                    {isEditing &&
+                        <>
+                            <label htmlFor="fileInput">
+                                <img src={editImage} alt="1" className="editNewsImgButton" />
+                            </label>
+                            <input
+                                id="fileInput"
+                                type="file"
+                                accept="image/*"
+                                onChange={handleImageChange}
+                                style={{ display: 'none' }}
                             />
-                        }
-                    </div>
+                        </>
+                    }
+                    {/* {isEditing && <textarea defaultValue={product?.description} onChange={(e) => setEditDescription(e.target.value)}/>} */}
+                    {isEditing &&
+                        <TextEditor
+                            editorContent={editDescription}
+                            setEditorContent={setEditDescription}
+                        />
+                    }
                 </div>
                 <div className="blankBanner" />
             </div>
