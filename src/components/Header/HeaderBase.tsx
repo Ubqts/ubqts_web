@@ -50,10 +50,10 @@ export const HeaderBase = ({ t }: HeaderProps) => {
 
             <div className="headerMenu">
                 <a href="/">{t("home-page")}</a>
-                <a href="partners">{t("partners")}</a>
-                <a href="contact_us">{t("contact-us")}</a>
-                <a href="news">{t("news")}</a>
-                <a href="download_files">{t("downloads")}</a>
+                <a href="/partners">{t("partners")}</a>
+                <a href="/contact_us">{t("contact-us")}</a>
+                <a href="/news">{t("news")}</a>
+                <a href="/download_files">{t("downloads")}</a>
             </div>
 
             <div className="headerRight">
