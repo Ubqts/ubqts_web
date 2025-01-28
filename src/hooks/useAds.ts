@@ -84,7 +84,7 @@ export default function useAds() {
             }),
         });
         const data = await res.json();
-        console.log(data);
+        // console.log(data);
         if (!res.ok) {
             const body = await res.json();
             throw new Error(body.error);

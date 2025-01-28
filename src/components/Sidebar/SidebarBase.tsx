@@ -33,7 +33,7 @@ export const SidebarBase = ({ t }: SidebarBaseProps) => {
     }, []);
 
     const handleSignOut = () => {
-        console.log("sign out");
+        // console.log("sign out");
         signOut();
     }
 

@@ -16,7 +16,7 @@ export default function useDownloads() {
             // upload image to cloud and get the url
             const formData = new FormData();
             formData.append("file", file);
-            console.log("formData: ", formData);
+            // console.log("formData: ", formData);
 
             const fileRes = await fetch("/api/image", {
                 method: "POST",
@@ -33,9 +33,9 @@ export default function useDownloads() {
             if (file.name.endsWith(".exe")) {
                 fileType = "exe";
             }
-            console.log("fileUrl: ", fileUrl.url);
-            console.log("fileSize: ", fileSize);
-            console.log("fileType: ", fileType);
+            // console.log("fileUrl: ", fileUrl.url);
+            // console.log("fileSize: ", fileSize);
+            // console.log("fileType: ", fileType);
 
             // upload the image url and data to the database
             const res = await fetch("/api/downloads", {

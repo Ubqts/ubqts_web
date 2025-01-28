@@ -27,8 +27,8 @@ export default function NewAdsDialog({ open, onClose }: NewAdsDialogProps) {
             alert("請輸入語言");
             return;
         } else {
-            console.log("image: ", image);
-            console.log("imgLng: ", imgLng);
+            // console.log("image: ", image);
+            // console.log("imgLng: ", imgLng);
             try {
                 setLoading(true);
                 await postAds({ picture: image, language: imgLng });

@@ -18,6 +18,7 @@ type HeaderProps = {
 
 export const HeaderBase = ({ t }: HeaderProps) => {
     const { data: session } = useSession();
+    // let page = "";
 
     const handleSidebarDisplay = () => {
         document.body.style.overflowY = "hidden";
@@ -29,7 +30,7 @@ export const HeaderBase = ({ t }: HeaderProps) => {
         }, 1);
     }
     const handleSignOut = () => {
-        console.log("sign out");
+        // console.log("sign out");
         signOut();
     }
     const handleSignIn = () => {
@@ -64,13 +65,14 @@ export const HeaderBase = ({ t }: HeaderProps) => {
                     </div>
                     <div className="languageList">
                         {languages.map((lang) => {
-                            let page = "";
-                            if (typeof(window) !== "undefined") {
-                                const url = window.location.href;
-                                page = url.split("/").slice(4).join("/");
-                            }
+                            // if (typeof(window) !== "undefined") {
+                            //     const url = window.location.href;
+                            //     page = url.split("/").slice(4).join("/");
+                            //     console.log("lang", lang);
+                            //     console.log("page", page);
+                            // }
                             return (
-                                <a key={lang} href={`/${lang}/${page}`}>
+                                <a key={lang} href={`/${lang}/${window.location.href.split("/").slice(4).join("/")}`}>
                                     {lang === "tw" ? "繁體中文" : lang === "cn" ? "简体中文" : "English"}
                                 </a>
                             );
