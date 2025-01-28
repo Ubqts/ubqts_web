@@ -123,7 +123,7 @@ export default function Home({ params: { lng } }: HomeProps) {
             <div className="blankBanner" />
 
             <div className="content">
-                <a href="/product_page"><h1>{t("product-introduction-title")}</h1></a>
+                <h1><a className="introLink" href="/product_page">{t("product-introduction-title")}</a></h1>
                 <div className="productTable">
                     {session?.user.role === "admin" ? (
                         productsList.map((product) => (
