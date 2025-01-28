@@ -25,7 +25,7 @@ export default function RootLayout({
                 {children}
             </div>
             <div className="blankBanner" />
-                {/* <PrevPage isEditing={isEditing}/> */}
+            {/* <PrevPage isEditing={isEditing}/> */}
             <div className="blankBanner" />
             <div className="blankBanner" />
         </div>
