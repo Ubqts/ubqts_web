@@ -33,6 +33,10 @@ export default function Home({ params: { lng } }: HomeProps) {
     const [productsList, setProductsList] = useState<Product[]>([]);
     const [showNewAdsDialog, setShowNewAdsDialog] = useState(false);
     const [index, setIndex] = useState(0);
+    const [hovered, setHovered] = useState(false);
+
+    const handleMouseEnter = () => setHovered(true);
+    const handleMouseLeave = () => setHovered(false);
 
     useEffect(() => {
         const fetchAdsList = async () => {
@@ -53,20 +57,55 @@ export default function Home({ params: { lng } }: HomeProps) {
         setIndex(selectedIndex);
     };
 
+    // useEffect(() => {
+    //     const intervalId = setInterval(() => {
+    //         if (adsList.length > 0) {
+    //             if (index < adsList.length - 1) {
+    //                 setIndex(index + 1);
+    //             } else {
+    //                 setIndex(0);
+    //             }
+    //             console.log('Function triggered');
+    //             console.log('Index:', index);
+    //         }
+    //     }, 4000);
+
+    //     return () => clearInterval(intervalId);
+    // }, [index, adsList]);
+
+    useEffect(() => {
+        // Do nothing if hovered
+        if (hovered) return;
+
+        const intervalId = setInterval(() => {
+            if (adsList.length > 0) {
+                if (index < adsList.length - 1) {
+                    setIndex(index + 1);
+                } else {
+                    setIndex(0);
+                }
+                console.log('Function triggered');
+                console.log('Index:', index);
+            }
+        }, 4000);
+
+        return () => clearInterval(intervalId);
+    }, [index, adsList, hovered]);
+
     return (
         <div className="container prevent-select">
             {/* <BootstrapCarousel /> */}
 
-            <Carousel activeIndex={index} onSelect={handleSelect}>
+            <Carousel activeIndex={index} onSelect={handleSelect} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                 {session?.user.role === "admin" ? (
                     adsList.map((item) => (
-                        <Carousel.Item key={item.id} interval={4000}>
+                        <Carousel.Item key={item.id}>
                             <img src={item.picture} alt="slides" width={"100%"} style={{ objectFit: "cover", height: "50vw", maxHeight: "90vh" }} />
                             {/* <Carousel.Caption /> */}
                         </Carousel.Item>
                     ))) : (
                     adsList.filter((item) => (item.language.match(lng))).map((item) => (
-                        <Carousel.Item key={item.id} interval={4000}>
+                        <Carousel.Item key={item.id}>
                             <img src={item.picture} alt="slides" width={"100%"} style={{ objectFit: "cover", height: "50vw", maxHeight: "90vh" }} />
                             {/* <Carousel.Caption /> */}
                         </Carousel.Item>
