@@ -36,6 +36,9 @@ export const HeaderBase = ({ t }: HeaderProps) => {
     const handleSignIn = () => {
         window.location.href = "/api/auth/signin";
     }
+    const loadUrl = () => {
+        window.location.href = window.location.href.split("/").slice(4).join("/");
+    }
 
     return (
         <div className="header prevent-select">
@@ -65,14 +68,18 @@ export const HeaderBase = ({ t }: HeaderProps) => {
                     </div>
                     <div className="languageList">
                         {languages.map((lang) => {
-                            // if (typeof(window) !== "undefined") {
-                            //     const url = window.location.href;
-                            //     page = url.split("/").slice(4).join("/");
-                            //     console.log("lang", lang);
-                            //     console.log("page", page);
-                            // }
+                            let page = "";
+                            if (typeof (window) !== "undefined") {
+                                const url = window.location.href;
+                                page = url.split("/").slice(4).join("/");
+                            }
+                            // return (
+                            //     <a key={lang} href={`/${lang}/${page}`}>
+                            //         {lang === "tw" ? "繁體中文" : lang === "cn" ? "简体中文" : "English"}
+                            //     </a>
+                            // );
                             return (
-                                <a key={lang} href={`/${lang}/${window.location.href.split("/").slice(4).join("/")}`}>
+                                <a key={lang} href="#" onClick={() => { window.location.href = `/${lang}/${page}` }}>
                                     {lang === "tw" ? "繁體中文" : lang === "cn" ? "简体中文" : "English"}
                                 </a>
                             );
