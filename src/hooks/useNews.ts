@@ -33,7 +33,7 @@ export default function useNews() {
                 throw new Error(error);
             }
             const imageUrl = await imageRes.json();
-            // console.log("imageUrl: ", imageUrl);
+            console.log("image upuloaded.");
 
             // upload the image url and data to the database
             const res = await fetch("/api/news", {
@@ -53,7 +53,8 @@ export default function useNews() {
                 const body = await res.json();
                 throw new Error(body.error);
             }
-            // router.refresh();
+            console.log("news posted.");
+            router.refresh();
         } catch(error) {
             console.error("error: ", error);
         }
@@ -104,6 +105,7 @@ export default function useNews() {
         const news = newsList.news;
         const target = news.find((news: any) => news.id === id);
         const url = target.picture;
+        console.log("get image url.");
 
         let imageUrl = { url: url };
         if (picture !== null) {
@@ -121,6 +123,7 @@ export default function useNews() {
                 const body = await resDelete.json();
                 throw new Error(body.error);
             }
+            console.log("old image deleted.");
 
             // upload the new image to cloud
             const formData = new FormData();
@@ -136,7 +139,9 @@ export default function useNews() {
                 throw new Error(error);
             }
             imageUrl = await imageRes.json();
-            // console.log("imageUrl: ", imageUrl);
+            console.log("new image uploaded.");
+        } else {
+            console.log("no new image uploaded.");
         }
 
         // update the object in the database
@@ -153,11 +158,11 @@ export default function useNews() {
             }),
         });
         const data = await res.json();
-        // console.log(data);
         if (!res.ok) {
             const body = await res.json();
             throw new Error(body.error);
         }
+        console.log("news updated.");
         router.refresh();
     }
 
@@ -178,6 +183,7 @@ export default function useNews() {
         const news = newsList.news;
         const target = news.find((news: any) => news.id === id);
         const url = target.picture;
+        console.log("get image url.");
 
         // delete image from cloud
         const resDelete = await fetch("/api/image", {
@@ -193,6 +199,7 @@ export default function useNews() {
             const body = await resDelete.json();
             throw new Error(body.error);
         }
+        console.log("image deleted.");
 
         // delete the object from the database
         const res = await fetch('/api/news', {
@@ -208,6 +215,7 @@ export default function useNews() {
             const body = await res.json();
             throw new Error(body.error);
         }
+        console.log("news deleted.");
         router.refresh();
     }
 

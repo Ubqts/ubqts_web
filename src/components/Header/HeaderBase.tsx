@@ -35,9 +35,6 @@ export const HeaderBase = ({ t }: HeaderProps) => {
     const handleSignIn = () => {
         window.location.href = "/api/auth/signin";
     }
-    const loadUrl = () => {
-        window.location.href = window.location.href.split("/").slice(4).join("/");
-    }
 
     return (
         <div className="header prevent-select">

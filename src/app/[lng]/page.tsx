@@ -57,22 +57,6 @@ export default function Home({ params: { lng } }: HomeProps) {
         setIndex(selectedIndex);
     };
 
-    // useEffect(() => {
-    //     const intervalId = setInterval(() => {
-    //         if (adsList.length > 0) {
-    //             if (index < adsList.length - 1) {
-    //                 setIndex(index + 1);
-    //             } else {
-    //                 setIndex(0);
-    //             }
-    //             console.log('Function triggered');
-    //             console.log('Index:', index);
-    //         }
-    //     }, 4000);
-
-    //     return () => clearInterval(intervalId);
-    // }, [index, adsList]);
-
     useEffect(() => {
         // Do nothing if hovered
         if (hovered) return;
@@ -84,8 +68,8 @@ export default function Home({ params: { lng } }: HomeProps) {
                 } else {
                     setIndex(0);
                 }
-                console.log('Function triggered');
-                console.log('Index:', index);
+                // console.log('Function triggered');
+                // console.log('Index:', index);
             }
         }, 4000);
 
