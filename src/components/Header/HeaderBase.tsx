@@ -18,7 +18,6 @@ type HeaderProps = {
 
 export const HeaderBase = ({ t }: HeaderProps) => {
     const { data: session } = useSession();
-    // let page = "";
 
     const handleSidebarDisplay = () => {
         document.body.style.overflowY = "hidden";
@@ -35,9 +34,6 @@ export const HeaderBase = ({ t }: HeaderProps) => {
     }
     const handleSignIn = () => {
         window.location.href = "/api/auth/signin";
-    }
-    const loadUrl = () => {
-        window.location.href = window.location.href.split("/").slice(4).join("/");
     }
 
     return (
