@@ -7,7 +7,8 @@ import { useState, useContext, useEffect } from "react";
 
 export default function NewsPage() {
     const { news } = useContext(NewsContext);
-    const [ newsItem, setNewsItem ] = useState<News>();
+    const [newsItem, setNewsItem] = useState<News>();
+    const [imgLoaded, setImgLoaded] = useState(false);
 
     useEffect(() => {
         const fetchNews = async () => {
@@ -26,6 +27,29 @@ export default function NewsPage() {
         }
         fetchNews();
     }, []);
+
+    if (!imgLoaded) {
+        return (
+            <div className="container prevent-select">
+                <div className="banner">
+                    <img src={banner.src} alt="banner" />
+                </div>
+
+                <div className="blankBanner" />
+                <div className="blankBanner" />
+                <div className="spinnerBox">
+                    <div className="circleBorder">
+                        <div className="circleCore"></div>
+                    </div>
+                </div>
+
+                <img src={newsItem?.picture} alt="img" onLoad={() => setImgLoaded(true)} style={{ display: "none" }} />
+
+                <div className="blankBanner" />
+                <div className="blankBanner" />
+            </div>
+        );
+    }
 
     return (
         <div className="container prevent-select">
