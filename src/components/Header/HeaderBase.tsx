@@ -6,6 +6,8 @@ import dropDownIcon from "@/public/img/dropDownIcon.png";
 import menuIcon from "@/public/img/menuIcon.png";
 import loginIcon from "@/public/img/loginIcon.png";
 import logoutIcon from "@/public/img/logoutIcon.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 
 import { TFunction } from "i18next";
 import { languages } from "../../i18n/settings";
@@ -86,7 +88,8 @@ export const HeaderBase = ({ t }: HeaderProps) => {
                 {
                     session ? (
                         <div className="logout" onClick={() => handleSignOut()}>
-                            <img className="logoutIcon" src={logoutIcon.src} alt="logout" />
+                            {/* <img className="logoutIcon" src={logoutIcon.src} alt="logout" /> */}
+                            <FontAwesomeIcon className="fa-xl" icon={faArrowRightFromBracket} />
                         </div>
                     ) : (
                         <div className="login" onClick={() => handleSignIn()}>
