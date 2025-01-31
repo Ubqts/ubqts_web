@@ -3,5 +3,7 @@
     "partners": "Partners",
     "contact-us": "Contact Us",
     "news": "Latest News", 
-    "downloads": "Downloads"
+    "downloads": "Downloads", 
+    "login": "Log in", 
+    "logout": "Log out"
 }

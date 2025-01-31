@@ -16,7 +16,6 @@ export default function useDownloads() {
             // upload image to cloud and get the url
             const formData = new FormData();
             formData.append("file", file);
-            // console.log("formData: ", formData);
 
             const fileRes = await fetch("/api/image", {
                 method: "POST",
@@ -33,9 +32,7 @@ export default function useDownloads() {
             if (file.name.endsWith(".exe")) {
                 fileType = "exe";
             }
-            // console.log("fileUrl: ", fileUrl.url);
-            // console.log("fileSize: ", fileSize);
-            // console.log("fileType: ", fileType);
+            console.log("file upuloaded.");
 
             // upload the image url and data to the database
             const res = await fetch("/api/downloads", {
@@ -54,6 +51,7 @@ export default function useDownloads() {
                 const body = await res.json();
                 throw new Error(body.error);
             }
+            console.log("downloads posted.");
             router.refresh();
         } catch (error) {
             console.error("error: ", error);
@@ -78,7 +76,7 @@ export default function useDownloads() {
 
     // DELETE
     const deleteDownloads = async (id: number) => {
-        // get the image url from the database
+        // get the file url from the database
         const resGet = await fetch("/api/downloads", {
             method: "GET",
             headers: {
@@ -93,8 +91,9 @@ export default function useDownloads() {
         const downloads = downloadsList.downloads;
         const target = downloads.find((download: any) => download.id === id);
         const url = target.url;
+        console.log("get file url.");
 
-        // delete image from cloud
+        // delete file from cloud
         const resDelete = await fetch("/api/image", {
             method: "DELETE",
             headers: {
@@ -108,6 +107,7 @@ export default function useDownloads() {
             const body = await resDelete.json();
             throw new Error(body.error);
         }
+        console.log("file deleted.");
 
         // delete the object from the database
         const res = await fetch('/api/downloads', {
@@ -123,6 +123,7 @@ export default function useDownloads() {
             const body = await res.json();
             throw new Error(body.error);
         }
+        console.log("downloads deleted.");
         router.refresh();
     }
 
