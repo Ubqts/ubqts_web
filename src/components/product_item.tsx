@@ -12,7 +12,8 @@ export default function ProductItem({ id, picture, name, lng }: ProductProps) {
     const router = useRouter();
 
     const handleOnClick = () => {
-        router.push(`/${lng}/product_page/id=${id}`);
+        // router.push(`/${lng}/product_page/id=${id}`);
+        window.location.href = `/${lng}/product_page/id=${id}`;
     }
 
     return (

@@ -20,13 +20,13 @@ export type NewsProps = {
 export default function NewsItem({ id, title, picture, description, language, date, isAdding, setIsAdding }: NewsProps) {
     const router = useRouter();
     const { data: session } = useSession();
-    const [ EditTitle, setEditTitle ] = useState(title);
-    const [ EditPicture, setEditPicture ] = useState<File | null>(null);
-    const [ EditImage, setEditImage ] = useState(picture);
-    const [ EditDescription, setEditDescription ] = useState(description);
-    const [ imgLng, setImgLng ] = useState<string | null>(language || null);
-    const [ isEditing, setIsEditing ] = useState(false);
-    const [ loading, setLoading ] = useState(false);
+    const [EditTitle, setEditTitle] = useState(title);
+    const [EditPicture, setEditPicture] = useState<File | null>(null);
+    const [EditImage, setEditImage] = useState(picture);
+    const [EditDescription, setEditDescription] = useState(description);
+    const [imgLng, setImgLng] = useState<string | null>(language || null);
+    const [isEditing, setIsEditing] = useState(false);
+    const [loading, setLoading] = useState(false);
     const { postNews, putNews, deleteNews } = useNews();
 
     useEffect(() => {
@@ -114,7 +114,8 @@ export default function NewsItem({ id, title, picture, description, language, da
         if (session) {
             setIsEditing(true);
         } else {
-            router.push(`/news/id=${id}`);
+            // router.push(`/news/id=${id}`);
+            window.location.href = `/news/id=${id}`;
         }
     }
 
@@ -138,7 +139,7 @@ export default function NewsItem({ id, title, picture, description, language, da
             <div className="newsItem prevent-select" onClick={!isEditing ? () => handleOnClick() : undefined}>
                 <div className="newsImg">
                     {!isEditing && <img src={picture} alt="1" />}
-                    {isEditing && 
+                    {isEditing &&
                         <>
                             <label htmlFor="fileInput">
                                 <img src={EditImage} alt="1" className="editNewsImgButton" />

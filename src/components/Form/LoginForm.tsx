@@ -38,7 +38,8 @@ const LoginForm = () => {
             // console.log('success');
             alert('Logged in successfully, redirecting to home page');
             router.refresh();
-            router.push('/#');
+            // router.push('/#');
+            window.location.href = '/#';
         }
     }
 

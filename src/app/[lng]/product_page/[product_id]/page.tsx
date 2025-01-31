@@ -18,6 +18,7 @@ const Page = () => {
     const [editPicture, setEditPicture] = useState<File | null>(null);
     const [editDescription, setEditDescription] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(false);
+    const [imgLoaded, setImgLoaded] = useState<boolean>(false);
     const { products } = useContext(ProductContext);
     const { deleteProducts, putProducts } = useProducts();
     const { data: session } = useSession();
@@ -88,7 +89,8 @@ const Page = () => {
             await deleteProducts(id);
             setLoading(false);
             alert("刪除成功！");
-            router.push("/product_page");
+            // router.push("/product_page");
+            window.location.href = "/product_page";
         } catch (error) {
             setLoading(false);
             alert("刪除失敗！");
@@ -96,10 +98,23 @@ const Page = () => {
         }
     }
 
+    if (!imgLoaded) {
+        return (
+            <>
+                <div className="spinnerBox">
+                    <div className="circleBorder">
+                        <div className="circleCore"></div>
+                    </div>
+                </div>
+                <img src={editImage} alt="productImg" onLoad={() => setImgLoaded(true)} style={{ display: 'none' }} />
+            </>
+        )
+    }
+
     return (
         <>
             <div className="container">
-                <div className="content">
+                <div className="productContent">
                     {!isEditing && <h1 className="title">{product?.name}</h1>}
                     {!isEditing && <img src={product?.picture} alt="productImg" />}
                     {!isEditing && <div dangerouslySetInnerHTML={{ __html: product?.description || "" }}></div>}
@@ -126,17 +141,19 @@ const Page = () => {
                         />
                     }
                 </div>
-                <div className="blankBanner" />
+                {session?.user.role === "admin" &&
+                    <>
+                        <div className="blankBanner" />
+                        <div className="adminButtons">
+                            {!isEditing && <button className="edit" onClick={() => setIsEditing(true)}>編輯產品</button>}
+                            {isEditing && <button className="cancel" onClick={() => setIsEditing(false)}>取消編輯</button>}
+                            {isEditing && <button className="save" onClick={() => handleSave()}>儲存編輯</button>}
+                            <button className="delete" onClick={() => handleDelete()}>刪除產品</button>
+                            <a className="add" href="/new_product">新增產品</a>
+                        </div>
+                    </>
+                }
             </div>
-            {session?.user.role === "admin" &&
-                <div className="adminButtons">
-                    {!isEditing && <button className="prevPage" onClick={() => setIsEditing(true)}>編輯產品</button>}
-                    {isEditing && <button className="prevPage" onClick={() => setIsEditing(false)}>取消編輯</button>}
-                    {isEditing && <button className="prevPage" onClick={() => handleSave()}>儲存編輯</button>}
-                    <button className="prevPage" onClick={() => handleDelete()}>刪除產品</button>
-                    <a className="prevPage" href="/new_product">新增產品</a>
-                </div>
-            }
             <Loading open={loading} />
         </>
     )

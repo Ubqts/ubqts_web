@@ -84,7 +84,7 @@
     background-color: #555555;
 }
 
-@media screen and (min-width: 1030px) {
+@media screen and (min-width: 1080px) {
     .sidebar.active {
         display: none;
     }
