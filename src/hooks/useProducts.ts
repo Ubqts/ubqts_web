@@ -31,7 +31,7 @@ export default function useProducts() {
                 throw new Error(error);
             }
             const imageUrl = await imageRes.json();
-            // console.log("imageUrl: ", imageUrl);
+            console.log("image upuloaded.");
             
             // upload the image url and data to the database
             const res = await fetch("/api/products", {
@@ -50,9 +50,10 @@ export default function useProducts() {
                 const body = await res.json();
                 throw new Error(body.error);
             }
-            // router.refresh();
+            console.log("products posted.");
+            router.refresh();
         } catch (error) {
-            console.error("error: \"", error, "\"");
+            console.error("error: ", error);
         }
     }
 
@@ -99,6 +100,7 @@ export default function useProducts() {
         const products = productsList.products;
         const target = products.find((product: any) => product.id === id);
         const url = target.picture;
+        console.log("get image url.");
 
         let imageUrl = { url: url };
         if (picture !== null) {
@@ -116,6 +118,7 @@ export default function useProducts() {
                 const body = await resDelete.json();
                 throw new Error(body.error);
             }
+            console.log("old image deleted.");
 
             // upload the new image to cloud
             const formData = new FormData();
@@ -131,7 +134,9 @@ export default function useProducts() {
                 throw new Error(error);
             }
             imageUrl = await imageRes.json();
-            // console.log("imageUrl: ", imageUrl);
+            console.log("new image uploaded.");
+        } else {
+            console.log("no new image uploaded.");
         }
 
         // update the object in the database
@@ -151,6 +156,7 @@ export default function useProducts() {
             const body = await res.json();
             throw new Error(body.error);
         }
+        console.log("products updated.");
         router.refresh();
     }
 
@@ -171,6 +177,7 @@ export default function useProducts() {
         const products = productsList.products;
         const target = products.find((product: any) => product.id === id);
         const url = target.picture;
+        console.log("get image url.");
 
         // delete image from cloud
         const resDelete = await fetch("/api/image", {
@@ -186,6 +193,7 @@ export default function useProducts() {
             const body = await resDelete.json();
             throw new Error(body.error);
         }
+        console.log("image deleted.");
 
         // delete the object from the database
         const res = await fetch('/api/products', {
@@ -201,6 +209,7 @@ export default function useProducts() {
             const body = await res.json();
             throw new Error(body.error);
         }
+        console.log("products deleted.");
         router.refresh();
     }
 

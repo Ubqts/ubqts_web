@@ -27,6 +27,7 @@ export default function useAds() {
                 throw new Error(error);
             }
             const imageUrl = await imageRes.json();
+            console.log("image uploaded.");
 
             // upload the image url and language to the database
             const res = await fetch("/api/ads", {
@@ -43,7 +44,10 @@ export default function useAds() {
                 const body = await res.json();
                 throw new Error(body.error);
             }
+            console.log("ads posted.");
+            
             router.refresh();
+        
         } catch (error) {
             console.error("error: ", error);
         }
@@ -84,7 +88,7 @@ export default function useAds() {
             }),
         });
         const data = await res.json();
-        // console.log(data);
+        console.log(data);
         if (!res.ok) {
             const body = await res.json();
             throw new Error(body.error);
@@ -109,6 +113,7 @@ export default function useAds() {
         const ads = adsList.ads;
         const target = ads.find((ad: any) => ad.id === id);
         const url = target.picture;
+        console.log("image url retrieved.");
 
         // delete image from cloud
         const resDelete = await fetch("/api/image", {
@@ -124,6 +129,7 @@ export default function useAds() {
             const body = await resDelete.json();
             throw new Error(body.error);
         }
+        console.log("image deleted.");
 
         // delete the object from the database
         const res = await fetch('/api/ads', {
@@ -139,6 +145,8 @@ export default function useAds() {
             const body = await res.json();
             throw new Error(body.error);
         }
+        console.log("ads deleted.");
+        
         router.refresh();
     }
 
