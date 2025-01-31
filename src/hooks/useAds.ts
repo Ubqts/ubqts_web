@@ -12,6 +12,7 @@ export default function useAds() {
         picture: File;
         language: string;
     }) => {
+        let imageUrl;
         try {
             // upload image to cloud and get the url
             const formData = new FormData();
@@ -26,28 +27,43 @@ export default function useAds() {
                 alert("Error uploading image");
                 throw new Error(error);
             }
-            const imageUrl = await imageRes.json();
+            imageUrl = await imageRes.json();
             console.log("image upuloaded.");
-
-            // upload the image url and language to the database
-            const res = await fetch("/api/ads", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    picture: imageUrl.url, 
-                    language: language,
-                }),
-            });
-            if (!res.ok) {
-                const body = await res.json();
-                throw new Error(body.error);
-            }
-            console.log("ads posted.");
-            router.refresh();
         } catch (error) {
             console.error("error: ", error);
+        }
+        if (imageUrl !== undefined) {
+            try {
+                // upload the image url and language to the database
+                const res = await fetch("/api/ads", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        picture: imageUrl.url, 
+                        language: language,
+                    }),
+                });
+                if (!res.ok) {
+                    const body = await res.json();
+                    throw new Error(body.error);
+                }
+                console.log("ads posted.");
+                router.refresh();
+            } catch (error) {
+                console.error("error: ", error);
+                // rollback the image upload
+                const res = await fetch("/api/image", {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        url: imageUrl.url,
+                    }),
+                });
+            }
         }
     }
 
@@ -113,6 +129,27 @@ export default function useAds() {
         const url = target.picture;
         console.log("get image url.");
 
+        try {
+            // delete the object from the database
+            const res = await fetch('/api/ads', {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    id,
+                }),
+            });
+            if (!res.ok) {
+                const body = await res.json();
+                throw new Error(body.error);
+            }
+            console.log("ads deleted.");
+        } catch (error) {
+            console.error("error: ", error);
+        }
+
+
         // delete image from cloud
         const resDelete = await fetch("/api/image", {
             method: "DELETE",
@@ -129,21 +166,6 @@ export default function useAds() {
         }
         console.log("image deleted.");
 
-        // delete the object from the database
-        const res = await fetch('/api/ads', {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                id,
-            }),
-        });
-        if (!res.ok) {
-            const body = await res.json();
-            throw new Error(body.error);
-        }
-        console.log("ads deleted.");
         router.refresh();
     }
 
