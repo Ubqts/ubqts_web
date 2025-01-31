@@ -8,14 +8,54 @@ td {
     margin: 0 auto 0 0;
 }
 
-.content {
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.spinnerBox {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    margin: 0px auto;
+}
+
+.circleBorder {
+    width: 50px;
+    height: 50px;
+    padding: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: rgb(63, 249, 220);
+    background: linear-gradient(0deg, #6FBA2C1A 33%, #6FBA2C 100%);
+    animation: spin .8s linear 0s infinite;
+}
+
+.circleCore {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 50%;
+}
+
+.productContent {
     width: 70%;
     padding-left: 80px;
     padding-top: 0px;
     text-align: left;
 }
 
-.content>img {
+.productContent>img {
     display: block;
     width: auto;
     height: auto;
@@ -23,8 +63,58 @@ td {
     margin: 2% 0px 5% 0px;
 }
 
-.content>p {
+.productContent>p {
     text-align: left;
     margin-bottom: 20px;
     font-size: calc(11px + 0.3vw);
+}
+
+.adminButtons {
+    display: flex;
+    gap: 5%;
+    margin-left: 80px;
+    width: 100%;
+}
+
+.add,
+.cancel,
+.delete,
+.save,
+.edit {
+    padding: 2px 15px;
+    border: 1px solid #000;
+    background-color: #e7e7e7;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+}
+
+.add:active,
+.cancel:active,
+.delete:active,
+.save:active,
+.edit:active {
+    background-color: #d7d7d7;
+    padding-top: 3px;
+    padding-bottom: 1px;
+}
+
+@media screen and (max-width: 700px) {
+    .container {
+        margin: 0 auto;
+    }
+
+    .productContent {
+        width: 100%;
+        padding-left: 0px;
+    }
+
+    .productContent>img {
+        max-height: 200px;
+    }
+
+    .adminButtons {
+        margin-left: 0px;
+    }
 }

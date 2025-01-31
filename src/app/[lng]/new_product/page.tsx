@@ -24,7 +24,7 @@ export default function NewProduct() {
         // console.log(session);
         if (session !== undefined && session?.user.role !== "admin") {
             alert("您無權限新增產品！");
-            router.push("/");
+            window.location.href = "/";
         }
     }, [session]);
 
@@ -52,7 +52,8 @@ export default function NewProduct() {
                 });
                 setLoading(false);
                 alert("產品新增成功！");
-                router.push("/");
+                // router.push("/");
+                window.location.href = "/";
             } catch (error) {
                 setLoading(false);
                 alert("產品新增失敗！");
@@ -68,6 +69,9 @@ export default function NewProduct() {
             setImage(newImage);
         }
     }
+
+    if (session === undefined || session?.user.role !== "admin")
+        return null;
 
     return (
         <div className="container">

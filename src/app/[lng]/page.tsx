@@ -162,7 +162,8 @@ export default function Home({ params: { lng } }: HomeProps) {
                     {session?.user.role === "admin" && (
                         <a href="/new_product">
                             <div className="addProduct">
-                                <img src={addIcon.src} alt="addProduct" onClick={() => { router.push(`${lng}/new_product`) }} />
+                                {/* <img src={addIcon.src} alt="addProduct" onClick={() => { router.push(`${lng}/new_product`) }} /> */}
+                                <img src={addIcon.src} alt="addProduct" onClick={() => { window.location.href = `${lng}/new_product` }} />
                             </div>
                         </a>
                     )}

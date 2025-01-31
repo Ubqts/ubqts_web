@@ -46,7 +46,8 @@ const SignUpForm = () => {
 
         if (response.status === 201) {
             alert('User created successfully, redirecting to home page')
-            router.push('/#')
+            // router.push('/#')
+            window.location.href = '/#'
         } else if (response.status === 409) {
             console.error('User already exists')
             alert('Failed to create user: user already exists')
