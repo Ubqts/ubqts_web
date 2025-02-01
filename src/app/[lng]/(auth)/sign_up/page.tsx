@@ -6,7 +6,7 @@ import { useSession } from "next-auth/react"
 import { useState, useEffect } from "react"
 
 // const page = async () => {
-const page = () => {
+const Page = () => {
     const [loading, setLoading] = useState(true);
     // const session = await getServerSession(authOptions);
     const { data: session } = useSession();
@@ -37,4 +37,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Page
