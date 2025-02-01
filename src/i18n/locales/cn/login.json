@@ -1,0 +1,10 @@
+{
+    "account": "账号",
+    "account-placeholder": "请输入账号",
+    "password": "密码",
+    "password-placeholder": "请输入密码",
+    "password-warning": "密码不得为空",
+    "login-fail": "登入失败：账号或密码错误",
+    "login-success": "登入成功：即将跳转至首页",
+    "submit": "送出"
+}

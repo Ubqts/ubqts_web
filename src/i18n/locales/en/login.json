@@ -1,0 +1,10 @@
+{
+    "account": "Account",
+    "account-placeholder": "Please enter your account",
+    "password": "Password",
+    "password-placeholder": "Please enter your password",
+    "password-warning": "Password cannot be empty",
+    "login-fail": "Login failed: wrong username or password",
+    "login-success": "Logged in successfully, redirecting to home page",
+    "submit": "Submit"
+}
