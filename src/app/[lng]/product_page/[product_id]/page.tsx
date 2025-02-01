@@ -148,8 +148,8 @@ const Page = () => {
                             {!isEditing && <button className="edit" onClick={() => setIsEditing(true)}>編輯產品</button>}
                             {isEditing && <button className="cancel" onClick={() => setIsEditing(false)}>取消編輯</button>}
                             {isEditing && <button className="save" onClick={() => handleSave()}>儲存編輯</button>}
-                            <button className="delete" onClick={() => handleDelete()}>刪除產品</button>
-                            <a className="add" href="/new_product">新增產品</a>
+                            {!isEditing && <button className="delete" onClick={() => handleDelete()}>刪除產品</button>}
+                            {!isEditing && <a className="add" href="/new_product">新增產品</a>}
                         </div>
                     </>
                 }
