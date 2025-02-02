@@ -68,8 +68,6 @@ export default function Home({ params: { lng } }: HomeProps) {
                 } else {
                     setIndex(0);
                 }
-                // console.log('Function triggered');
-                // console.log('Index:', index);
             }
         }, 4000);
 

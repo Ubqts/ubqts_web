@@ -6,17 +6,23 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import './LoginForm.css'
+import './LoginFormBase.css'
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
+import { TFunction } from 'i18next'
 
-const FormSchema = z.object({
-    username: z.string(),
-    password: z.string().min(1, '密碼不得為空'),
-})
+type LoginFormBaseProps = {
+    t: ((key: string) => string) & TFunction<"translation", undefined>;
+};
 
-const LoginForm = () => {
+const LoginFormBase = ({ t }: LoginFormBaseProps) => {
     const router = useRouter();
+
+    const FormSchema = z.object({
+        username: z.string(),
+        password: z.string().min(1, t("password-warning")),
+    });
+    
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
         defaultValues: {
@@ -33,10 +39,10 @@ const LoginForm = () => {
         });
         if (signInData?.error) {
             console.error(signInData.error);
-            alert('Login failed: wrong username or password');
+            alert(t("login-fail"));
         } else {
             // console.log('success');
-            alert('Logged in successfully, redirecting to home page');
+            alert(t("login-success"));
             router.refresh();
             // router.push('/#');
             window.location.href = '/#';
@@ -52,9 +58,9 @@ const LoginForm = () => {
                         name="username"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>帳號</FormLabel>
+                                <FormLabel>{t("account")}</FormLabel>
                                 <FormControl>
-                                    <Input placeholder="請輸入帳號" {...field} />
+                                    <Input placeholder={t("account-placeholder")} {...field} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -65,19 +71,19 @@ const LoginForm = () => {
                         name="password"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>密碼</FormLabel>
+                                <FormLabel>{t("password")}</FormLabel>
                                 <FormControl>
-                                    <Input placeholder="請輸入密碼" type='password' {...field} />
+                                    <Input placeholder={t("password-placeholder")} type='password' {...field} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
                         )}
                     />
                 </div>
-                <Button className='submitBtn' type="submit">送出</Button>
+                <Button className='submitBtn' type="submit">{t("submit")}</Button>
             </form>
         </Form>
     )
 }
 
-export default LoginForm
+export default LoginFormBase

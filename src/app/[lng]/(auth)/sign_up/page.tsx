@@ -5,7 +5,7 @@ import SignUpForm from "@/src/components/Form/SignUpForm"
 import { useSession } from "next-auth/react"
 import { useState, useEffect } from "react"
 
-// const Page = async () => {
+// const page = async () => {
 const Page = () => {
     const [loading, setLoading] = useState(true);
     // const session = await getServerSession(authOptions);
@@ -13,8 +13,9 @@ const Page = () => {
 
     useEffect(() => {
         const timer = setTimeout(() => {
+            console.log("Timer triggered");
             setLoading(false);
-        }, 300);
+        }, 180);
         return () => clearTimeout(timer);
     }, []);
 
