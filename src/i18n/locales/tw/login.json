@@ -1,0 +1,10 @@
+{
+    "account": "帳號",
+    "account-placeholder": "請輸入帳號",
+    "password": "密碼",
+    "password-placeholder": "請輸入密碼",
+    "password-warning": "密碼不得為空",
+    "login-fail": "登入失敗：帳號或密碼錯誤",
+    "login-success": "登入成功，即將跳轉至首頁",
+    "submit": "送出"
+}
