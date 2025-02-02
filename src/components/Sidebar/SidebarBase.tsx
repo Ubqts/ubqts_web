@@ -61,6 +61,8 @@ export const SidebarBase = ({ t }: SidebarBaseProps) => {
                 ) : (
                     <a className="sidebarLink" href="login">{t("login")}</a>
                 )}
+                {session?.user.role === "admin" && <div className="linkSplit" />}
+                {session?.user.role === "admin" && <a className="sidebarLink" href="sign_up">{t("sign-up")}</a>}
             </div>
         </div>
     );

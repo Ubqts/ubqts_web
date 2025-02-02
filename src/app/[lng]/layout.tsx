@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Head from "next/head";
 import { ReactElement } from "react";
 import { dir } from "i18next";
 import { languages } from "@/src/i18n/settings";
@@ -11,6 +12,7 @@ import { Header } from "@/src/components/Header/client";
 import { Sidebar } from "@/src/components/Sidebar/client";
 import { Footer } from "../../components/Footer/client";
 import PrivacyNotification from "@/src/components/privacy_notification";
+import SignUpIcon from "@/src/components/sign_up_icon";
 import Provider from "@/components/Provider";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -34,6 +36,9 @@ export default function RootLayout({
 }: RootLayoutProps) {
     return (
         <html lang={lng} dir={dir(lng)}>
+            <Head>
+                <link rel="icon" href={favicon.src} />
+            </Head>
             <body className={inter.className}>
                 <Provider>
                     <Providers>
@@ -43,6 +48,7 @@ export default function RootLayout({
                         <div className="mainContent">{children}</div>
                         <Footer lng={lng} />
                         <PrivacyNotification />
+                        <SignUpIcon />
                     </Providers>
                 </Provider>
             </body>

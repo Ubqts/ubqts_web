@@ -1,4 +1,4 @@
-.header > a {
+.header>a {
     text-decoration: none;
 }
 
@@ -58,8 +58,8 @@
     justify-content: center;
     align-items: center;
     transition: padding-top 0.2s ease-in-out,
-                border-bottom 0.2s ease-in-out,
-                background-color 0.2s ease-in-out;
+        border-bottom 0.2s ease-in-out,
+        background-color 0.2s ease-in-out;
 }
 
 .headerMenu a:hover {
@@ -68,8 +68,8 @@
     border-bottom: 3px solid #6FBA2C;
     padding-top: 5px;
     transition: padding-top 0.2s ease-in-out,
-                border-bottom 0.2s ease-in-out,
-                background-color 0.5s ease-in-out;
+        border-bottom 0.2s ease-in-out,
+        background-color 0.5s ease-in-out;
 }
 
 .headerRight {
@@ -93,11 +93,11 @@
     height: 100%;
     min-width: 120px;
     transition: padding-top 0.2s ease-in-out,
-                border-bottom 0.2s ease-in-out,
-                background-color 0.2s ease-in-out;
+        border-bottom 0.2s ease-in-out,
+        background-color 0.2s ease-in-out;
 }
 
-.languageBtn > img {
+.languageBtn>img {
     height: 20px;
     width: 20px;
 }
@@ -127,12 +127,23 @@
 }
 
 @-webkit-keyframes fadeIn {
-    from { opacity: 0; }
-      to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
+
 @keyframes fadeIn {
-    from { opacity: 0; }
-      to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 .languageDropDown:hover .languageList {
@@ -146,32 +157,35 @@
     border-bottom: 3px solid #6FBA2C;
     padding-top: 5px;
     transition: padding-top 0.2s ease-in-out,
-                border-bottom 0.2s ease-in-out,
-                background-color 0.2s ease-in-out;
+        border-bottom 0.2s ease-in-out,
+        background-color 0.2s ease-in-out;
 }
 
-.login, .logout {
+.login,
+.logout {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
     min-width: 100px;
     transition: padding-top 0.2s ease-in-out,
-                border-bottom 0.2s ease-in-out,
-                background-color 0.2s ease-in-out;
+        border-bottom 0.2s ease-in-out,
+        background-color 0.2s ease-in-out;
 }
 
-.login:hover, .logout:hover {
+.login:hover,
+.logout:hover {
     background-color: #e5e5e5;
     cursor: pointer;
     border-bottom: 3px solid #6FBA2C;
     padding-top: 5px;
     transition: padding-top 0.2s ease-in-out,
-                border-bottom 0.2s ease-in-out,
-                background-color 0.5s ease-in-out;
+        border-bottom 0.2s ease-in-out,
+        background-color 0.5s ease-in-out;
 }
 
-.loginIcon, .logoutIcon {
+.loginIcon,
+.logoutIcon {
     height: 25px;
     width: 25px;
 }
@@ -202,7 +216,8 @@
         display: block;
     }
 
-    .login, .logout {
+    .login,
+    .logout {
         display: none;
     }
 }
@@ -217,22 +232,4 @@
     .logoText {
         display: none;
     }
-}
-
-.apiTests {
-    position: absolute;
-    left: 50px;
-    top: 100px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.apiTests > button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
 }

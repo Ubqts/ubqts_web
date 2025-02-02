@@ -2,8 +2,9 @@
     "home-page": "首页",
     "partners": "合作伙伴",
     "contact-us": "联系我们",
-    "news": "公司最新消息", 
-    "downloads": "下载专区", 
-    "login": "登录", 
-    "logout": "登出"
+    "news": "公司最新消息",
+    "downloads": "下载专区",
+    "login": "登录",
+    "logout": "登出",
+    "sign-up": "注册"
 }

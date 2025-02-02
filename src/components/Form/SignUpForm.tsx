@@ -7,7 +7,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import './LoginForm/LoginFormBase.css'
-import { useRouter } from 'next/navigation'
 
 const FormSchema = z.object({
     username: z.string().min(1, '帳號不得為空').min(4, '帳號長度不得小於4').max(20, '帳號長度不得大於20'),
@@ -20,7 +19,6 @@ const FormSchema = z.object({
 })
 
 const SignUpForm = () => {
-    const router = useRouter()
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
         defaultValues: {
