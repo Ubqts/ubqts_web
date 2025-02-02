@@ -9,6 +9,7 @@ import { useSession } from "next-auth/react";
 import NewsItem from "@/src/components/news_item";
 import banner from "@/public/img/newsBanner.png";
 import addIcon from "@/public/img/addIcon.png";
+import imagePlaceholder from "@/public/img/imagePlaceholder.png";
 import "./page.css";
 
 type NewsProps = { params: { lng: string } };
@@ -73,7 +74,7 @@ export default function News({ params: { lng } }: NewsProps) {
                         <>
                             <NewsItem
                                 title="new title"
-                                picture="https://picsum.photos/300/200?random=1"
+                                picture={imagePlaceholder.src}
                                 description="new description"
                                 isAdding={isAdding}
                                 setIsAdding={setIsAdding}
