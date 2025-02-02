@@ -1,11 +1,14 @@
-import LoginForm from '@/src/components/Form/LoginForm'
+import { LoginForm } from '@/src/components/Form/LoginForm/client'
 
-const page = () => {
+type PageProps = { params: { lng: string } };
+
+const Page = async ({ params: { lng }}: PageProps) => {
+
     return (
         <div>
-            <LoginForm />
+            <LoginForm lng={lng}/>
         </div>
     )
 }
 
-export default page
+export default Page

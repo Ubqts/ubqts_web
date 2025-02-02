@@ -6,7 +6,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import './LoginForm.css'
+import './LoginForm/LoginFormBase.css'
 import { useRouter } from 'next/navigation'
 
 const FormSchema = z.object({
