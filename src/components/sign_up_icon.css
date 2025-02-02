@@ -1,0 +1,58 @@
+.signUpIconContainer {
+    border-radius: 50%;
+}
+
+.signUpIcon {
+    width: 50px;
+    height: 50px;
+    background-color: #6FBA2C26;
+    position: fixed;
+    bottom: 60px;
+    right: 60px;
+    border-radius: 50%;
+    z-index: 100;
+    transition: all 0.3s;
+}
+
+.plusSign1 {
+    position: fixed;
+    bottom: 85px;
+    right: 85px;
+    transform: translate(50%, 50%);
+    width: 20px;
+    height: 2px;
+    background-color: #FFFFFF99;
+    z-index: 101;
+    transition: all 0.3s;
+}
+
+.plusSign2 {
+    position: fixed;
+    bottom: 85px;
+    right: 85px;
+    transform: translate(50%, 50%);
+    width: 2px;
+    height: 20px;
+    background-color: #FFFFFF99;
+    z-index: 101;
+    transition: all 0.3s;
+}
+
+.signUpIconContainer:hover .signUpIcon {
+    background-color: #6FBA2C;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.signUpIconContainer:hover .plusSign1,
+.signUpIconContainer:hover .plusSign2 {
+    background-color: #FFFFFF;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+@media screen and (max-width: 1080px) {
+    .signUpIconContainer {
+        display: none;
+    }
+}

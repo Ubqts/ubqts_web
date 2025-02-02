@@ -4,7 +4,7 @@ footer {
     color: #7dc73c;
     text-align: center;
     padding-top: 50px;
-    padding-bottom: 50px;
+    padding-bottom: 25px;
     padding-left: calc(-550px + 40%);
     bottom: 0;
     width: 100%;
@@ -19,7 +19,9 @@ footer p {
     margin: 8px 0px;
 }
 
-.footerCompany, .contact, .hashTags {
+.footerCompany,
+.contact,
+.hashTags {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -30,15 +32,15 @@ footer p {
     margin: 0px 70px;
 }
 
-.footerCompany > p {
+.footerCompany>p {
     font-weight: bold;
 }
 
-.footerCompany > .zh {
+.footerCompany>.zh {
     font-size: larger;
 }
 
-.footerCompany > .en {
+.footerCompany>.en {
     font-size: normal;
 }
 
@@ -76,7 +78,25 @@ div.split-3 {
 .counter {
     width: 100%;
     text-align: center;
-    margin-top: 40px;
+    /* margin-top: 40px; */
+    margin-top: 20px;
+}
+
+.footerRights {
+    display: flex;
+    width: 100%;
+    color: #497a1e;
+    margin: 0 70px;
+    font-size: small;
+}
+
+.split-4 {
+    color: gray;
+}
+
+.privacy {
+    text-decoration: underline;
+    margin: 8px 0;
 }
 
 @media screen and (max-width: 1315px) {
@@ -85,7 +105,8 @@ div.split-3 {
         padding-bottom: 30px;
     }
 
-    .footerCompany, .contact {
+    .footerCompany,
+    .contact {
         flex: 1 auto;
     }
 
@@ -106,15 +127,26 @@ div.split-3 {
         flex: 1 100%;
         padding: 0px 20px;
     }
+
+    .footerRights {
+        margin: 0px 50px;
+        padding: 0px 20px;
+    }
 }
 
 @media screen and (max-width: 1100px) {
-    footer > .footerCompany, .contact, .hashTags {
+
+    footer>.footerCompany,
+    .contact,
+    .hashTags {
         flex: 1 100%;
         align-items: center;
     }
 
-    .footerCompany, .contact, .hashTags {
+    .footerCompany,
+    .contact,
+    .hashTags,
+    .footerRights {
         margin: 0px 10%;
     }
 
@@ -124,5 +156,17 @@ div.split-3 {
 
     div.split-2 {
         display: block;
+    }
+}
+
+@media screen and (max-width: 731px) {
+    .footerRights {
+        flex-direction: column;
+        align-items: flex-start;
+        /* align-items: center; */
+    }
+
+    .split-4 {
+        display: none;
     }
 }
