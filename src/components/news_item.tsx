@@ -136,7 +136,8 @@ export default function NewsItem({ id, title, picture, description, language, da
 
     return (
         <div>
-            <div className="newsItem prevent-select" onClick={!isEditing ? () => handleOnClick() : undefined}>
+            {/* <div className="newsItem prevent-select" onClick={!isEditing ? () => handleOnClick() : undefined}> */}
+            <a className="newsItem prevent-select" onClick={!isEditing ? () => handleOnClick() : undefined}>
                 <div className="newsImg">
                     {!isEditing && <img src={picture} alt="1" />}
                     {isEditing &&
@@ -178,7 +179,8 @@ export default function NewsItem({ id, title, picture, description, language, da
                 </div>
                 {/* <p className="date">{date?.getFullYear()}-{date?.getMonth()}-{date?.getDate()}</p> */}
                 <p className="date">{date?.toString().split("T")[0]}</p>
-            </div >
+            </a>
+            {/* </div > */}
             <div className="apiButtons">
                 {(!isAdding && isEditing) && <button className="deleteButton" onClick={() => handleDelete()}>刪除</button>}
                 {isEditing && <button className="saveButton" onClick={() => handleSave()}>儲存</button>}

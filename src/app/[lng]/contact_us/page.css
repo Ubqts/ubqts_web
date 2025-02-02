@@ -1,7 +1,7 @@
 h1 {
     padding: 50px 0px;
-	text-align: center;
-	background-color: #efefef;
+    text-align: center;
+    background-color: #efefef;
     color: #333;
     margin-bottom: 50px;
 }
@@ -37,13 +37,13 @@ h1 {
     gap: 20px;
 }
 
-.contactSales > h2,
-.contactService > h2,
-.contactOthers > h2 {
+.contactSales>h2,
+.contactService>h2,
+.contactOthers>h2 {
     text-align: center;
 }
 
-.contactOthers > h2 {
+.contactOthers>h2 {
     margin-bottom: 30px;
 }
 
@@ -51,7 +51,7 @@ h1 {
     background-color: #6FBA2C;
     color: white;
     padding: 10px 20px;
-    /* border-radius: 5px; */
+    border-radius: 3px;
     text-align: center;
     display: block;
     margin: 10px;
@@ -65,13 +65,16 @@ h1 {
     background-color: #5e9c28;
     transition: all 0.2s ease-in-out;
     transition: padding 0s;
+    padding-top: 11px;
+    padding-bottom: 9px;
+    transition: none;
 }
 
-.contactBtn:active {
+/* .contactBtn:active {
     padding-top: 12px;
     padding-bottom: 8px;
     transition: none;
-}
+} */
 
 .businessCardTable {
     display: flex;
@@ -101,15 +104,21 @@ h1 {
 }
 
 .businessCard:hover {
-    transform: skew(2deg, -2deg);
+    transform: skew(0.3deg, -0.3deg);
     transition: all 0.2s ease-in-out;
-    scale: 1.03;
-    box-shadow: 7px 7px 10px 5px rgba(0, 0, 0, 0.3);
-    background-position: right;
+    scale: 1.01;
+    box-shadow: 5px 7px 15px 2px rgba(0, 0, 0, 0.3);
+    /* background-position: right; */
+    background-position: bottom right -35px;
+    background-size: 110%;
 }
 
 @media screen and (max-width: 800px) {
     .fastContact .businessCard {
         max-width: 75vw;
+    }
+
+    .fastContact .businessCard:hover {
+        background-position: bottom right -30px;
     }
 }

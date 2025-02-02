@@ -7,3 +7,8 @@
     width: 100%;
     margin-top: 1.5rem;
 }
+
+.submitBtn:hover {
+    padding-top: 11.3px;
+    /* background-color: #444444; */
+}
