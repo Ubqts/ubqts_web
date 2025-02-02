@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Head from "next/head";
 import { ReactElement } from "react";
 import { dir } from "i18next";
 import { languages } from "@/src/i18n/settings";
@@ -35,6 +36,9 @@ export default function RootLayout({
 }: RootLayoutProps) {
     return (
         <html lang={lng} dir={dir(lng)}>
+            <Head>
+                <link rel="icon" href={favicon.src} />
+            </Head>
             <body className={inter.className}>
                 <Provider>
                     <Providers>
