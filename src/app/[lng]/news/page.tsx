@@ -35,7 +35,7 @@ export default function News({ params: { lng } }: NewsProps) {
 
     return (
         <div className="container prevent-select">
-            <div className="banner">
+            <div className="banner newsBanner">
                 <img src={banner.src} alt="banner" />
             </div>
 

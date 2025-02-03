@@ -2,12 +2,16 @@ h1 {
 	padding: 50px 0px;
 	text-align: center;
 	background-color: #efefef;
-    color: #333;
-    margin-bottom: 50px;
+	color: #333;
+	margin-bottom: 50px;
 }
 
 h2 {
 	text-align: center;
+}
+
+.banner.partnersBanner img {
+	object-position: 50% 15%;
 }
 
 .partnerType {
