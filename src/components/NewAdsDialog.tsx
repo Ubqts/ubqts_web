@@ -61,17 +61,17 @@ export default function NewAdsDialog({ open, onClose }: NewAdsDialogProps) {
                         <input type="checkbox" value="zh-tw" id="twAd" checked={imgLng === "zh-tw"} onChange={(e) => setImgLng(e.target.value)} />
                         <label htmlFor="twAd">繁體中文</label>
                     </div>
-                    <div className="choice">
+                    {/* <div className="choice">
                         <input type="checkbox" value="zh-cn" id="cnAd" checked={imgLng === "zh-cn"} onChange={(e) => setImgLng(e.target.value)} />
                         <label htmlFor="cnAd">簡體中文</label>
-                    </div>
+                    </div> */}
                 </div>
                 <DialogActions>
                     <Button onClick={onClose}>取消</Button>
                     <Button onClick={() => handleAddAds()}>新增廣告</Button>
                 </DialogActions>
             </div>
-            <Loading open={loading}/>
+            <Loading open={loading} />
         </Dialog>
     );
 }

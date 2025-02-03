@@ -111,7 +111,7 @@ const SignUpForm = () => {
                                         </SelectTrigger>
                                     </FormControl>
                                     <SelectContent>
-                                        <SelectItem value="user">訪客</SelectItem>
+                                        <SelectItem value="user">合作夥伴</SelectItem>
                                         <SelectItem value="admin">管理員</SelectItem>
                                     </SelectContent>
                                 </Select>

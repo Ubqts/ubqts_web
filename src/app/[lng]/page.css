@@ -81,20 +81,23 @@ div.container.prevent-select {
 
 .origin {
     background-color: #f5f5f5;
+    padding: 60px 4%;
 }
 
 .imgWithText {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 100px;
+    gap: 50px;
     margin: 20px auto;
 }
 
 .imgWithText img {
-    width: 30%;
-    height: 50%;
-    flex-grow: 1;
+    /* width: 30%;
+    height: 50%; */
+    width: calc(200px + 10%);
+    height: calc(200px + 10%);
+    /* flex-grow: 1; */
     flex-shrink: 2;
 }
 
@@ -144,7 +147,9 @@ div.container.prevent-select {
     }
 
     .imgWithText img {
-        width: 50%;
+        /* width: 50%;
+        height: 50%; */
+        width: cacl(150px + 30%);
         height: 50%;
     }
 }

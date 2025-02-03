@@ -8,6 +8,7 @@ import useProducts from "@/src/hooks/useProducts";
 import CarouselItem from "@/src/components/carousel_item";
 import ProductItem from "@/src/components/product_item";
 import NewAdsDialog from "@/src/components/NewAdsDialog";
+import CompanyIntro from "@/public/img/companyIntro.png";
 
 import React, { useEffect, useContext, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -124,18 +125,18 @@ export default function Home({ params: { lng } }: HomeProps) {
                 <h1>{t("company-introduction-title")}</h1>
 
                 <div className="imgWithText">
-                    <img src="https://picsum.photos/400?random=4" alt="companyIntro" />
+                    <img src={CompanyIntro.src} alt="companyIntro" />
                     <div>
                         <p>{t("company-introduction-content_1")}</p>
-                        <p>{t("company-introduction-content_2")}</p>
-                        <p>{t("company-introduction-content_3")}</p>
                         <p>
+                            {t("company-introduction-content_2")}<br />
+                            {t("company-introduction-content_3")}<br />
                             {t("company-introduction-content_4")}<br />
                             {t("company-introduction-content_5")}<br />
                             {t("company-introduction-content_6")}<br />
                             {t("company-introduction-content_7")}
                         </p>
-                        <p>{t("company-introduction-content_8")}</p>
+                        <p style={{ fontSize: "smaller" }}>{t("company-introduction-content_8")}</p>
                     </div>
                 </div>
             </div>

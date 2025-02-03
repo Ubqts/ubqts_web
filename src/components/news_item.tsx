@@ -170,10 +170,10 @@ export default function NewsItem({ id, title, picture, description, language, da
                                 <input type="checkbox" value="zh-tw" id="twNews" checked={imgLng === "zh-tw"} onChange={(e) => setImgLng(e.target.value)} />
                                 <label htmlFor="twNews">繁體中文</label>
                             </div>
-                            <div className="choice">
+                            {/* <div className="choice">
                                 <input type="checkbox" value="zh-cn" id="cnNews" checked={imgLng === "zh-cn"} onChange={(e) => setImgLng(e.target.value)} />
                                 <label htmlFor="cnNews">簡體中文</label>
-                            </div>
+                            </div> */}
                         </div>
                     }
                 </div>
