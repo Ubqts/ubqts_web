@@ -101,10 +101,10 @@ export default function NewProduct() {
                     <input type="checkbox" value="zh-tw" id="twProduct" checked={imgLng === "zh-tw"} onChange={(e) => setImgLng(e.target.value)} />
                     <label htmlFor="twProduct">繁體中文</label>
                 </div>
-                <div className="choice">
+                {/* <div className="choice">
                     <input type="checkbox" value="zh-cn" id="cnProduct" checked={imgLng === "zh-cn"} onChange={(e) => setImgLng(e.target.value)} />
                     <label htmlFor="cnProduct">簡體中文</label>
-                </div>
+                </div> */}
             </div>
             <div className="blankBanner" />
             <div className="btnContainer prevent-select">

@@ -1,5 +1,6 @@
 {
-    "downloadFiles": "下載專區", 
+    "downloadFiles": "下載專區",
+    "loginPrompt": "（請先登入）",
     "catalog": "產品型錄",
     "software": "軟體下載",
     "name": "項目名稱",

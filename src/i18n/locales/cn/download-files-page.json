@@ -1,5 +1,6 @@
 {
-    "downloadFiles": "下载专区", 
+    "downloadFiles": "下载专区",
+    "loginPrompt": "（请先登入）",
     "catalog": "产品型录",
     "software": "软件下载",
     "name": "项目名称",

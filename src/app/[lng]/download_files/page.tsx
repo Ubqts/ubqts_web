@@ -27,7 +27,7 @@ export default function DownloadFiles({ params: { lng } }: DownloadFilesProps) {
             try {
                 const downloadsListInit = await getDownloads();
                 const downloadsListJSON: Download[] = downloadsListInit["downloads"];
-                setDownloadsList(downloadsListJSON);    
+                setDownloadsList(downloadsListJSON);
             } catch (error) {
                 console.log(error);
             }
@@ -36,6 +36,20 @@ export default function DownloadFiles({ params: { lng } }: DownloadFilesProps) {
         fetchDownloadsList();
         // console.log(downloadsList);
     }, [getDownloads]);
+
+    if (!session) {
+        return (
+            <div className="container prevent-select">
+                <div className="banner">
+                    <img src={banner.src} alt="banner" />
+                </div>
+                {session && <h1>{t("downloadFiles")}</h1>}
+                {!session && <h1>{t("downloadFiles")}<br />{t("loginPrompt")}</h1>}
+                <div className="blankBanner" />
+                <div className="blankBanner" />
+            </div>
+        );
+    }
 
     return (
         <div className="container prevent-select">
@@ -59,7 +73,7 @@ export default function DownloadFiles({ params: { lng } }: DownloadFilesProps) {
                     </thead>
                     <tbody>
                         {downloadsList && downloadsList.filter((download) => (download.type === "pdf")).map((download) => (
-                            <DownloadItemLarge 
+                            <DownloadItemLarge
                                 key={download.id}
                                 id={download.id}
                                 fileName={download.name}
@@ -68,7 +82,7 @@ export default function DownloadFiles({ params: { lng } }: DownloadFilesProps) {
                                 downloadUrl={download.url}
                             />
                         ))}
-                        {session?.user.role === "admin" && 
+                        {session?.user.role === "admin" &&
                             <tr>
                                 <td colSpan={5} className="more" onClick={() => setAddDialog(true)}>
                                     <img className="addIcon" src={addIcon.src} alt="add" />
@@ -90,12 +104,12 @@ export default function DownloadFiles({ params: { lng } }: DownloadFilesProps) {
                                 <th className="type">{t("catagory")}</th>
                                 <th className="size">{t("size")}</th>
                                 <th className="download">{t("download")}</th>
-                                { session?.user.role === "admin" && <th className="edit">刪除</th>}
+                                {session?.user.role === "admin" && <th className="edit">刪除</th>}
                             </tr>
                         </thead>
                         <tbody>
                             {downloadsList && downloadsList.filter((download) => (download.type !== "pdf")).map((download) => (
-                                <DownloadItemLarge 
+                                <DownloadItemLarge
                                     key={download.id}
                                     id={download.id}
                                     fileName={download.name}
@@ -104,7 +118,7 @@ export default function DownloadFiles({ params: { lng } }: DownloadFilesProps) {
                                     downloadUrl={download.url}
                                 />
                             ))}
-                            {session?.user.role === "admin" && 
+                            {session?.user.role === "admin" &&
                                 <tr>
                                     <td colSpan={5} className="more" onClick={() => setAddDialog(true)}>
                                         <img className="addIcon" src={addIcon.src} alt="add" />
@@ -133,20 +147,20 @@ export default function DownloadFiles({ params: { lng } }: DownloadFilesProps) {
                 <div className="blankBanner" />
                 {(session?.user.role === "user" || session?.user.role === "admin") &&
                     <>
-                    <div className="category">
-                        <h2>{t("software")}</h2>
-                    </div>
-                    <ul>
-                        {downloadsList && downloadsList.filter((download) => (download.type !== "pdf")).map((download) => (
-                            <DownloadItemSmall
-                                key={download.id}
-                                fileName={download.name}
-                                fileType={download.type}
-                                fileSize={download.size}
-                                downloadUrl={download.url}
-                            />
-                        ))}
-                    </ul>
+                        <div className="category">
+                            <h2>{t("software")}</h2>
+                        </div>
+                        <ul>
+                            {downloadsList && downloadsList.filter((download) => (download.type !== "pdf")).map((download) => (
+                                <DownloadItemSmall
+                                    key={download.id}
+                                    fileName={download.name}
+                                    fileType={download.type}
+                                    fileSize={download.size}
+                                    downloadUrl={download.url}
+                                />
+                            ))}
+                        </ul>
                     </>
                 }
             </div>

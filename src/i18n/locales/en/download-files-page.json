@@ -1,5 +1,6 @@
 {
-    "downloadFiles": "Download Center", 
+    "downloadFiles": "Download Center",
+    "loginPrompt": "(Please log in first)",
     "catalog": "Product Catalog",
     "software": "Software Download",
     "name": "Item Name",

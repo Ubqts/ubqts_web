@@ -22,6 +22,10 @@
     flex-shrink: 2;
 }
 
+.editNewsImgButton:hover {
+    cursor: pointer;
+}
+
 .newsInfo {
     margin-right: auto;
     text-align: left;

@@ -76,9 +76,10 @@ export const HeaderBase = ({ t }: HeaderProps) => {
                             //         {lang === "tw" ? "繁體中文" : lang === "cn" ? "简体中文" : "English"}
                             //     </a>
                             // );
+                            if (lang === "cn") return;
                             return (
                                 <a key={lang} href="#" onClick={() => { window.location.href = `/${lang}/${page}` }}>
-                                    {lang === "tw" ? "繁體中文" : lang === "cn" ? "简体中文" : "English"}
+                                    {lang === "tw" ? "繁體中文" : "English"}
                                 </a>
                             );
                         })}
