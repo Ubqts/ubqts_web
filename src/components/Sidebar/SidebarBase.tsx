@@ -48,21 +48,21 @@ export const SidebarBase = ({ t }: SidebarBaseProps) => {
                 <div className="linkSplit" />
                 {/* <a className="sidebarLink" href="product_solutions">產品解決方案</a>
                 <div className="linkSplit" /> */}
-                <a className="sidebarLink" href="partners">{t("partners")}</a>
+                <a className="sidebarLink" href="/partners">{t("partners")}</a>
                 <div className="linkSplit" />
-                <a className="sidebarLink" href="contact_us">{t("contact-us")}</a>
+                <a className="sidebarLink" href="/contact_us">{t("contact-us")}</a>
                 <div className="linkSplit" />
-                <a className="sidebarLink" href="news">{t("news")}</a>
+                <a className="sidebarLink" href="/news">{t("news")}</a>
                 <div className="linkSplit" />
-                <a className="sidebarLink" href="download_files">{t("downloads")}</a>
+                <a className="sidebarLink" href="/download_files">{t("downloads")}</a>
                 <div className="linkSplit" />
                 {session ? (
                     <a className="sidebarLink" onClick={() => handleSignOut()}>{t("logout")}</a>
                 ) : (
-                    <a className="sidebarLink" href="login">{t("login")}</a>
+                    <a className="sidebarLink" href="/login">{t("login")}</a>
                 )}
                 {session?.user.role === "admin" && <div className="linkSplit" />}
-                {session?.user.role === "admin" && <a className="sidebarLink" href="sign_up">{t("sign-up")}</a>}
+                {session?.user.role === "admin" && <a className="sidebarLink" href="/sign_up">{t("sign-up")}</a>}
             </div>
         </div>
     );

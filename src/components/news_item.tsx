@@ -111,7 +111,7 @@ export default function NewsItem({ id, title, picture, description, language, da
     }
 
     const handleOnClick = () => {
-        if (session) {
+        if (session?.user.role === "admin") {
             setIsEditing(true);
         } else {
             // router.push(`/news/id=${id}`);

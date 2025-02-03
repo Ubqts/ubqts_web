@@ -82,13 +82,13 @@ export default function Home({ params: { lng } }: HomeProps) {
                 {session?.user.role === "admin" ? (
                     adsList.map((item) => (
                         <Carousel.Item key={item.id}>
-                            <img src={item.picture} alt="slides" width={"100%"} style={{ objectFit: "cover", height: "50vw", maxHeight: "90vh" }} />
+                            <img src={item.picture} alt="slides" width={"100%"} style={{ objectFit: "cover", height: "50vw", maxHeight: "70vh" }} />
                             {/* <Carousel.Caption /> */}
                         </Carousel.Item>
                     ))) : (
                     adsList.filter((item) => (item.language.match(lng))).map((item) => (
                         <Carousel.Item key={item.id}>
-                            <img src={item.picture} alt="slides" width={"100%"} style={{ objectFit: "cover", height: "50vw", maxHeight: "90vh" }} />
+                            <img src={item.picture} alt="slides" width={"100%"} style={{ objectFit: "cover", height: "50vw", maxHeight: "70vh" }} />
                             {/* <Carousel.Caption /> */}
                         </Carousel.Item>
                     )))}
@@ -129,14 +129,13 @@ export default function Home({ params: { lng } }: HomeProps) {
                         <p>{t("company-introduction-content_1")}</p>
                         <p>{t("company-introduction-content_2")}</p>
                         <p>{t("company-introduction-content_3")}</p>
-                        <p>{t("company-introduction-content_4")}</p>
-                        <p>{t("company-introduction-content_5")}</p>
                         <p>
+                            {t("company-introduction-content_4")}<br />
+                            {t("company-introduction-content_5")}<br />
                             {t("company-introduction-content_6")}<br />
-                            {t("company-introduction-content_7")}<br />
-                            {t("company-introduction-content_8")}<br />
-                            {t("company-introduction-content_9")}
+                            {t("company-introduction-content_7")}
                         </p>
+                        <p>{t("company-introduction-content_8")}</p>
                     </div>
                 </div>
             </div>
