@@ -2,10 +2,14 @@
 import "./page.css";
 import banner from "@/public/img/banner.png";
 import { NewsContext, News } from "@/src/context/News";
+import { useTranslation } from "@/src/i18n/client";
 
 import { useState, useContext, useEffect } from "react";
 
-export default function NewsPage() {
+type NewsItemProps = { params: { lng: string } };
+
+export default function NewsPage({ params: { lng } }: NewsItemProps) {
+    const { t } = useTranslation(lng, "news-page");
     const { news } = useContext(NewsContext);
     const [newsItem, setNewsItem] = useState<News>();
     const [imgLoaded, setImgLoaded] = useState(false);
@@ -64,7 +68,7 @@ export default function NewsPage() {
                 {/* <p>{newsItem?.date?.toString()}</p> */}
             </div>
             <div className="blankBanner" />
-            <a className="prevPage" href="/news">回上一頁</a>
+            <a className="prevPage" href="/news">{t("previous-page")}</a>
             <div className="blankBanner" />
             <div className="blankBanner" />
         </div>

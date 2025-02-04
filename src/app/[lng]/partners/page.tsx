@@ -41,7 +41,7 @@ export default async function Partners({ params: { lng } }: PartnersProps) {
     const { t } = await useTranslation(lng, "partners-page");
     return (
         <div className="container prevent-select">
-            <div className="banner">
+            <div className="banner partnersBanner">
                 <img src={banner.src} alt="banner" />
             </div>
             {/* <h1>合作夥伴</h1> */}
