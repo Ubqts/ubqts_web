@@ -46,6 +46,6 @@ next-env.d.ts
 /prisma
 
 # google-cloud json
-.hallowed-byte-439007-c7-f71aa2e9533b.json
-.hallowed-byte-439007-c7-168cb7e6e7f3.json
-.package-lock.json
+hallowed-byte-439007-c7-f71aa2e9533b.json
+hallowed-byte-439007-c7-168cb7e6e7f3.json
+package-lock.json
