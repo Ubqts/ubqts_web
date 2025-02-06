@@ -22,9 +22,9 @@ export default function useAds() {
                 body: formData,
             });
             if (!imageRes.ok) {
-                const error = await imageRes.json();
+                const error = await imageRes.text();
                 alert("Error uploading image");
-                console.log(imageRes.text());
+                console.log(error);
                 throw new Error(error);
             }
             const imageUrl = await imageRes.json();
