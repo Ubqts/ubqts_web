@@ -19,9 +19,6 @@ export default function useAds() {
 
             const imageRes = await fetch("/api/image", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                },
                 body: formData,
             });
             if (!imageRes.ok) {
