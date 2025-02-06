@@ -27,6 +27,7 @@ export default function useAds() {
             if (!imageRes.ok) {
                 const error = await imageRes.json();
                 alert("Error uploading image");
+                console.log(imageRes.text());
                 throw new Error(error);
             }
             const imageUrl = await imageRes.json();
