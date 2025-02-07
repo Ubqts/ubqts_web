@@ -3,6 +3,7 @@ import banner from "@/public/img/banner.png";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
+import { Input } from "@mui/material";
 
 import "./page.css";
 import useProducts from "@/src/hooks/useProducts";
@@ -15,7 +16,8 @@ export default function NewProduct() {
     const { postProducts } = useProducts();
     const [productName, setProductName] = useState("產品名稱");
     const [productDescription, setproductDescription] = useState("This is the initial content of the editor");
-    const [picture, setPicture] = useState<File | null>(null);
+    // const [picture, setPicture] = useState<File | null>(null);
+    const [picture, setPicture] = useState<string>("");
     const [image, setImage] = useState("");
     const [imgLng, setImgLng] = useState("");
     const [loading, setLoading] = useState(false);
@@ -32,8 +34,8 @@ export default function NewProduct() {
         if (productName === "") {
             alert("產品名稱不得為空！");
             return;
-        } else if (picture === null) {
-            alert("請輸入產品圖片！");
+        } else if (picture === "") {
+            alert("請選擇圖片！");
             return;
         } else if (productDescription === "") {
             alert("產品敘述不得為空！");
@@ -63,10 +65,9 @@ export default function NewProduct() {
     }
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files && e.target.files[0]) {
-            setPicture(e.target.files[0]);
-            const newImage = URL.createObjectURL(e.target.files[0]);
-            setImage(newImage);
+        if (e.target.value !== "") {
+            setPicture(e.target.value);
+            setImage(e.target.value);
         }
     }
 
@@ -83,7 +84,8 @@ export default function NewProduct() {
                 <div className="flex">
                     <div className="titleAndImage">
                         <input className="title" placeholder="產品名稱" onChange={(e) => setProductName(e.target.value)} />
-                        <input id="fileInput" type="file" accept="image/*" onChange={handleImageChange} />
+                        {/* <input id="fileInput" type="file" accept="image/*" onChange={handleImageChange} /> */}
+                        <Input id="fileInput" type="text" onChange={handleImageChange} />
                     </div>
                     <label htmlFor="fileInput">
                         {image !== "" && <img src={image} alt="product picture preview" />}
