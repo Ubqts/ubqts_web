@@ -8,6 +8,7 @@ import Loading from "@/src/components/loading";
 import { useContext, useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { Input } from "@mui/material";
 
 const Page = () => {
     const router = useRouter();
@@ -15,7 +16,8 @@ const Page = () => {
     const [isEditing, setIsEditing] = useState<boolean>(false);
     const [editName, setEditName] = useState<string>("");
     const [editImage, setEditImage] = useState<string>("");
-    const [editPicture, setEditPicture] = useState<File | null>(null);
+    // const [editPicture, setEditPicture] = useState<File | null>(null);
+    const [editPicture, setEditPicture] = useState<string>("");
     const [editDescription, setEditDescription] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(false);
     const [imgLoaded, setImgLoaded] = useState<boolean>(false);
@@ -45,10 +47,9 @@ const Page = () => {
     }, []);
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files && e.target.files[0]) {
-            setEditPicture(e.target.files[0]);
-            const newImage = URL.createObjectURL(e.target.files[0]);
-            setEditImage(newImage);
+        if (e.target.value) {
+            setEditPicture(e.target.value);
+            setEditImage(e.target.value);
         }
     }
 
@@ -124,12 +125,17 @@ const Page = () => {
                             <label htmlFor="fileInput">
                                 <img src={editImage} alt="1" className="editNewsImgButton" />
                             </label>
-                            <input
+                            {/* <input
                                 id="fileInput"
                                 type="file"
                                 accept="image/*"
                                 onChange={handleImageChange}
                                 style={{ display: 'none' }}
+                            /> */}
+                            <Input
+                                id="fileInput"
+                                type="text"
+                                onChange={handleImageChange}
                             />
                         </>
                     }
