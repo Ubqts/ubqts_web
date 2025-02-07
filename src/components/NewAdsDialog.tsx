@@ -13,14 +13,15 @@ type NewAdsDialogProps = {
 };
 
 export default function NewAdsDialog({ open, onClose }: NewAdsDialogProps) {
-    const [image, setImage] = useState<File | null>(null);
+    // const [image, setImage] = useState<File | null>(null);
+    const [image, setImage] = useState<string>("");
     const [imgLng, setImgLng] = useState<string>("");
     const [loading, setLoading] = useState(false);
     const { postAds } = useAds();
     const router = useRouter();
 
     const handleAddAds = async () => {
-        if (image === null) {
+        if (image === "") {
             alert("請輸入圖片");
             return;
         } else if (imgLng === "") {
@@ -49,8 +50,10 @@ export default function NewAdsDialog({ open, onClose }: NewAdsDialogProps) {
             <div>
                 <DialogTitle>新增廣告</DialogTitle>
                 <div className="fileContainer">
-                    <input type="file" accept=".jpg, .jpeg, .png"
-                        onChange={(e) => setImage(e.target.files ? e.target.files[0] : null)} />
+                    {/* <input type="file" accept=".jpg, .jpeg, .png"
+                        onChange={(e) => setImage(e.target.files ? e.target.files[0] : null)} /> */}
+                    <Input type="text" placeholder="請輸入圖片網址"
+                        onChange={(e) => setImage(e.target.value)} />
                 </div>
                 <div className="langContainer">
                     <div className="choice">

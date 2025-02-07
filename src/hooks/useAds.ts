@@ -9,25 +9,26 @@ export default function useAds() {
         picture,
         language,
     }: {
-        picture: File;
+        picture: string;
         language: string;
     }) => {
         try {
-            // upload image to cloud and get the url
-            const formData = new FormData();
-            formData.append("file", picture);
+            // // upload image to cloud and get the url
+            // const formData = new FormData();
+            // formData.append("file", picture);
 
-            const imageRes = await fetch("/api/image", {
-                method: "POST",
-                body: formData,
-            });
-            if (!imageRes.ok) {
-                const error = await imageRes.json();
-                alert("Error uploading image");
-                throw new Error(error);
-            }
-            const imageUrl = await imageRes.json();
-            console.log("image uploaded.");
+            // const imageRes = await fetch("/api/image", {
+            //     method: "POST",
+            //     body: formData,
+            // });
+            // if (!imageRes.ok) {
+            //     const error = await imageRes.text();
+            //     alert("Error uploading image");
+            //     console.log(error);
+            //     throw new Error(error);
+            // }
+            // const imageUrl = await imageRes.json();
+            // console.log("image uploaded.");
 
             // upload the image url and language to the database
             const res = await fetch("/api/ads", {
@@ -36,7 +37,7 @@ export default function useAds() {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    picture: imageUrl.url, 
+                    picture: picture, 
                     language: language,
                 }),
             });
@@ -98,38 +99,38 @@ export default function useAds() {
 
     //DELETE
     const deleteAds = async (id: number) => {
-        // get the image url from the database
-        const resGet = await fetch("/api/ads", {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
-        if (!resGet.ok) {
-            const body = await resGet.json();
-            throw new Error(body.error);
-        }
-        const adsList = await resGet.json();
-        const ads = adsList.ads;
-        const target = ads.find((ad: any) => ad.id === id);
-        const url = target.picture;
-        console.log("image url retrieved.");
+        // // get the image url from the database
+        // const resGet = await fetch("/api/ads", {
+        //     method: "GET",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //     },
+        // });
+        // if (!resGet.ok) {
+        //     const body = await resGet.json();
+        //     throw new Error(body.error);
+        // }
+        // const adsList = await resGet.json();
+        // const ads = adsList.ads;
+        // const target = ads.find((ad: any) => ad.id === id);
+        // const url = target.picture;
+        // console.log("image url retrieved.");
 
-        // delete image from cloud
-        const resDelete = await fetch("/api/image", {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                url,
-            }),
-        });
-        if (!resDelete.ok) {
-            const body = await resDelete.json();
-            throw new Error(body.error);
-        }
-        console.log("image deleted.");
+        // // delete image from cloud
+        // const resDelete = await fetch("/api/image", {
+        //     method: "DELETE",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify({
+        //         url,
+        //     }),
+        // });
+        // if (!resDelete.ok) {
+        //     const body = await resDelete.json();
+        //     throw new Error(body.error);
+        // }
+        // console.log("image deleted.");
 
         // delete the object from the database
         const res = await fetch('/api/ads', {
