@@ -20,6 +20,7 @@ export const FooterBase = ({ t }: FooterProps) => {
             <div className="contact">
                 <p>{t("address")}</p>
                 <p>{t("phone")}</p>
+                <p>{t("mail")}</p>
                 {/* <p>地址: 新北市中和區建一路179號9F</p>
                 <p>電話: 02-2228-7016</p> */}
             </div>
@@ -37,7 +38,7 @@ export const FooterBase = ({ t }: FooterProps) => {
 
             <div className="footerRights">
                 <p style={{ textAlign: "left" }}>Copyright © 2025 UBQTS Power Technology Co.,LTD All Rights Reserved</p><p className="split-4">&nbsp;&nbsp;│&nbsp;&nbsp;</p>
-                <a className="privacy" href="/privacy" style={{ color: "#497a1e" }}>隱私權政策</a>
+                <a className="privacy" href="/privacy" style={{ color: "#497a1e" }}>{t("privacy")}</a>
             </div>
             <div className="counter">
                 {t("visiters")}
