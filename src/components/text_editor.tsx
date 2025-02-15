@@ -12,7 +12,7 @@ const TextEditor: React.FC<TextEditorProps> = React.memo(({ editorContent, setEd
     return (
         <>
         <Editor 
-            apiKey={process.env.TINYMCE_API_KEY}
+            apiKey={process.env.NEXT_PUBLIC_TINYMCE_API_KEY}
             value={editorContent === '' ? '<p>This is the initial content of the editor</p>' : editorContent}
             init={{
                 height: 500,
