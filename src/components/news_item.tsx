@@ -23,7 +23,7 @@ export default function NewsItem({ id, title, picture, description, language, da
     const { data: session } = useSession();
     const [EditTitle, setEditTitle] = useState(title);
     // const [EditPicture, setEditPicture] = useState<File | null>(null);
-    const [EditPicture, setEditPicture] = useState<string>("");
+    const [EditPicture, setEditPicture] = useState(picture);
     const [EditImage, setEditImage] = useState(picture);
     const [EditDescription, setEditDescription] = useState(description);
     const [imgLng, setImgLng] = useState<string | null>(language || null);
@@ -155,6 +155,7 @@ export default function NewsItem({ id, title, picture, description, language, da
                                 <Input
                                     id="fileInput"
                                     type="text"
+                                    defaultValue={EditImage}
                                     onChange={handleImageChange}
                                 />
                             </label>
