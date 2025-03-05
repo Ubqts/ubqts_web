@@ -117,6 +117,8 @@ export default function Home({ params: { lng } }: HomeProps) {
                 style={{ border: 'none', marginLeft: 'auto', marginRight: 'auto', display: 'block' }}
                 allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
             </iframe>
+            <p style={{ paddingTop: "10px" }}>{t("source")}<a href="https://www.fivebikes.it/" target="_blank" rel="noopener noreferrer">https://www.fivebikes.it/</a></p>
+
 
             <div className="blankBanner" />
             <div className="blankBanner" />
