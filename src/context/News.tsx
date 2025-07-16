@@ -29,24 +29,24 @@ type Props = {
 export function NewsProvider({ children }: Props) {
     const [news, setNews] = useState<News[]>([]);
 
-    useEffect(() => {
-        const fetchNews = async () => {
-            try {
-                const res = await fetch('/api/news', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                });
-                const data = await res.json();
-                // console.log(data);
-                setNews(data);
-            } catch (error) {
-                console.error(error);
-            }
-        };
-        fetchNews();
-    }, []);
+    // useEffect(() => {
+    //     const fetchNews = async () => {
+    //         try {
+    //             const res = await fetch('/api/news', {
+    //                 method: 'GET',
+    //                 headers: {
+    //                     'Content-Type': 'application/json',
+    //                 },
+    //             });
+    //             const data = await res.json();
+    //             // console.log(data);
+    //             setNews(data);
+    //         } catch (error) {
+    //             console.error(error);
+    //         }
+    //     };
+    //     fetchNews();
+    // }, []);
 
     const sendNews = async (news: Omit<News, 'id' | 'date'>) => {
         try {
