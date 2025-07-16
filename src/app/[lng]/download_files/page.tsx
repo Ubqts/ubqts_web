@@ -35,7 +35,7 @@ export default function DownloadFiles({ params: { lng } }: DownloadFilesProps) {
 
         fetchDownloadsList();
         // console.log(downloadsList);
-    }, [getDownloads]);
+    }, []);
 
     if (!session) {
         return (

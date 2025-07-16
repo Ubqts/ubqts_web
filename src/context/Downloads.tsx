@@ -29,24 +29,24 @@ export function DownloadProvider({ children }: Props) {
     // const router = useRouter();
     const [downloads, setDownloads] = useState<Download[]>([]);
 
-    useEffect(() => {
-        const fetchDownload = async () => {
-            try {
-                const res = await fetch('/api/downloads', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                });
-                const data = await res.json();
-                // console.log(data);
-                setDownloads(data);
-            } catch (error) {
-                console.error(error);
-            }
-        };
-        fetchDownload();
-    }, []);
+    // useEffect(() => {
+    //     const fetchDownload = async () => {
+    //         try {
+    //             const res = await fetch('/api/downloads', {
+    //                 method: 'GET',
+    //                 headers: {
+    //                     'Content-Type': 'application/json',
+    //                 },
+    //             });
+    //             const data = await res.json();
+    //             // console.log(data);
+    //             setDownloads(data);
+    //         } catch (error) {
+    //             console.error(error);
+    //         }
+    //     };
+    //     fetchDownload();
+    // }, []);
 
     const sendDownload = async (download: Omit<Download, 'id'>) => {
         try {

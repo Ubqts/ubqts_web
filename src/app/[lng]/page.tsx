@@ -52,7 +52,7 @@ export default function Home({ params: { lng } }: HomeProps) {
         }
         fetchAdsList();
         fetchProductsList();
-    }, [getAds, getProducts]);
+    }, []);
 
     const handleSelect = (selectedIndex: React.SetStateAction<number>, e: any) => {
         setIndex(selectedIndex);

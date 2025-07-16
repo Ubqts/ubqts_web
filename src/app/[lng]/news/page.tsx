@@ -29,7 +29,7 @@ export default function News({ params: { lng } }: NewsProps) {
             setNewsList(newsListJSON);
         }
         fetchNewsList();
-    }, [getNews]);
+    }, []);
 
     // console.log(newsList);
 
