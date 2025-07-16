@@ -25,24 +25,24 @@ type Props = {
 export function AdProvider({ children }: Props) {
     const [ads, setAds] = useState<Ad[]>([]);
 
-    useEffect(() => {
-        const fetchAds = async () => {
-            try {
-                const res = await fetch('../../api/ads', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                });
-                const data = await res.json();
-                // console.log(data);
-                setAds(data);
-            } catch (error) {
-                console.error(error);
-            }
-        };
-        fetchAds();
-    }, []);
+    // useEffect(() => {
+    //     const fetchAds = async () => {
+    //         try {
+    //             const res = await fetch('../../api/ads', {
+    //                 method: 'GET',
+    //                 headers: {
+    //                     'Content-Type': 'application/json',
+    //                 },
+    //             });
+    //             const data = await res.json();
+    //             // console.log(data);
+    //             setAds(data);
+    //         } catch (error) {
+    //             console.error(error);
+    //         }
+    //     };
+    //     fetchAds();
+    // }, []);
 
     const sendAds = async (ad: Omit<Ad, 'id'>) => {
         try {
