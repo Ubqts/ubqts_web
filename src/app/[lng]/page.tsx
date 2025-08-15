@@ -62,9 +62,11 @@ export default function Home({ params: { lng } }: HomeProps) {
         // Do nothing if hovered
         if (hovered) return;
 
+        const adsListWithCorrectLanguage = adsList.filter((item) => item.language.match(lng));
+
         const intervalId = setInterval(() => {
-            if (adsList.length > 0) {
-                if (index < adsList.length - 1) {
+            if (adsListWithCorrectLanguage.length > 0) {
+                if (index < adsListWithCorrectLanguage.length - 1) {
                     setIndex(index + 1);
                 } else {
                     setIndex(0);
