@@ -66,6 +66,8 @@ export default function Home({ params: { lng } }: HomeProps) {
 
         const intervalId = setInterval(() => {
             if (adsListWithCorrectLanguage.length > 0) {
+                console.log("index", index);
+                console.log("adsListWithCorrectLanguage.length", adsListWithCorrectLanguage.length);
                 if (index < adsListWithCorrectLanguage.length - 1) {
                     setIndex(index + 1);
                 } else {
@@ -81,7 +83,7 @@ export default function Home({ params: { lng } }: HomeProps) {
         <div className="container prevent-select">
             {/* <BootstrapCarousel /> */}
 
-            <Carousel activeIndex={index} onSelect={handleSelect} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} wrap={true} interval={5000}>
+            <Carousel activeIndex={index} onSelect={handleSelect} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                 {session?.user.role === "admin" ? (
                     adsList.map((item) => (
                         <Carousel.Item key={item.id}>
