@@ -79,7 +79,7 @@ export default function Home({ params: { lng } }: HomeProps) {
         <div className="container prevent-select">
             {/* <BootstrapCarousel /> */}
 
-            <Carousel activeIndex={index} onSelect={handleSelect} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+            <Carousel activeIndex={index} onSelect={handleSelect} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} wrap={true} interval={5000}>
                 {session?.user.role === "admin" ? (
                     adsList.map((item) => (
                         <Carousel.Item key={item.id}>
