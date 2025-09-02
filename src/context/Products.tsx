@@ -18,8 +18,8 @@ export type ProductContext = {
 
 export const ProductContext = createContext<ProductContext>({
     products: [],
-    setProducts: () => {},
-    sendProduct: async () => {},
+    setProducts: () => { },
+    sendProduct: async () => { },
 });
 
 type Props = {
@@ -29,24 +29,24 @@ export function ProductProvider({ children }: Props) {
     // const router = useRouter();
     const [products, setProducts] = useState<Product[]>([]);
 
-    useEffect(() => {
-        const fetchProduct = async () => {
-            try {
-                const res = await fetch('/api/products', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                });
-                const data = await res.json();
-                // console.log(data);
-                setProducts(data);
-            } catch (error) {
-                console.error(error);
-            }
-        };
-        fetchProduct();
-    }, []);
+    // useEffect(() => {
+    //     const fetchProduct = async () => {
+    //         try {
+    //             const res = await fetch('/api/products', {
+    //                 method: 'GET',
+    //                 headers: {
+    //                     'Content-Type': 'application/json',
+    //                 },
+    //             });
+    //             const data = await res.json();
+    //             // console.log(data);
+    //             setProducts(data);
+    //         } catch (error) {
+    //             console.error(error);
+    //         }
+    //     };
+    //     fetchProduct();
+    // }, []);
 
     const sendProduct = async (product: Omit<Product, 'id'>) => {
         try {
