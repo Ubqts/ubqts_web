@@ -26,7 +26,7 @@ export const SidePanelBase = ({ t, lng }: SidePanelProps) => {
             setProductList(productListJSON);
         }
         fetchProductList();
-    }, [getProducts]);
+    }, []);
 
     return (
         <div className="productPanel">

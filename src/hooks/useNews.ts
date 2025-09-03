@@ -13,27 +13,27 @@ export default function useNews() {
         language,
     }: {
         title: string;
-        picture: File;
+        picture: string;
         description: string;
         date: Date;
         language: string;
     }) => {
         try {
-            // upload image to cloud and get the url
-            const formData = new FormData();
-            formData.append("file", picture);
+            // // upload image to cloud and get the url
+            // const formData = new FormData();
+            // formData.append("file", picture);
 
-            const imageRes = await fetch("/api/image", {
-                method: "POST",
-                body: formData,
-            });
-            if (!imageRes.ok) {
-                const error = await imageRes.json();
-                alert("Error uploading image");
-                throw new Error(error);
-            }
-            const imageUrl = await imageRes.json();
-            console.log("image upuloaded.");
+            // const imageRes = await fetch("/api/image", {
+            //     method: "POST",
+            //     body: formData,
+            // });
+            // if (!imageRes.ok) {
+            //     const error = await imageRes.json();
+            //     alert("Error uploading image");
+            //     throw new Error(error);
+            // }
+            // const imageUrl = await imageRes.json();
+            // console.log("image upuloaded.");
 
             // upload the image url and data to the database
             const res = await fetch("/api/news", {
@@ -42,7 +42,7 @@ export default function useNews() {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    picture: imageUrl.url,
+                    picture: picture,
                     title: title,
                     description: description,
                     date: date,
@@ -85,64 +85,64 @@ export default function useNews() {
         // date,
     }: {
         id: number;
-        picture: File | null;
+        picture: string;
         title: string;
         description: string;
         // date: Date;
     }) => {
-        // get the image url from the database
-        const resGet = await fetch("/api/news", {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
-        if (!resGet.ok) {
-            const body = await resGet.json();
-            throw new Error(body.error);
-        }
-        const newsList = await resGet.json();
-        const news = newsList.news;
-        const target = news.find((news: any) => news.id === id);
-        const url = target.picture;
-        console.log("get image url.");
+        // // get the image url from the database
+        // const resGet = await fetch("/api/news", {
+        //     method: "GET",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //     },
+        // });
+        // if (!resGet.ok) {
+        //     const body = await resGet.json();
+        //     throw new Error(body.error);
+        // }
+        // const newsList = await resGet.json();
+        // const news = newsList.news;
+        // const target = news.find((news: any) => news.id === id);
+        // const url = target.picture;
+        // console.log("get image url.");
 
-        let imageUrl = { url: url };
-        if (picture !== null) {
-            // delete image from cloud
-            const resDelete = await fetch("/api/image", {
-                method: "DELETE",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    url,
-                }),
-            });
-            if (!resDelete.ok) {
-                const body = await resDelete.json();
-                throw new Error(body.error);
-            }
-            console.log("old image deleted.");
+        // let imageUrl = { url: url };
+        // if (picture !== null) {
+        //     // delete image from cloud
+        //     const resDelete = await fetch("/api/image", {
+        //         method: "DELETE",
+        //         headers: {
+        //             "Content-Type": "application/json",
+        //         },
+        //         body: JSON.stringify({
+        //             url,
+        //         }),
+        //     });
+        //     if (!resDelete.ok) {
+        //         const body = await resDelete.json();
+        //         throw new Error(body.error);
+        //     }
+        //     console.log("old image deleted.");
 
-            // upload the new image to cloud
-            const formData = new FormData();
-            formData.append("file", picture);
+        //     // upload the new image to cloud
+        //     const formData = new FormData();
+        //     formData.append("file", picture);
 
-            const imageRes = await fetch("/api/image", {
-                method: "POST",
-                body: formData,
-            });
-            if (!imageRes.ok) {
-                const error = await imageRes.json();
-                alert("Error uploading image");
-                throw new Error(error);
-            }
-            imageUrl = await imageRes.json();
-            console.log("new image uploaded.");
-        } else {
-            console.log("no new image uploaded.");
-        }
+        //     const imageRes = await fetch("/api/image", {
+        //         method: "POST",
+        //         body: formData,
+        //     });
+        //     if (!imageRes.ok) {
+        //         const error = await imageRes.json();
+        //         alert("Error uploading image");
+        //         throw new Error(error);
+        //     }
+        //     imageUrl = await imageRes.json();
+        //     console.log("new image uploaded.");
+        // } else {
+        //     console.log("no new image uploaded.");
+        // }
 
         // update the object in the database
         const res = await fetch('/api/news', {
@@ -153,7 +153,7 @@ export default function useNews() {
             body: JSON.stringify({
                 id, 
                 title: title,
-                picture: imageUrl.url,
+                picture: picture,
                 description: description,
             }),
         });
@@ -168,38 +168,38 @@ export default function useNews() {
 
     //DELETE
     const deleteNews = async (id: number) => {
-        // get the image url from the database
-        const resGet = await fetch("/api/news", {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
-        if (!resGet.ok) {
-            const body = await resGet.json();
-            throw new Error(body.error);
-        }
-        const newsList = await resGet.json();
-        const news = newsList.news;
-        const target = news.find((news: any) => news.id === id);
-        const url = target.picture;
-        console.log("get image url.");
+        // // get the image url from the database
+        // const resGet = await fetch("/api/news", {
+        //     method: "GET",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //     },
+        // });
+        // if (!resGet.ok) {
+        //     const body = await resGet.json();
+        //     throw new Error(body.error);
+        // }
+        // const newsList = await resGet.json();
+        // const news = newsList.news;
+        // const target = news.find((news: any) => news.id === id);
+        // const url = target.picture;
+        // console.log("get image url.");
 
-        // delete image from cloud
-        const resDelete = await fetch("/api/image", {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                url,
-            }),
-        });
-        if (!resDelete.ok) {
-            const body = await resDelete.json();
-            throw new Error(body.error);
-        }
-        console.log("image deleted.");
+        // // delete image from cloud
+        // const resDelete = await fetch("/api/image", {
+        //     method: "DELETE",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify({
+        //         url,
+        //     }),
+        // });
+        // if (!resDelete.ok) {
+        //     const body = await resDelete.json();
+        //     throw new Error(body.error);
+        // }
+        // console.log("image deleted.");
 
         // delete the object from the database
         const res = await fetch('/api/news', {

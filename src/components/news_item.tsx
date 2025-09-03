@@ -5,6 +5,7 @@ import Loading from "./loading";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { Input } from "@mui/material";
 
 export type NewsProps = {
     id?: number;
@@ -21,7 +22,8 @@ export default function NewsItem({ id, title, picture, description, language, da
     const router = useRouter();
     const { data: session } = useSession();
     const [EditTitle, setEditTitle] = useState(title);
-    const [EditPicture, setEditPicture] = useState<File | null>(null);
+    // const [EditPicture, setEditPicture] = useState<File | null>(null);
+    const [EditPicture, setEditPicture] = useState(picture);
     const [EditImage, setEditImage] = useState(picture);
     const [EditDescription, setEditDescription] = useState(description);
     const [imgLng, setImgLng] = useState<string | null>(language || null);
@@ -127,10 +129,9 @@ export default function NewsItem({ id, title, picture, description, language, da
     }
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files && e.target.files[0]) {
-            setEditPicture(e.target.files[0]);
-            const newImage = URL.createObjectURL(e.target.files[0]);
-            setEditImage(newImage);
+        if (e.target.value) {
+            setEditPicture(e.target.value);
+            setEditImage(e.target.value);
         }
     }
 
@@ -144,14 +145,20 @@ export default function NewsItem({ id, title, picture, description, language, da
                         <>
                             <label htmlFor="fileInput">
                                 <img src={EditImage} alt="1" className="editNewsImgButton" />
+                                {/* <input
+                                    id="fileInput"
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={handleImageChange}
+                                    style={{ display: 'none' }}
+                                /> */}
+                                <Input
+                                    id="fileInput"
+                                    type="text"
+                                    defaultValue={EditImage}
+                                    onChange={handleImageChange}
+                                />
                             </label>
-                            <input
-                                id="fileInput"
-                                type="file"
-                                accept="image/*"
-                                onChange={handleImageChange}
-                                style={{ display: 'none' }}
-                            />
                         </>
                     }
                 </div>

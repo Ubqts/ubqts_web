@@ -52,7 +52,7 @@ export default function Home({ params: { lng } }: HomeProps) {
         }
         fetchAdsList();
         fetchProductsList();
-    }, [getAds, getProducts]);
+    }, []);
 
     const handleSelect = (selectedIndex: React.SetStateAction<number>, e: any) => {
         setIndex(selectedIndex);
@@ -62,9 +62,13 @@ export default function Home({ params: { lng } }: HomeProps) {
         // Do nothing if hovered
         if (hovered) return;
 
+        const adsListWithCorrectLanguage = adsList.filter((item) => item.language.match(lng));
+
         const intervalId = setInterval(() => {
-            if (adsList.length > 0) {
-                if (index < adsList.length - 1) {
+            if (adsListWithCorrectLanguage.length > 0) {
+                console.log("index", index);
+                console.log("adsListWithCorrectLanguage.length", adsListWithCorrectLanguage.length);
+                if (index < adsListWithCorrectLanguage.length - 1) {
                     setIndex(index + 1);
                 } else {
                     setIndex(0);
@@ -117,6 +121,8 @@ export default function Home({ params: { lng } }: HomeProps) {
                 style={{ border: 'none', marginLeft: 'auto', marginRight: 'auto', display: 'block' }}
                 allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
             </iframe>
+            <p style={{ paddingTop: "10px" }}>{t("source")}<a href="https://www.fivebikes.it/" target="_blank" rel="noopener noreferrer">https://www.fivebikes.it/</a></p>
+
 
             <div className="blankBanner" />
             <div className="blankBanner" />
