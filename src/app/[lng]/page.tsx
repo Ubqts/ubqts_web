@@ -62,9 +62,13 @@ export default function Home({ params: { lng } }: HomeProps) {
         // Do nothing if hovered
         if (hovered) return;
 
+        const adsListWithCorrectLanguage = adsList.filter((item) => item.language.match(lng));
+
         const intervalId = setInterval(() => {
-            if (adsList.length > 0) {
-                if (index < adsList.length - 1) {
+            if (adsListWithCorrectLanguage.length > 0) {
+                console.log("index", index);
+                console.log("adsListWithCorrectLanguage.length", adsListWithCorrectLanguage.length);
+                if (index < adsListWithCorrectLanguage.length - 1) {
                     setIndex(index + 1);
                 } else {
                     setIndex(0);
@@ -79,7 +83,7 @@ export default function Home({ params: { lng } }: HomeProps) {
         <div className="container prevent-select">
             {/* <BootstrapCarousel /> */}
 
-            <Carousel activeIndex={index} onSelect={handleSelect} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+            <Carousel activeIndex={index} onSelect={handleSelect} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} wrap={true} interval={5000}>
                 {session?.user.role === "admin" ? (
                     adsList.map((item) => (
                         <Carousel.Item key={item.id}>

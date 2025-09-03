@@ -17,7 +17,7 @@ export const SidePanelBase = ({ t, lng }: SidePanelProps) => {
     const { data: session } = useSession();
     const { products } = useContext(ProductContext);
     const { getProducts } = useProducts();
-    const [ productList, setProductList ] = useState<Product[]>([]);
+    const [productList, setProductList] = useState<Product[]>([]);
 
     useEffect(() => {
         const fetchProductList = async () => {
@@ -34,10 +34,10 @@ export const SidePanelBase = ({ t, lng }: SidePanelProps) => {
             {session ? (
                 productList.map((product) => (
                     <a className="product" key={product.id} href={`/product_page/id=${product.id}`}>{product.name}</a>
-            ))) : (
+                ))) : (
                 productList.filter((product) => (product.language.match(lng))).map((product) => (
                     <a className="product" key={product.id} href={`/product_page/id=${product.id}`}>{product.name}</a>
-            )))}
+                )))}
         </div>
     )
 };

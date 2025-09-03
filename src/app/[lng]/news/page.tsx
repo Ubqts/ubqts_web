@@ -7,7 +7,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { useSession } from "next-auth/react";
 
 import NewsItem from "@/src/components/news_item";
-import banner from "@/public/img/newsBanner.png";
+import banner from "@/public/img/banners/newsBanner.jpg";
 import addIcon from "@/public/img/addIcon.png";
 import imagePlaceholder from "@/public/img/imagePlaceholder.png";
 import "./page.css";
