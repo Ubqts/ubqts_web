@@ -19,8 +19,8 @@ export type NewsContext = {
 
 export const NewsContext = createContext<NewsContext>({
     news: [],
-    setNews: () => {},
-    sendNews: async () => {},
+    setNews: () => { },
+    sendNews: async () => { },
 });
 
 type Props = {

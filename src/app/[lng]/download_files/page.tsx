@@ -1,6 +1,6 @@
 "use client";
 import "./page.css";
-import banner from "@/public/img/banner.png";
+import banner from "@/public/img/banners/downloadFilesBanner.jpg";
 import addIcon from "@/public/img/addIcon.png";
 import DownloadItemSmall from "@/src/components/download_item_small";
 import DownloadItemLarge from "@/src/components/download_item_large";
@@ -35,7 +35,7 @@ export default function DownloadFiles({ params: { lng } }: DownloadFilesProps) {
 
         fetchDownloadsList();
         // console.log(downloadsList);
-    }, [getDownloads]);
+    }, []);
 
     if (!session) {
         return (
