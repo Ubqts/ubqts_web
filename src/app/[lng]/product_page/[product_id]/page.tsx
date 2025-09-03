@@ -37,6 +37,7 @@ const Page = () => {
                 const productData = await response.json();
                 setProduct(productData);
                 setEditImage(productData.picture);
+                setEditPicture(productData.picture);
                 setEditName(productData.name);
                 setEditDescription(productData.description);
             } catch (error) {
@@ -135,6 +136,7 @@ const Page = () => {
                             <Input
                                 id="fileInput"
                                 type="text"
+                                defaultValue={editImage}
                                 onChange={handleImageChange}
                             />
                         </>
