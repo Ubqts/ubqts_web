@@ -18,8 +18,8 @@ export type DownloadContext = {
 
 export const DownloadContext = createContext<DownloadContext>({
     downloads: [],
-    setDownloads: () => {},
-    sendDownload: async () => {},
+    setDownloads: () => { },
+    sendDownload: async () => { },
 });
 
 type Props = {

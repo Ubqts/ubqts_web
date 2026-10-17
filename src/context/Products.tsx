@@ -18,8 +18,8 @@ export type ProductContext = {
 
 export const ProductContext = createContext<ProductContext>({
     products: [],
-    setProducts: () => {},
-    sendProduct: async () => {},
+    setProducts: () => { },
+    sendProduct: async () => { },
 });
 
 type Props = {

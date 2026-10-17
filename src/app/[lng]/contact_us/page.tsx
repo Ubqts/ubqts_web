@@ -1,7 +1,7 @@
 import "./page.css";
 import { useTranslation } from "@/src/i18n";
 
-import banner from "@/public/img/banner.png";
+import banner from "@/public/img/banners/contactUsBanner.jpg";
 import map from "@/public/img/contactMap.png";
 
 type ContactUsProps = { params: { lng: string; }; }

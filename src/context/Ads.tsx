@@ -15,8 +15,8 @@ export type AdContext = {
 
 export const AdContext = createContext<AdContext>({
     ads: [],
-    setAds: () => {},
-    sendAds: async () => {},
+    setAds: () => { },
+    sendAds: async () => { },
 });
 
 type Props = {
